@@ -68,7 +68,8 @@ const App = () => {
     //arslan 
     //naeem 
     //project
-    
+    //and 
+    // talha
     <NavigationContainer>
       <Stack.Navigator initialRouteName="ApplicationDetailsScreen" screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen name="SplashScreen1" component={SplashScreen1} />
