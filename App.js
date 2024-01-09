@@ -62,6 +62,13 @@ const Stack = createNativeStackNavigator();
 const App = () => {
 
   return (
+
+    //navigaton
+    //stck navigtion
+    //arslan 
+    //naeem 
+    //project
+    
     <NavigationContainer>
       <Stack.Navigator initialRouteName="ApplicationDetailsScreen" screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen name="SplashScreen1" component={SplashScreen1} />
