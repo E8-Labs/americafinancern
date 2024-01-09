@@ -15,6 +15,7 @@ const Apis = {
     ApiGetUserLoans:`${BasePath}api/loans/get_user_loans?offset=0`,
     ApiUpdateProfile:`${BasePath}api/users/update_profile`,
     ApiGetLoanCalculations:`${BasePath}api/loans/get_loan_calculations`,
+    ApiAddDebt:`${BasePath}api/loans/add_debt`
 }
 
 

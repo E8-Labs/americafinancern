@@ -46,15 +46,33 @@ import LoanReviewScreen from "./components/LoanReviewScreen";
 import DashboardScreen from "./tabNavigation/DashboardScreen";
 import DashboardBase from "./tabNavigation/DashboardBase";
 import LoanShedule from "./tabNavigation/LoanShedule";
+import ActivePaydayLoans from "./Debt-Obligation/ActivePaydayLoans";
+import ApplicationDetailActiveDuty from "./Debt-Obligation/ApplicationDetailActiveDuty";
+import ApplicationDetailsScreen from "./Debt-Obligation/ApplicationDetailsScreen";
+import BankruptcyPetition from "./Debt-Obligation/BankruptcyPetition";
+import FinancialDetailsDebts from "./Debt-Obligation/FinancialDetailsDebts";
+import FinancialDetailsScreen from "./Debt-Obligation/FinancialDetailsScreen";
+import MonthlyDebtObligation from "./Debt-Obligation/MonthlyDebtObligation";
+import OthersDebtObligation from "./Debt-Obligation/OthersDebtObligation";
+import OutstandingDebtScreen from "./Debt-Obligation/OutstandingDebtScreen";
+import CreditCardDebpt from "./Debt-Obligation/CreditCardDebpt";
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
 
   return (
+
+    //navigaton
+    //stck navigtion
+    //arslan 
+    //naeem 
+    //project
+    //and 
+    // talha
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen1" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="SplashScreen1" component={SplashScreen1} />
+      <Stack.Navigator initialRouteName="ApplicationDetailsScreen" screenOptions={{ headerShown: false }}>
+        {/* <Stack.Screen name="SplashScreen1" component={SplashScreen1} />
         <Stack.Screen name="SplashScreen2" component={SplashScreen2} />
         <Stack.Screen name="SplashScreen3" component={SplashScreen3} />
         <Stack.Screen name="SplashScreen4" component={SplashScreen4} />
@@ -85,7 +103,19 @@ const App = () => {
         <Stack.Screen name="RecentHousingHistory" component={RecentHousingHistory} />
         <Stack.Screen name="LoanReviewScreen" component={LoanReviewScreen} />
         <Stack.Screen name="DashboardBase" component={DashboardBase} />
-        <Stack.Screen name="LoanShedule" component={LoanShedule} />
+        <Stack.Screen name="LoanShedule" component={LoanShedule} /> */}
+        <Stack.Screen name="ActivePaydayLoans" component={ActivePaydayLoans} />
+        <Stack.Screen name="ApplicationDetailActiveDuty" component={ApplicationDetailActiveDuty} /> 
+        <Stack.Screen name="ApplicationDetailsScreen" component={ApplicationDetailsScreen} /> 
+        <Stack.Screen name="BankruptcyPetition" component={BankruptcyPetition} /> 
+        <Stack.Screen name="CreditCardDebpt" component={CreditCardDebpt} /> 
+        <Stack.Screen name="FinancialDetailsDebts" component={FinancialDetailsDebts} /> 
+        <Stack.Screen name="FinancialDetailsScreen" component={FinancialDetailsScreen} /> 
+        <Stack.Screen name="MonthlyDebtObligation" component={MonthlyDebtObligation} /> 
+        <Stack.Screen name="OthersDebtObligation" component={OthersDebtObligation} /> 
+        <Stack.Screen name="OutstandingDebtScreen" component={OutstandingDebtScreen} /> 
+
+
 
       </Stack.Navigator>
     </NavigationContainer>
@@ -128,6 +158,15 @@ const App = () => {
     // <OtherStateScreen />
     // <SignInScreen/>
     // <DashboardScreen/>
+    // <ActivePaydayLoans/>
+    // <ApplicationDetailActiveDuty/>
+    // <ApplicationDetailsScreen/>
+    // <BankruptcyPetition/>
+    // <FinancialDetailsDebts/>
+    // <FinancialDetailsScreen/>
+    // <MonthlyDebtObligation/>
+    // <OthersDebtObligation/>
+    // <OutstandingDebtScreen/>
   )
 }
 export default App;
