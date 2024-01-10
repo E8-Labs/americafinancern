@@ -53,12 +53,14 @@ const ActivePaydayLoans = ({ navigation, route }) => {
 
 
         <View style={{ height: height, width: width }}>
-                <View style={{ flexDirection: "row", margin: 17 / 852 * height, marginTop: 32/852*height, marginBottom: 0,gap:110/393*width }}>
-                    <Image style={{ height: 20 / 852 * height, width: 24 / 393 * width, }} source={blackArrowicon} />
-                        <Text style={{  color: "#000",fontSize:12 / 852 * height,fontWeight:"500" }}>
-                        Application Details
-                        </Text>
-                </View>
+                <View style={{ margin: 17 / 852 * height, marginTop: 32 / 852 * height, marginBottom: 0, }}>
+                <TouchableOpacity style={{ height: 30 / 852 * height, width: 30 / 852 * height, borderRadius: 15 / 852 * height, backgroundColor: "#ececec", justifyContent: "center", alignItems: "center", }}>
+                    <Image style={{ height: 10 / 852 * height, width: 10 / 393 * width, resizeMode: "contain" }} source={blackArrowicon} />
+                </TouchableOpacity>
+                <Text style={{ marginTop: -20 / 852 * height, alignSelf: "center", alignItems: "center", justifyContent: "Center", color: "#000", fontSize: 12 / 852 * height, fontWeight: "500", }}>
+                    Application Details
+                </Text>
+            </View>
                 <View style={{ flexDirection: "column", alignItems: "center", }}>
 
                 <View style={{ flexDirection: 'row', marginTop: 30 / 852 * height, alignItems: 'center', }}>

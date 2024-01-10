@@ -11,14 +11,7 @@ const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 
 
-const CloseIcon = require("../assets/American_Finance_App_image/CloseBlackIcon-3x.png");
-// const blackArrowicon =require ("../assets/American_Finance_App_image/blackArrowicon-3x.png");
-
-
-
-const largecircleIconHeight = 75 / 852 * height;
-const largecircleIconWidth = 75 / 412 * height;
-
+const CloseIcon = require("../assets/American_Finance_App_image/CloseBlackIcon-3x.png")
 
 const CreditCardDebpt = ({ navigation, route }) => {
 
@@ -89,13 +82,13 @@ const CreditCardDebpt = ({ navigation, route }) => {
 
         <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 10}  >
 
-            <View style={{justifyContent:"flex-end", flexDirection: "row", margin: 17 / 852 * height, marginTop: 32 / 852 * height, marginBottom: 0, gap: 110 / 393 * width }}>
-                <Text style={{ color: "#000", fontSize: 12 / 852 * height, fontWeight: "500" }}>
+            <View style={{margin: 17 / 852 * height, marginTop: 32 / 852 * height, marginBottom: 0,  }}>
+                <Text style={{ alignSelf:"center",alignItems:"center",justifyContent:"Center",color: "#000", fontSize: 12 / 852 * height, fontWeight: "500" }}>
                     Credit card debt
                 </Text>
-                <View style={{height:30/852*height,width:30/852*height,borderRadius:15/852*height,backgroundColor:"#ececec",justifyContent:"center",alignItems:"center"}}>
-                <Image style={{ height: 12 / 852 * height, width: 12 / 393 * width, }} source={CloseIcon} />
-            </View>
+                <TouchableOpacity style={{marginTop:-20/852*height,alignSelf:"flex-end",height:30/852*height,width:30/852*height,borderRadius:15/852*height,backgroundColor:"#ececec",justifyContent:"center",alignItems:"center"}}>
+                <Image style={{ height: 10 / 852 * height, width: 10 / 393 * width,resizeMode:"contain" }} source={CloseIcon} />
+            </TouchableOpacity>
             </View>
 
             <View style={{ marginLeft: 15/ 852 * height, marginRight: 15/ 852 * height, marginTop: 35/ 852 * height, }}>

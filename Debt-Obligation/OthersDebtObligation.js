@@ -6,40 +6,23 @@ import ActivePaydayLoans from "./ActivePaydayLoans";
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 
-
-const BankBagIcon = require("../assets/American_Finance_App_image/BankBagIcon-3x.png");
-const blackcheckicon = require("../assets/American_Finance_App_image/blackcheckicon-3x.png");
-const whitecheckicon = require("../assets/American_Finance_App_image/whitecheckicon-3x.png");
-const Arrowicon = require("../assets/American_Finance_App_image/whiteArrowicon-3x.png");
-
-
-const jobIconviewHeight = 80 / 852 * height;
-const viewborderHeight = 65 / 852 * height;
-const blackcheckiconHeight = 21 / 852 * height;
-const blackcheckiconWidth = 21 / 412 * width;
-const whitecheckiconHeight = 21 / 852 * height;
-const whitecheckiconWidth = 21 / 412 * width;
-const smallcircleIconHeight = 34 / 852 * height;
-// const smallcircleIconWidth = 34;
-const largecircleIconHeight = 60 / 852 * height;
-const whiteArrowiconHeight = 24 / 852 * height;
-const whiteArrowiconWidth = 24 / 412 * width;
+const CloseIcon = require("../assets/American_Finance_App_image/CloseBlackIcon-3x.png")
 
 const OthersDebtObligation = (props) => {
 
-   const[condition,setCondition] = useState('');
-   const[amount,setAmount] = useState('');
+    const [condition, setCondition] = useState('');
+    const [amount, setAmount] = useState('');
 
-    const nextBtnAction = () =>{
+    const nextBtnAction = () => {
         //console.log(  condition,)
-        props.navigation.navigate("ActivePaydayLoans",{
-            obligation:{
+        props.navigation.navigate("ActivePaydayLoans", {
+            obligation: {
                 debt_type: condition,
                 monthly_debt_obligation: amount,
             },
 
 
-          
+
 
         })
 
@@ -47,42 +30,49 @@ const OthersDebtObligation = (props) => {
 
     return (
 
-       
 
-            <View style={{ height: height,width:width }}>
-                <View style={{ flexDirection: "column", alignItems: "center", }}>
-                    <Text style={styles.incomTextSt}>Debt Obligation</Text>
-                    <Text style={{ textAlign: "center", fontFamily: "PoppinsSemiBold", fontSize: 24, color: "#000", marginTop: 10 / 852 * height }}>Other</Text>
-                </View>
-                <View style={{ margin: 15/852*height, }}>
-                    <TextInput 
-                        placeholder="What’s the debt obligation?"
-                        value={condition}
-                        onChangeText={(item)=>setCondition(item)}
-                        style={{
-                             backgroundColor:"#f2f2f2",fontFamily:"PoppinsMedium",color:"#717171",height:49,borderRadius:13,padding:13,fontSize:14,}}
-                    />
-                </View>
 
-                <View style={{ margin: 15/852*height,marginTop:5 }}>
-                    <TextInput style={[globalStyles.textInputSt,{color:"#000"}]}  placeholder="$"
-                         value={amount}
-                         onChangeText={(item)=>setAmount(item)}
-                    />
-                </View>
+        <View style={{ height: height, width: width }}>
 
-                
-                <TouchableOpacity style={{ alignSelf: 'flex-end', marginTop: 42 / 852 * height, marginBottom: 20 / 852 * height, borderRadius: 30, marginRight: 25 / 852 * height, }}
-                   onPress={nextBtnAction}
-                >
-                    <View style={globalStyles.arrowBotton}>
-                        <Image source={Arrowicon}
-                            style={{ height: 24 / 852 * height, width: 24 / 393 * width, resizeMode: "center" }}
-                        />
-                    </View>
+            <View style={{ margin: 17 / 852 * height, marginTop: 32 / 852 * height, marginBottom: 0, }}>
+                <Text style={{ alignSelf: "center", alignItems: "center", justifyContent: "Center", color: "#000", fontSize: 12 / 852 * height, fontWeight: "500" }}>
+                    Debt Obligation
+                </Text>
+                <TouchableOpacity style={{ marginTop: -20 / 852 * height, alignSelf: "flex-end", height: 30 / 852 * height, width: 30 / 852 * height, borderRadius: 15 / 852 * height, backgroundColor: "#ececec", justifyContent: "center", alignItems: "center" }}>
+                    <Image style={{ height: 10 / 852 * height, width: 10 / 393 * width, resizeMode: "contain" }} source={CloseIcon} />
                 </TouchableOpacity>
-
             </View>
+            <View style={{ flexDirection: "column", alignItems: "center", }}>
+                <Text style={{ textAlign: "center", fontWeight:"700", fontSize: 26/852*height, color: "#000", marginTop: 27 / 852 * height }}>Other</Text>
+            </View>
+            <View style={{ marginTop: 27 / 852 * height,marginBottom:27,marginLeft:17/852*height,marginRight:17/852*height }}>
+                <TextInput
+                    placeholder="What’s the debt obligation?"
+                    value={condition}
+                    onChangeText={(item) => setCondition(item)}
+                    style={{
+                        backgroundColor: "#ececec", fontWeight:"500", color: "#717171", borderRadius:13/852*height
+                    }}
+                />
+            </View>
+
+            <View style={{backgroundColor: "#ececec", fontWeight:"500",marginLeft:17/852*height,marginRight:17/852*height, color: "#717171", borderRadius:13/852*height,}}>
+                <TextInput style={{  color: "#000" }} placeholder="$"
+                    value={amount}
+                    onChangeText={(item) => setAmount(item)}
+                />
+            </View>
+
+
+            <TouchableOpacity style={[globalStyles.capsuleButton, { marginTop: 62 / 852 * height, marginRight: 13 / 852 * height, alignSelf: "flex-end" }]}
+                onPress={nextBtnAction}
+            >
+                <Text style={{ color: '#fff', fontSize: 18 / 852 * height, fontWeight: '500', textAlign: 'center' }}>
+                    Submit
+                </Text>
+            </TouchableOpacity>
+
+        </View>
 
     )
 

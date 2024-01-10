@@ -78,15 +78,17 @@ const BankruptcyPetition = ({navigation,route}) => {
       
 
             <View style={{ height: height,width:width }}>
-                <View style={{ flexDirection: "row", margin: 17 / 852 * height, marginTop: 32/852*height, marginBottom: 0,gap:110/393*width }}>
-                    <Image style={{ height: 20 / 852 * height, width: 24 / 393 * width, }} source={blackArrowicon} />
-                        <Text style={{  color: "#000",fontSize:12 / 852 * height,fontWeight:"500" }}>
-                        Application Details
-                        </Text>
-                </View>
+                <View style={{ margin: 17 / 852 * height, marginTop: 32 / 852 * height, marginBottom: 0, }}>
+                <TouchableOpacity style={{ height: 30 / 852 * height, width: 30 / 852 * height, borderRadius: 15 / 852 * height, backgroundColor: "#ececec", justifyContent: "center", alignItems: "center", }}>
+                    <Image style={{ height: 10 / 852 * height, width: 10 / 393 * width, resizeMode: "contain" }} source={blackArrowicon} />
+                </TouchableOpacity>
+                <Text style={{ marginTop: -20 / 852 * height, alignSelf: "center", alignItems: "center", justifyContent: "Center", color: "#000", fontSize: 12 / 852 * height, fontWeight: "500", }}>
+                    Application Details
+                </Text>
+            </View>
                 <View style={{ flexDirection: "column", alignItems: "center", }}>
 
-                    <View style={{ flexDirection: 'row', marginTop: 37 / 852 * height, alignItems: 'center', }}>
+                    <View style={{ flexDirection: 'row', marginTop: 30 / 852 * height, alignItems: 'center', }}>
 
                         <View style={{ width: 2/ 852 * height, height: 2/ 852 * height, borderRadius: 2/ 852 * height, backgroundColor: "#000" }}></View>
 
@@ -96,7 +98,7 @@ const BankruptcyPetition = ({navigation,route}) => {
                             height: 35 / 852 * height, width: 35 / 852 * height, borderRadius: 17.5/ 852 * height, borderWidth: 1, alignSelf: "center" ,justifyContent: "center", alignItems: "center"}}>
                             <Image source={PiggyBank}
                                 style={{
-                                    height: 21, width: 21, alignSelf: 'center', justifyContent: 'center',marginTop:4
+                                    height: 20/852*height, width: 20/852*height, alignSelf: 'center', justifyContent: 'center',marginTop:4
                                 }}
                             />
                         </View>
@@ -110,7 +112,7 @@ const BankruptcyPetition = ({navigation,route}) => {
                 </View>
 
                 <View style={{ justifyContent: "center", alignItems: "center" }}>
-                    <Text style={{ fontWeight:"500", fontSize: 24/ 852 * height, color: "#000" }}>Bankruptcy Status</Text>
+                    <Text style={{ fontWeight:"700", fontSize: 24/ 852 * height, color: "#000" }}>Bankruptcy Status</Text>
 
                     <Text style={{fontWeight:"500", fontSize: 14/ 852 * height, color: '#717171', marginBottom: 0, fontFamily: "PoppinsMedium" }}>
                     In the past year, have you filed a 

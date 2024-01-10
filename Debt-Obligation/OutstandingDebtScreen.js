@@ -4,19 +4,19 @@ import { globalStyles } from "../StylesSheet/GlobalStyles";
 
 
 const ThreeDoteIcon = require("../assets/American_Finance_App_image/ThreeDoteIcon-3x.png");
-const Documentimage = require("../assets/American_Finance_App_image/Documentimage-3x.png");
+const blackArrowicon = require("../assets/American_Finance_App_image/blackArrowicon-3x.png");
 const AddIcon = require("../assets/American_Finance_App_image/AddIcon-3x.png")
 const Arrowicon = require("../assets/American_Finance_App_image/whiteArrowicon-3x.png");
 const CloseIcon = require("../assets/American_Finance_App_image/CloseIcon-3x.png");
 const blackcheckicon = require("../assets/American_Finance_App_image/blackcheckicon-3x.png");
 const whitecheckicon = require("../assets/American_Finance_App_image/whitecheckicon-3x.png");
+const Dollaricon = require("../assets/American_Finance_App_image/DollarIcon-3x.png");
+
 
 
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 
-const largecircleIconHeight = 70 / 852 * height;
-const largecircleIconWidth = 70 / 412 * height;
 
 const Status = [
     {
@@ -61,31 +61,64 @@ const OutstandingDebtScreen = () => {
     return (
         <View  >
             <View >
-                <View style={{ flexDirection: "column", alignItems: "center" }}>
-                    <Text style={globalStyles.textSt}>Income Details</Text>
-                    <View style={{ alignItems: "center", marginTop: 20 / 852 * height, }}>
-                        <Text style={{ fontFamily: "PoppinsSemiBold", fontSize: 24, alignSelf: "center", }} >Outstanding debt</Text>
+            <View style={{ margin: 17 / 852 * height, marginTop: 32 / 852 * height, marginBottom: 0, }}>
+                <TouchableOpacity style={{ height: 30 / 852 * height, width: 30 / 852 * height, borderRadius: 15 / 852 * height, backgroundColor: "#ececec", justifyContent: "center", alignItems: "center" }}>
+                    <Image style={{ height: 10 / 852 * height, width: 10 / 393 * width, resizeMode: "contain" }} source={blackArrowicon} />
+                </TouchableOpacity>
+                <Text style={{ marginTop: -20 / 852 * height, alignSelf: "center", alignItems: "center", justifyContent: "Center", color: "#000", fontSize: 12 / 852 * height, fontWeight: "500" }}>
+                    Application Details
+                </Text>
+            </View>
+            <View style={{ flexDirection: "column", alignItems: "center", }}>
+
+                <View style={{ flexDirection: 'row', marginTop: 37 / 852 * height, alignItems: 'center', }}>
+
+                    <View style={{ width: 2 / 852 * height, height: 2 / 852 * height, borderRadius: 2 / 852 * height, backgroundColor: "#000" }}></View>
+
+                    <View style={{ width: 6 / 852 * height, height: 6 / 852 * height, borderRadius: 3 / 852 * height, backgroundColor: "#000", marginRight: 9 / 852 * height, marginLeft: 6 / 852 * height }}></View>
+
+                    <View style={{
+                        height: 35 / 852 * height, width: 35 / 852 * height, borderRadius: 17.5 / 852 * height, borderWidth: 1, alignSelf: "center", justifyContent: "center", alignItems: "center"
+                    }}>
+                        <Image source={Dollaricon}
+                            style={{
+                                height: 20/852*height, width: 20/852*height,resizeMode:"contain",
+                            }}
+                        />
                     </View>
 
-                    <Text style={{ fontSize: 12, color: '#717171', margin: 10 / 852 * height, marginBottom: 0, fontFamily: "PoppinsMedium" }}>
-                        (Please ensure all information entered on your application
-                    </Text>
-                    <Text style={{ fontSize: 12, color: '#717171', fontFamily: "PoppinsMedium" }}>
-                        is accurate and verifiable, America Finance will verify the
-                    </Text>
-                    <Text style={{ fontSize: 12, color: '#717171', fontFamily: "PoppinsMedium" }}>
-                        accuracy of all information submitted.)
-                    </Text>
+                    <View style={{ width: 6 / 852 * height, height: 6 / 852 * height, borderRadius: 3 / 852 * height, backgroundColor: "#000", marginRight: 9 / 852 * height, marginLeft: 6 / 852 * height }}></View>
+                    <View style={{ width: 2 / 852 * height, height: 2 / 852 * height, borderRadius: 2 / 852 * height, backgroundColor: "#000" }}></View>
+
+
+
+                </View>
+            </View>
+
+            <View style={{ flexDirection: "column", alignItems: "center" }}>
+
+                <View style={{ alignItems: "center",  }}>
+                    <Text style={{ fontFamily: "PoppinsSemiBold", fontSize: 24/852*height,color:"#000", alignSelf: "center",fontWeight:"700" }} >Outstanding debt</Text>
                 </View>
 
+                <Text style={{ fontSize: 12/852*height, color: '#717171', margin: 10 / 852 * height, marginBottom: 0, fontWeight: "500", }}>
+                    (Please ensure all information entered on your application
+                </Text>
+                <Text style={{ fontSize: 12/852*height, color: '#717171', fontWeight: "500" }}>
+                    is accurate and verifiable, America Finance will verify the
+                </Text>
+                <Text style={{ fontSize: 12/852*height, color: '#717171', fontWeight: "500" }}>
+                    accuracy of all information submitted.)
+                </Text>
+            </View>
 
-                <View style={{ justifyContent: "space-between", height: 124 / 852 * height, width: 361 / 393 * width, borderWidth: 0.5, borderRadius: 31, backgroundColor: "#fff", borderColor: "d0d0d0", alignSelf: "center", margin: 25 / 852 * height }}>
+                <View style={{ justifyContent: "space-between", height: 136 / 852 * height, width: 373 / 393 * width, borderWidth: 1, borderRadius: 31/852*height, backgroundColor: "#fff", borderColor: "#ececec", alignSelf: "center", marginTop: 26 / 852 * height }}>
                     <View  >
-                        <View style={{ flexDirection: "row", margin: 10 / 852 * height, marginBottom: 0, justifyContent: "space-between", marginLeft: 17, marginRight: 17 }}>
-                            <Text style={{ fontFamily: "PoppinsSemiBold", color: "#2468e8", fontSize: 18 / 852 * height, marginBottom: 0 }}>Noah Nega</Text>
+                        <View style={{ flexDirection: "row", margin: 15 / 852 * height, marginBottom: 0, justifyContent: "space-between", }}>
+                            <Text style={{ fontWeight:"500", color: "#2468e8", fontSize: 18 / 852 * height, marginBottom: 0 }}>Noah Nega</Text>
                             <View style={{ justifyContent: "center", alignItems: "center" }}>
-                                <TouchableOpacity style={{ alignSelf: "center", borderRadius: 30, }} onPress={openModal1}>
-                                    <View style={{ height: 34 / 852 * height, width: 34 / 852 * height, backgroundColor: "#f2f2f2", opacity: 0.5, justifyContent: "center", alignItems: "center", borderRadius: 17, marginRight: 5 }}>
+                                <TouchableOpacity style={{ alignSelf: "center", borderRadius: 30/852*height, }} onPress={openModal1}>
+                                    <View style={{ height: 34 / 852 * height, width: 34 / 852 * height, backgroundColor: "#f2f2f2", opacity: 0.5, justifyContent: "center", alignItems: "center", borderRadius: 17/852*height, marginRight: 19/852*height }}>
                                         <Image source={ThreeDoteIcon}
                                             style={{ height: 4 / 852 * height, width: 20 / 393 * width, resizeMode: "contain" }}
                                         />
@@ -96,15 +129,15 @@ const OutstandingDebtScreen = () => {
                         </View>
 
 
-                        <Text style={{ marginLeft: 17, marginRight: 17, color: "#1f0505", fontSize: 14 / 852 * height, fontFamily: "PoppinsMedium", marginTop: -8 / 852 * height }}>Account Number</Text>
+                        <Text style={{ marginLeft: 17/852*height, marginRight: 17/852*height, color: "#1f0505", fontSize: 14 / 852 * height, fontWeight:"500", marginTop: -8 / 852 * height }}>Account Number</Text>
 
 
-                        <View style={{ flexDirection: "row", marginLeft: 17, marginRight: 17, justifyContent: "space-between", }}>
-                            <Text style={{ fontSize: 22 / 852 * height, fontFamily: "PoppinsMedium", color: "#1f0505", }}>$8,257</Text>
-                            <Text style={{ color: "#717171", fontSize: 14 / 852 * height, fontFamily: "PoppinsMedium", }}>Balance: $247</Text>
+                        <View style={{ flexDirection: "row", marginLeft: 17/852*height,marginTop:5/852*height, marginRight: 17/852*height, justifyContent: "space-between", }}>
+                            <Text style={{ fontSize: 22 / 852 * height, fontWeight:"500", color: "#1f0505", }}>$8,257</Text>
+                            <Text style={{ color: "#717171", fontSize: 14 / 852 * height, fontWeight:"500", }}>Balance: $247</Text>
                         </View>
 
-                        <Text style={{ alignSelf: "flex-end", marginLeft: 17, marginRight: 17, color: "#717171", fontSize: 14 / 852 * height, fontFamily: "PoppinsMedium", marginTop: -12 / 852 * height }}>Due on 02/08/2023</Text>
+                        <Text style={{ alignSelf: "flex-end", marginLeft: 17/852*height, marginRight: 17/852*height, color: "#717171", fontSize: 14 / 852 * height, fontWeight:"500", }}>Due on 02/08/2023</Text>
                     </View>
 
 
@@ -112,12 +145,12 @@ const OutstandingDebtScreen = () => {
 
 
 
-                <TouchableOpacity style={{ height: 93 / 852 * height, width: 354 / 393 * width, borderWidth: 0.5, borderRadius: 31, alignSelf: "center", marginTop: 30 / 852 * height, borderColor: "d0d0d0", justifyContent: "center", alignContent: "center" }} onPress={openModal2} >
+                <TouchableOpacity style={{ height: 93 / 852 * height, width: 354 / 393 * width, borderWidth: 1, borderRadius: 31/852*height, alignSelf: "center", marginTop: 18 / 852 * height, borderColor: "#ececec", justifyContent: "center", alignContent: "center" }} onPress={openModal2} >
                     <View style={{ borderColor: "#1f0505", flexDirection: "row", alignItems: "center", }}>
-                        <Text style={{ fontSize: 14, color: "#1f0505", flexDirection: "row", flex: 1, marginLeft: 17, fontFamily: "PoppinsMedium", }}>Add another</Text>
+                        <Text style={{ fontSize: 14/852*height, color: "#1f0505", flexDirection: "row", flex: 1, marginLeft: 17/852*height, fontWeight:"500", }}>Add another</Text>
 
                         <View style={{ alignSelf: 'flex-end', borderRadius: 30, marginRight: 25 / 852 * height, }} >
-                            <View style={{ height: 59 / 852 * height, width: 59 / 852 * height, backgroundColor: '#2468E8', borderRadius: 35, alignItems: 'center', justifyContent: 'center', }}>
+                            <View style={{ height: 59 / 852 * height, width: 59 / 852 * height, backgroundColor: '#2468E8', borderRadius: 35/852*height, alignItems: 'center', justifyContent: 'center', }}>
                                 <Image source={AddIcon}
                                     style={{ height: 21.5 / 852 * height, width: 20.5 / 852 * height }}
                                 />
@@ -126,7 +159,7 @@ const OutstandingDebtScreen = () => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{ alignSelf: 'flex-end', marginTop: 110 / 852 * height, marginBottom: 20 / 852 * height, borderRadius: 30, marginRight: 25 / 852 * height, }} >
+                <TouchableOpacity style={{ alignSelf: 'flex-end', marginTop: 145 / 852 * height,borderRadius: 30/852*height, marginRight: 25 / 852 * height, }} >
                     <View style={globalStyles.arrowBotton}>
                         <Image source={Arrowicon}
                             style={{ height: 24 / 852 * height, width: 24 / 393 * width, resizeMode: "center" }}
@@ -142,12 +175,12 @@ const OutstandingDebtScreen = () => {
                 onRequestClose={closeModal2}>
 
                 <View style={{ flex: 1, justifyContent: "flex-end", backgroundColor: '#00000050' }}>
-                    <View style={{ elevation: 5, shadowColor: "#000", height: 375 / 852 * height, width: 353 / 393 * width, alignSelf: "center", backgroundColor: "#fff", borderRadius: 23, marginTop: 26 }}>
+                    <View style={{ elevation: 5, shadowColor: "#000", height: 375 / 852 * height, width: 353 / 393 * width, alignSelf: "center", backgroundColor: "#fff", borderRadius: 30/852*height, marginTop: 26/852*height }}>
                         <FlatList scrollEnabled={true} style={{ marginTop: 20 / 852 * height }}
                             data={Status}
                             renderItem={({ item }) =>
                                 <View >
-                                    <TouchableOpacity onPress={() => {setSelectedOption(item.name)}} style={{ margin: 6, borderWidth: 0.5, borderRadius: 23, height: 80 / 852 * height, marginTop: 10 }}>
+                                    <TouchableOpacity onPress={() => {setSelectedOption(item.name)}} style={{ margin: 15/852*height, borderWidth: 1, borderRadius: 23/852*height, height: 80 / 852 * height,borderColor:"#ececec" }}>
                                         <View style={styles.textViewSt}>
                                             <Text numberOfLines={2} lineBreakMode="tail" style={styles.textST}>{item.name}</Text>
 
@@ -190,7 +223,7 @@ const OutstandingDebtScreen = () => {
 
             >
                 <View style={{ flex: 1, justifyContent: "flex-end", backgroundColor: '#00000050' }}>
-                    <View style={{ elevation: 5, shadowColor: "#000", height: 189 / 852 * height, width: 359 / 393 * width, alignSelf: "center", backgroundColor: "#fff", borderRadius: 23, marginTop: 26, alignItems: "center" }}>
+                    <View style={{ elevation: 5, shadowColor: "#000", height: 189 / 852 * height, width: 369 / 393 * width, alignSelf: "center", backgroundColor: "#fff", borderRadius: 30/852*height, marginTop: 26/852*height, alignItems: "center" }}>
                         <Text style={{ fontSize: 14 / 852 * height, fontWeight: "500", color: "#000", margin: 17 / 852 * height }}>
                             More Options
                         </Text>
@@ -232,53 +265,34 @@ const OutstandingDebtScreen = () => {
 export default OutstandingDebtScreen;
 
 const styles = StyleSheet.create({
-
-    incomTextSt: {
-        fontSize: 13,
-        color: "#000",
-        textAlign: "center",
-        fontFamily: "PoppinsMedium",
-        marginBottom: 10
-
-    },
-
     textViewSt: {
-
-        // height: viewborderHeight,
-
         borderColor: "#000",
         flexDirection: "row",
         justifyContent: "flex-end",
         alignItems: "center",
     },
-
     textST: {
-        fontSize: 14,
+        fontSize: 18/852*height,
         color: "#000",
+        fontWeight:"500",
         flexDirection: "row",
         flex: 1,
-        marginLeft: 12,
+        marginLeft: 15/852*height,
         fontFamily: "PoppinsMedium",
-        borderRadius: 23,
-
-
+        borderRadius: 23/852*height,
     },
-
     imageViewSt: {
         backgroundColor: "#1e90ff",
         height: 34 / 852 * height,
         width: 34 / 852 * height,
-        borderRadius: 17,
-        margin: 12,
+        borderRadius: 17/852*height,
+        margin: 15/852*height,
         justifyContent: "center",
-
     },
-
     imageSt: {
         height: 21 / 852 * height,
         width: 21 / 852 * height,
         alignSelf: "center",
-        margin: 6
 
     },
 
