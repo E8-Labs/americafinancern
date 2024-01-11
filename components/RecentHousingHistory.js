@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Dimensions, Image, TouchableOpacity, ScrollView,Modal } from "react-native";
+import { View, Text, Dimensions, Image, TouchableOpacity, ScrollView, Modal } from "react-native";
 import { globalStyles } from "./GlobalStyles";
 import Apis from "../Api/apipath";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,15 +14,15 @@ const RecentHousingHistory = (props) => {
     const [houses, setHouses] = useState([])
 
     const nextBtnAction = () => {
-        if(houses.length < 2){
+        if (houses.length < 2) {
             Snackbar.show({
-                text : "Please enter minimum three houses history",
-                duration:Snackbar.LENGTH_SHORT,
-                backgroundColor:'red',
-                marginBottom:10,
+                text: "Please enter minimum three houses history",
+                duration: Snackbar.LENGTH_SHORT,
+                backgroundColor: 'red',
+                marginBottom: 10,
             })
         }
-        else{
+        else {
             props.navigation.navigate('DashboardBase')
 
         }
@@ -56,7 +56,9 @@ const RecentHousingHistory = (props) => {
                     if (json.status === true) {
                         console.log("house data got")
                         console.log(json.data[0].address)
-                        setHouses(json.data)
+                        let houses = json.data
+                        houses.push({})
+                        setHouses(houses)
                         // props.navigation.navigate('')
                     }
                 }
@@ -66,7 +68,7 @@ const RecentHousingHistory = (props) => {
     }, [])
 
     const [selectedOption, setSelectedOption] = useState("");
-    const [showModal, setShowModal]=useState(false)
+    const [showModal, setShowModal] = useState(false)
 
 
     return (
@@ -103,60 +105,41 @@ const RecentHousingHistory = (props) => {
                 <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: "#000", marginRight: 9, marginLeft: 6 }}></View>
                 <View style={{ width: 2, height: 2, borderRadius: 2, backgroundColor: "#000" }}></View>
             </View>
-            <Text style={{ fontSize: 24/852*height, fontWeight: '700', marginTop: 10/852*height,color:'#000' }}>
+            <Text style={{ fontSize: 24 / 852 * height, fontWeight: '700', marginTop: 10 / 852 * height, color: '#000' }}>
                 Housing
             </Text>
-            <Text style={{ fontSize: 14/852*height, fontWeight: '500', color: '#a7a7a7' }}>
+            <Text style={{ fontSize: 14 / 852 * height, fontWeight: '500', color: '#a7a7a7' }}>
                 Please submit at least 3 years of your most
             </Text>
-            <Text style={{ fontSize: 14/852*height, fontWeight: '500', color: '#a7a7a7' }}>
+            <Text style={{ fontSize: 14 / 852 * height, fontWeight: '500', color: '#a7a7a7' }}>
                 recent Housing history
             </Text>
 
-            <ScrollView style={{ flex:2.5 }}>
+            <ScrollView style={{ flex: 2.5 }}>
 
 
                 {
-                    houses.map((item) =>
-                        <View style={{
-                            height: 108 / 852 * height, width: 350 / 393 * width, borderColor: '#ececec', borderWidth: 1, borderRadius: 20,
-                            flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 / 852 * height
-                         }} key={item.id} >
-                            <View style={{ paddingTop:20,paddingBottom:20,paddingLeft:15,paddingRight:23 }}>
-                                <Text style={{ fontSize: 18/852*height, fontWeight: '600',color:'#000' }}>
-                                    {item.address}
-                                </Text>
-                                <Text style={{ fontSize: 14/852*height, fontWeight: '500',color:'#000' }}>
-                                    {item.state}   |  {item.zipcode}
-                                </Text>
-                                <View style={{ flexDirection: 'row', marginTop: 3, gap: 3, alignItems: 'center' }}>
-                                    <Text style={{ fontSize: 12/852*height, fontWeight: '500',color:'#000' }}>
-                                    {item.from_year} - {item.to_year}
-                                    </Text>
-                                    <Text style={{ fontSize: 12/852*height, fontWeight: '500', color: '#a7a7a7' }}>
-                                    (  {(item.to_year-item.from_year)}yr)
-                                    </Text>
-                                </View>
-                            </View>
-                            <TouchableOpacity onPress={()=>setShowModal(true)}>
-                                <Image source={require('../assets/moreIcon.png')}
-                                    style={{ height: 34 / 852 * height, width: 34 / 393 * width, resizeMode: 'contain', margin: 10,padding:2 }}
-                                />
-                            </TouchableOpacity>
-                        </View>
+                    houses.map((item, index) =>
+                        index < houses.length - 1 ? (
+                            SinglueHouseView(item, setShowModal)
+                        )
+                            :
+                            (
+                                <TouchableOpacity style={{ marginTop: 10 }}
+                                    onPress={() => props.navigation.navigate("HousingSituition")}
+                                >
+                                    <View style={[globalStyles.arrowBotton, { backgroundColor: 'skyblue' }]}>
+                                        <Image source={require('../assets/blueAddIcon.png')}
+                                            style={{ height: 20 / 852 * height, width: 20 / 393 * width, }}
+                                        />
+                                    </View>
+                                </TouchableOpacity>
+                            )
                     )
                 }
             </ScrollView>
-            <View style = {{flex:0.6,alignItems:'center',width:width,marginRight:20}}>
-                <TouchableOpacity style={{ marginTop: 10 }}
-                    onPress={() => props.navigation.navigate("HousingSituition")}
-                >
-                    <View style={[globalStyles.arrowBotton, { backgroundColor: 'skyblue' }]}>
-                        <Image source={require('../assets/blueAddIcon.png')}
-                            style={{ height: 20 / 852 * height, width: 20 / 393 * width, }}
-                        />
-                    </View>
-                </TouchableOpacity>
+            <View style={{ flex: 0.6, alignItems: 'center', width: width, marginRight: 20 }}>
+
                 <TouchableOpacity style={{ alignSelf: 'flex-end', }}
                     onPress={nextBtnAction}
                 >
@@ -168,16 +151,16 @@ const RecentHousingHistory = (props) => {
                     </View>
                 </TouchableOpacity>
 
-                <Text style={{ fontSize: 14/852*height, color: '#a7a7a7', fontWeight: '500', height: 18, marginTop: 20 / 852 * height }}>
+                <Text style={{ fontSize: 14 / 852 * height, color: '#a7a7a7', fontWeight: '500', height: 18, marginTop: 20 / 852 * height }}>
                     For more information and resources regarding
                 </Text>
 
-                <Text style={{ fontSize: 14/852*height, color: '#a7a7a7', fontWeight: '500', height: 18 }}>
+                <Text style={{ fontSize: 14 / 852 * height, color: '#a7a7a7', fontWeight: '500', height: 18 }}>
                     PayDay loans, please visit
                 </Text>
 
                 <TouchableOpacity>
-                    <Text style={{ fontSize: 14/852*height, fontWeight: '600', color: '#2468E8', height: 18 }}>
+                    <Text style={{ fontSize: 14 / 852 * height, fontWeight: '600', color: '#2468E8', height: 18 }}>
                         www.AmericaFinance.com
                     </Text>
 
@@ -208,7 +191,7 @@ const RecentHousingHistory = (props) => {
                         </TouchableOpacity>
                     </View>
                     <View style={{ elevation: 5, shadowColor: "#000" }} >
-                        <TouchableOpacity onPress={()=>setShowModal(false)} style={{ height: 81 / 852 * height, width: 81 / 852 * height, backgroundColor: "#fff", justifyContent: "center", alignItems: "center", alignSelf: "center", borderRadius: 40.5 / 852 * height, margin: 13 / 852 * height }}>
+                        <TouchableOpacity onPress={() => setShowModal(false)} style={{ height: 81 / 852 * height, width: 81 / 852 * height, backgroundColor: "#fff", justifyContent: "center", alignItems: "center", alignSelf: "center", borderRadius: 40.5 / 852 * height, margin: 13 / 852 * height }}>
                             <View >
                                 <Image
                                     source={CloseIcon} style={{ height: 24 / 852 * height, width: 24 / 852 * height }} />
@@ -227,3 +210,31 @@ const RecentHousingHistory = (props) => {
 }
 
 export default RecentHousingHistory;
+
+function SinglueHouseView(item, setShowModal) {
+    return <View style={{
+        height: 108 / 852 * height, width: 350 / 393 * width, borderColor: '#ececec', borderWidth: 1, borderRadius: 20,
+        flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 / 852 * height
+    }} key={item.id}>
+        <View style={{ paddingTop: 20, paddingBottom: 20, paddingLeft: 15, paddingRight: 23 }}>
+            <Text style={{ fontSize: 18 / 852 * height, fontWeight: '600', color: '#000' }}>
+                {item.address}
+            </Text>
+            <Text style={{ fontSize: 14 / 852 * height, fontWeight: '500', color: '#000' }}>
+                {item.state}   |  {item.zipcode}
+            </Text>
+            <View style={{ flexDirection: 'row', marginTop: 3, gap: 3, alignItems: 'center' }}>
+                <Text style={{ fontSize: 12 / 852 * height, fontWeight: '500', color: '#000' }}>
+                    {item.from_year} - {item.to_year}
+                </Text>
+                <Text style={{ fontSize: 12 / 852 * height, fontWeight: '500', color: '#a7a7a7' }}>
+                    (  {(item.to_year - item.from_year)}yr)
+                </Text>
+            </View>
+        </View>
+        <TouchableOpacity onPress={() => setShowModal(true)}>
+            <Image source={require('../assets/moreIcon.png')}
+                style={{ height: 34 / 852 * height, width: 34 / 393 * width, resizeMode: 'contain', margin: 10, padding: 2 }} />
+        </TouchableOpacity>
+    </View>;
+}

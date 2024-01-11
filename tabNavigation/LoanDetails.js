@@ -31,7 +31,7 @@ console.log("Loan in loan details ", loan)
             <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
                 <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
-                        <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
+                        <Text style={{ fontSize: 14 / 852 * height, marginRight: 5/852*height, color: "#000" }} >
                             Finance charge
                         </Text>
                         <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
@@ -46,7 +46,7 @@ console.log("Loan in loan details ", loan)
             <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
                 <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
-                        <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
+                        <Text style={{ fontSize: 14 / 852 * height, marginRight: 5/852*height, color: "#000" }} >
                             Amount finance
                         </Text>
                         <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
@@ -63,7 +63,7 @@ console.log("Loan in loan details ", loan)
             <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
                 <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
-                        <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
+                        <Text style={{ fontSize: 14 / 852 * height, marginRight: 5/852*height, color: "#000" }} >
                             Total payment
                         </Text>
                         <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
@@ -80,7 +80,7 @@ console.log("Loan in loan details ", loan)
             <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
                 <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
                     <View style={{ flexDirection: "row", alignItems: "center" }}>
-                        <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
+                        <Text style={{ fontSize: 14 / 852 * height, marginRight: 5/852*height, color: "#000" }} >
                             Number of payments
                         </Text>
                         <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}

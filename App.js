@@ -118,7 +118,7 @@ const App = () => {
 
       <View>
         {/* <FinancialDetailsDebts/> */}
-        <OutstandingDebtScreen/>
+        <RecentHousingHistory/>
         {/* <ActivePaydayLoans/> */}
       </View>
 

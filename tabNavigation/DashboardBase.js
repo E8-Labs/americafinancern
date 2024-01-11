@@ -103,7 +103,7 @@ function DashboardBase(props) {
                     style={{
                       height: 100 / 852 * height,
                       width: 100 / 393 * width,
-                      marginTop: 10,
+                      marginTop: 10/852*height,
     
                     }} />  
                 // </TouchableOpacity>
@@ -183,8 +183,8 @@ const NotificationScreen = () => {
 export default DashboardBase;
 const styles = StyleSheet.create({
   tabIcon: {
-    width: 24,
-    height: 24,
+    width: 24/852*height,
+    height: 24/852*height,
     resizeMode: 'cover', // Adjust the resizeMode as needed
   },
 });

@@ -79,14 +79,13 @@ const FinancialDetailsDebts = () => {
                 </Text>
             </View>
 
-            <View style={{ height: 176 / 852 * height, width: 361 / 393 * width, borderRadius: 31/852*height, marginTop: 14 / 852 * height, alignSelf: "center", backgroundColor: "#2468e8",borderColor:"#ececec" }} >
-                <View style={{ justifyContent: "space-between", height: 124 / 852 * height, width: 359 / 393 * width, borderWidth: 1, borderRadius: 31/852*height, backgroundColor: "#fff", borderColor: "#ececec", }}>
-                    <View >
-                        <View style={{ flexDirection: "row", marginTop: 17 / 852 * height, marginBottom: 0, justifyContent: "space-between", marginLeft: 22/852*height, marginRight: 22/852*height }}>
-                            <Text style={{ fontWeight:"500", color: "#2468e8", fontSize: 18/852*height, }}>Noah Nega</Text>
+            <View style={{ justifyContent: "space-between", height: 136 / 852 * height, width: 373 / 393 * width, borderWidth: 1, borderRadius: 31/852*height, backgroundColor: "#fff", borderColor: "#ececec", alignSelf: "center", marginTop: 26 / 852 * height }}>
+                    <View  >
+                        <View style={{ flexDirection: "row", margin: 17 / 852 * height, marginBottom: 0, justifyContent: "space-between", }}>
+                            <Text style={{ fontWeight:"500", color: "#2468e8", fontSize: 18 / 852 * height, marginBottom: 0 }}>Noah Nega</Text>
                             <View style={{ justifyContent: "center", alignItems: "center" }}>
-                                <TouchableOpacity style={{ alignSelf: "center", borderRadius: 17/852*height, }} >
-                                    <View style={{ height: 34/852*height, width: 34/852*height, backgroundColor: "#f2f2f2", justifyContent: "center", alignItems: "center", borderRadius: 17/852*height,  }}>
+                                <TouchableOpacity style={{ alignSelf: "center", borderRadius: 30/852*height, }} onPress={openModal1}>
+                                    <View style={{ height: 34 / 852 * height, width: 34 / 852 * height, backgroundColor: "#f2f2f2", opacity: 0.5, justifyContent: "center", alignItems: "center", borderRadius: 17/852*height,  }}>
                                         <Image source={ThreeDoteIcon}
                                             style={{ height: 4 / 852 * height, width: 20 / 393 * width, resizeMode: "contain" }}
                                         />
@@ -96,23 +95,20 @@ const FinancialDetailsDebts = () => {
 
                         </View>
 
-                        <View style={{ flexDirection: "row", marginLeft: 22/852*height, marginRight: 22/852*height, justifyContent: "space-between", }}>
-                            <Text style={{ color: "#1f0505", fontSize: 14/852*height, fontWeight:"500",  }}>Balance</Text>
-                            <Text style={{ color: "#2468e8", fontSize: 14/852*height, fontWeight:"bold",marginTop:6/852*height }}>Wells Fargo Bank</Text>
+
+                        <Text style={{ marginLeft: 17/852*height, marginRight: 17/852*height, color: "#1f0505", fontSize: 14 / 852 * height, fontWeight:"500", marginTop: -8 / 852 * height }}>Account Number</Text>
+
+
+                        <View style={{ flexDirection: "row", marginLeft: 17/852*height,marginTop:5/852*height, marginRight: 17/852*height, justifyContent: "space-between", }}>
+                            <Text style={{ fontSize: 22 / 852 * height, fontWeight:"500", color: "#1f0505", }}>$8,257</Text>
+                            <Text style={{ color: "#717171", fontSize: 14 / 852 * height, fontWeight:"500", }}>Balance: $247</Text>
                         </View>
 
-                        <Text style={{ marginLeft: 22/852*height, marginRight: 22/852*height, fontSize: 22 / 852 * height, fontWeight:"500", color: "#000", }}>$2,057</Text>
-
+                        <Text style={{ alignSelf: "flex-end", marginLeft: 17/852*height, marginRight: 17/852*height, color: "#717171", fontSize: 14 / 852 * height, fontWeight:"500", }}>Due on 02/08/2023</Text>
                     </View>
 
 
                 </View>
-
-                <View style={{ flexDirection: "row", marginTop: 10 / 852 * height, justifyContent: 'space-between', marginLeft: 20/852*height, marginRight: 19/852*height }}>
-                    <Text style={{ color: "#fff", fontSize: 14/852*height, fontWeight:"500" }}>Mo. Payment : $247</Text>
-                    <Text style={{ color: "#fff", fontSize: 14/852*height, fontWeight:"500", }}>Due on 02.08.2023 </Text>
-                </View>
-            </View>
             <TouchableOpacity style={{ height: 93 / 852 * height, width: 354 / 393 * width, borderWidth: 1, borderRadius: 31/852*height, alignSelf: "center", marginTop: 18 / 852 * height, borderColor: "#ececec", justifyContent: "center", alignContent: "center" }}>
                 <View style={{ borderColor: "#1f0505", flexDirection: "row", alignItems: "center", }}>
                     <Text style={{ fontSize: 14/852*height, color: "#1f0505", flexDirection: "row", flex: 1, marginLeft: 27/852*height, fontWeight:"500", }}>Add another</Text>
