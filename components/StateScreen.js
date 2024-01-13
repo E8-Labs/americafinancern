@@ -160,8 +160,8 @@ const StateScreen = (props) => {
                     )
                 }
             </ScrollView>
-            <View style={{ flex: 0.5, alignItems: "center", }}>
-                <TouchableOpacity style={{ alignSelf: 'flex-end', margin: 20 / 852 * height, marginEnd: 12 /393 *width}}
+            <View style={{ flex: 0.5, alignItems: "center",width:width}}>
+                <TouchableOpacity style={{ alignSelf: 'flex-end', marginTop: 30 / 852 * height, marginEnd: 17 /393 *width}}
                     onPress={nextButtonAction}
 
                 >
@@ -173,7 +173,7 @@ const StateScreen = (props) => {
                     </View>
                 </TouchableOpacity>
 
-                <Text style={[globalStyles.bottomText, { marginTop: 10 / 852 * height }]}>
+                <Text style={[globalStyles.bottomText, { marginTop: 30 / 852 * height }]}>
                     For more information and resources regarding
                 </Text>
 

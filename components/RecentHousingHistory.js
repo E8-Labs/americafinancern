@@ -121,11 +121,12 @@ const RecentHousingHistory = (props) => {
                 {
                     houses.map((item, index) =>
                         index < houses.length - 1 ? (
+                            
                             SinglueHouseView(item, setShowModal)
                         )
                             :
                             (
-                                <TouchableOpacity style={{ marginTop: 10 }}
+                                <TouchableOpacity key={1212321} style={{ margin: 30,alignSelf:"center" }}
                                     onPress={() => props.navigation.navigate("HousingSituition")}
                                 >
                                     <View style={[globalStyles.arrowBotton, { backgroundColor: 'skyblue' }]}>
@@ -212,8 +213,8 @@ const RecentHousingHistory = (props) => {
 export default RecentHousingHistory;
 
 function SinglueHouseView(item, setShowModal) {
-    return <View style={{
-        height: 108 / 852 * height, width: 350 / 393 * width, borderColor: '#ececec', borderWidth: 1, borderRadius: 20,
+    return <View  style={{
+        width: 350 / 393 * width, borderColor: '#ececec', borderWidth: 1, borderRadius: 20,
         flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 / 852 * height
     }} key={item.id}>
         <View style={{ paddingTop: 20, paddingBottom: 20, paddingLeft: 15, paddingRight: 23 }}>

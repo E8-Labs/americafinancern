@@ -13,12 +13,15 @@ const OthersDebtObligation = (props) => {
     const [condition, setCondition] = useState('');
     const [amount, setAmount] = useState('');
 
+    const num  = Number(amount)
+
+
     const nextBtnAction = () => {
         //console.log(  condition,)
         props.navigation.navigate("ActivePaydayLoans", {
             obligation: {
                 debt_type: condition,
-                monthly_debt_obligation: amount,
+                monthly_debt_obligation: num,
             },
 
 
@@ -35,7 +38,7 @@ const OthersDebtObligation = (props) => {
         <View style={{ height: height, width: width }}>
 
             <View style={{ margin: 17 / 852 * height, marginTop: 32 / 852 * height, marginBottom: 0, }}>
-                <Text style={{ alignSelf: "center", alignItems: "center", justifyContent: "Center", color: "#000", fontSize: 12 / 852 * height, fontWeight: "500" }}>
+                <Text style={{ alignSelf: "center",color: "#000", fontSize: 12 / 852 * height, fontWeight: "500" }}>
                     Debt Obligation
                 </Text>
                 <TouchableOpacity style={{ marginTop: -20 / 852 * height, alignSelf: "flex-end", height: 30 / 852 * height, width: 30 / 852 * height, borderRadius: 15 / 852 * height, backgroundColor: "#ececec", justifyContent: "center", alignItems: "center" }}>
@@ -49,6 +52,7 @@ const OthersDebtObligation = (props) => {
                 <TextInput
                     placeholder="What’s the debt obligation?"
                     value={condition}
+                    autoFocus={true}
                     onChangeText={(item) => setCondition(item)}
                     style={{
                         backgroundColor: "#ececec", fontWeight:"500", color: "#717171", borderRadius:13/852*height
@@ -59,6 +63,7 @@ const OthersDebtObligation = (props) => {
             <View style={{backgroundColor: "#ececec", fontWeight:"500",marginLeft:17/852*height,marginRight:17/852*height, color: "#717171", borderRadius:13/852*height,}}>
                 <TextInput style={{  color: "#000" }} placeholder="$"
                     value={amount}
+                    keyboardType="numeric"
                     onChangeText={(item) => setAmount(item)}
                 />
             </View>

@@ -32,7 +32,7 @@ const globalStyles = StyleSheet.create({
 
       },
       android: {
-        elevation: 6,
+        elevation: 2,
       }
     })
   },

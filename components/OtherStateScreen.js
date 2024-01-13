@@ -2,7 +2,9 @@ import React, { useState, } from "react";
 import { Dimensions, View, Image, Text, StyleSheet, TouchableOpacity, TextInput, FlatList } from "react-native";
 import { globalStyles } from "./GlobalStyles";
 import Snackbar from "react-native-snackbar";
-
+import { states } from "./StateList";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Apis from "../Api/apipath";
 
 
 const { height, width } = Dimensions.get('window')
@@ -13,22 +15,10 @@ const OtherStateScreen = (props) => {
 
     const [slectedState, setSelectedState] = useState('Please Slect Your State');
     const [isClicked, setIsClicked] = useState(false);
+    const[user,setUser] = useState(null)
 
 
-    const states = [
-        { name: "Texas" },
-        { name: "New York" },
-        { name: "Ohio" },
-        { name: "virginia" },
-        { name: "Huwaii" },
-        { name: "Gorgea" },
-        { name: "Arizona" },
-        { name: "Washington" },
-        { name: "New Jersy" },
-        { name: "Colorado" },
-
-    ]
-
+   
 
     submitBtnAction = () => {
 
@@ -42,8 +32,36 @@ const OtherStateScreen = (props) => {
                 marginBottom: 10,
                 duration: Snackbar.LENGTH_LONG,
             })
-        } else {
-            props.navigation.navigate('LoanRequest')
+        } else{
+            const selectState = async () => {
+
+                const data = await AsyncStorage.getItem("USER")
+
+                if (data) {
+
+                    let u = JSON.parse(data)
+                    setUser(u)
+                    console.log("user get data", u)
+
+                    let token = u.token;
+
+                    const result = await fetch(Apis.ApiUpdateProfile, {
+                        method: 'Post',
+                        headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
+                        body: JSON.stringify({ "state": selectState.name })
+                        
+                    })
+                    if (result) {
+                        let json = await result.json();
+                        console.log("data is ", json)
+                        if (json.status === true) {
+                            props.navigation.navigate("HomeAddressScreen");
+                        }
+                    }
+                }
+               
+            };
+            selectState();
         }
     };
 
@@ -101,7 +119,7 @@ const OtherStateScreen = (props) => {
                                     setIsClicked(false);
                                 }}
                             >
-                                <Text style={{ fontSize: 11/852 *height, fontWeight: '500' }}>
+                                <Text style={{ fontSize: 14/852 *height, fontWeight: '500' }}>
                                     {item.name}
                                 </Text>
                             </TouchableOpacity>
@@ -115,7 +133,7 @@ const OtherStateScreen = (props) => {
                 placeholder="Join our waitlist by entering your email"
                 value={email}
                 onChangeText={(text) => setEmail(text)}
-                style={globalStyles.inputStyle}
+                style={{backgroundColor:'#ececec',width :357/393*width,borderRadius:13,paddingLeft:15}}
             />
             <View style={{ width: width, alignItems: 'flex-end', marginRight: 26/852 *height }}>
                 <TouchableOpacity style={[globalStyles.capsuleButton, { marginTop: 25, width: 139 / 393 * width }]}

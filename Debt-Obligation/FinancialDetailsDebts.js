@@ -32,7 +32,7 @@ const FinancialDetailsDebts = () => {
                 <TouchableOpacity style={{ height: 30 / 852 * height, width: 30 / 852 * height, borderRadius: 15 / 852 * height, backgroundColor: "#ececec", justifyContent: "center", alignItems: "center" }}>
                     <Image style={{ height: 10 / 852 * height, width: 10 / 393 * width, resizeMode: "contain" }} source={CloseIcon} />
                 </TouchableOpacity>
-                <Text style={{ marginTop: -20 / 852 * height, alignSelf: "center", alignItems: "center", justifyContent: "Center", color: "#000", fontSize: 12 / 852 * height, fontWeight: "500" }}>
+                <Text style={{ marginTop: -20 / 852 * height, alignSelf: "center", color: "#000", fontSize: 12 / 852 * height, fontWeight: "500" }}>
                     Application Details
                 </Text>
             </View>

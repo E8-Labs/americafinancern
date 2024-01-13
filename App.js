@@ -65,62 +65,62 @@ const App = () => {
   return (
 
 
-    // <NavigationContainer>
-    //   <Stack.Navigator initialRouteName="ApplicationDetailsScreen" screenOptions={{ headerShown: false }}>
-    //     {/* <Stack.Screen name="SplashScreen1" component={SplashScreen1} />
-    //     <Stack.Screen name="SplashScreen2" component={SplashScreen2} />
-    //     <Stack.Screen name="SplashScreen3" component={SplashScreen3} />
-    //     <Stack.Screen name="SplashScreen4" component={SplashScreen4} />
-    //     <Stack.Screen name="Main" component={Main} />
-    //     <Stack.Screen name="SignInScreen" component={SignInScreen} />
-    //     <Stack.Screen name="NameDetails" component={NameDetails} />
-    //     <Stack.Screen name="EmailDetails" component={EmailDetails} />
-    //     <Stack.Screen name="VerifyEmailScreen" component={VerifyEmailScreen} />
-    //     <Stack.Screen name="PhoneNumberScreen" component={PhoneNumberScreen} />
-    //     <Stack.Screen name="VerifyNumberScreen" component={VerifyNumberScreen} />
-    //     <Stack.Screen name="FaceIdScreen" component={FaceIdScreen} />
-    //     <Stack.Screen name="PasswordScreen" component={PasswordScreen} />
-    //     <Stack.Screen name="CongratesScreen" component={CongratesScreen} />
-    //     <Stack.Screen name="StateScreen" component={StateScreen} />
-    //     <Stack.Screen name="OtherStateScreen" component={OtherStateScreen} />
-    //     <Stack.Screen name="HomeAddressScreen" component={HomeAddressScreen} />
-    //     <Stack.Screen name="LoanRequest" component={LoanRequest} />
-    //     <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
-    //     <Stack.Screen name="BankAccountMainScreen" component={BankAccountMainScreen} />
-    //     <Stack.Screen name="BankDetails" component={BankDetails} />
-    //     <Stack.Screen name="BankAccountDetails" component={BankAccountDetails} />
-    //     <Stack.Screen name="SelectBank" component={SelectBank} />
-    //     <Stack.Screen name="HousingSituition" component={HousingSituition} />
-    //     <Stack.Screen name="OtherHousingSituition" component={OtherHousingSituition} />
-    //     <Stack.Screen name="HouseDetails" component={HouseDetails} />
-    //     <Stack.Screen name="HouseRentAmount" component={HouseRentAmount} />
-    //     <Stack.Screen name="HousingDurationScreen" component={HousingDurationScreen} />
-    //     <Stack.Screen name="RecentHousingHistory" component={RecentHousingHistory} />
-    //     <Stack.Screen name="LoanReviewScreen" component={LoanReviewScreen} />
-    //     <Stack.Screen name="DashboardBase" component={DashboardBase} />
-    //     <Stack.Screen name="LoanShedule" component={LoanShedule} /> */}
-    //     <Stack.Screen name="ActivePaydayLoans" component={ActivePaydayLoans} />
-    //     <Stack.Screen name="ApplicationDetailActiveDuty" component={ApplicationDetailActiveDuty} /> 
-    //     <Stack.Screen name="ApplicationDetailsScreen" component={ApplicationDetailsScreen} /> 
-    //     <Stack.Screen name="BankruptcyPetition" component={BankruptcyPetition} /> 
-    //     <Stack.Screen name="CreditCardDebpt" component={CreditCardDebpt} /> 
-    //     <Stack.Screen name="FinancialDetailsDebts" component={FinancialDetailsDebts} /> 
-    //     <Stack.Screen name="FinancialDetailsScreen" component={FinancialDetailsScreen} /> 
-    //     <Stack.Screen name="MonthlyDebtObligation" component={MonthlyDebtObligation} /> 
-    //     <Stack.Screen name="OthersDebtObligation" component={OthersDebtObligation} /> 
-    //     <Stack.Screen name="OutstandingDebtScreen" component={OutstandingDebtScreen} /> 
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="ApplicationDetailsScreen" screenOptions={{ headerShown: false }}>
+        {/* <Stack.Screen name="SplashScreen1" component={SplashScreen1} />
+        <Stack.Screen name="SplashScreen2" component={SplashScreen2} />
+        <Stack.Screen name="SplashScreen3" component={SplashScreen3} />
+        <Stack.Screen name="SplashScreen4" component={SplashScreen4} />
+        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen name="SignInScreen" component={SignInScreen} />
+        <Stack.Screen name="NameDetails" component={NameDetails} />
+        <Stack.Screen name="EmailDetails" component={EmailDetails} />
+        <Stack.Screen name="VerifyEmailScreen" component={VerifyEmailScreen} />
+        <Stack.Screen name="PhoneNumberScreen" component={PhoneNumberScreen} />
+        <Stack.Screen name="VerifyNumberScreen" component={VerifyNumberScreen} />
+        <Stack.Screen name="FaceIdScreen" component={FaceIdScreen} />
+        <Stack.Screen name="PasswordScreen" component={PasswordScreen} />
+        <Stack.Screen name="CongratesScreen" component={CongratesScreen} />
+        <Stack.Screen name="StateScreen" component={StateScreen} />
+        <Stack.Screen name="OtherStateScreen" component={OtherStateScreen} />
+        <Stack.Screen name="HomeAddressScreen" component={HomeAddressScreen} />
+        <Stack.Screen name="LoanRequest" component={LoanRequest} />
+        <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
+        <Stack.Screen name="BankAccountMainScreen" component={BankAccountMainScreen} />
+        <Stack.Screen name="BankDetails" component={BankDetails} />
+        <Stack.Screen name="BankAccountDetails" component={BankAccountDetails} />
+        <Stack.Screen name="SelectBank" component={SelectBank} />
+        <Stack.Screen name="HousingSituition" component={HousingSituition} />
+        <Stack.Screen name="OtherHousingSituition" component={OtherHousingSituition} />
+        <Stack.Screen name="HouseDetails" component={HouseDetails} />
+        <Stack.Screen name="HouseRentAmount" component={HouseRentAmount} />
+        <Stack.Screen name="HousingDurationScreen" component={HousingDurationScreen} />
+        <Stack.Screen name="RecentHousingHistory" component={RecentHousingHistory} />
+        <Stack.Screen name="LoanReviewScreen" component={LoanReviewScreen} />
+        <Stack.Screen name="DashboardBase" component={DashboardBase} />
+        <Stack.Screen name="LoanShedule" component={LoanShedule} /> */}
+        <Stack.Screen name="ActivePaydayLoans" component={ActivePaydayLoans} />
+        <Stack.Screen name="ApplicationDetailActiveDuty" component={ApplicationDetailActiveDuty} /> 
+        <Stack.Screen name="ApplicationDetailsScreen" component={ApplicationDetailsScreen} /> 
+        <Stack.Screen name="BankruptcyPetition" component={BankruptcyPetition} /> 
+        <Stack.Screen name="CreditCardDebpt" component={CreditCardDebpt} /> 
+        <Stack.Screen name="FinancialDetailsDebts" component={FinancialDetailsDebts} /> 
+        <Stack.Screen name="FinancialDetailsScreen" component={FinancialDetailsScreen} /> 
+        <Stack.Screen name="MonthlyDebtObligation" component={MonthlyDebtObligation} /> 
+        <Stack.Screen name="OthersDebtObligation" component={OthersDebtObligation} /> 
+        <Stack.Screen name="OutstandingDebtScreen" component={OutstandingDebtScreen} /> 
 
 
 
-    //   </Stack.Navigator>
-    // </NavigationContainer>
+      </Stack.Navigator>
+    </NavigationContainer>
 
 
-      <View>
-        {/* <FinancialDetailsDebts/> */}
-        <RecentHousingHistory/>
-        {/* <ActivePaydayLoans/> */}
-      </View>
+      // <View>
+      //   {/* <FinancialDetailsDebts/> */}
+      //   <RecentHousingHistory/>
+      //   {/* <ActivePaydayLoans/> */}
+      // </View>
 
     // <BlankSplashScreen/>
     // <SplashScreen1/>
