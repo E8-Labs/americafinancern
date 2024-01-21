@@ -105,7 +105,7 @@ const HousingSituition = (props) => {
             <Text style={{ fontSize: 14 / 852 * height, fontWeight: '500', color: '#a7a7a7', }}>
                 situation?
             </Text>
-            <ScrollView style={{ flex: 2.5 }}>
+            <ScrollView style={{ flex: 2.5 }} showsVerticalScrollIndicator = {false}>
                 {
                     situitions.map((item) =>
                         <TouchableOpacity key={item.id} onPress={() => {

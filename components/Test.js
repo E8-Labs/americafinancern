@@ -1,62 +1,122 @@
-import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import { View, Button, Text, Alert, Modal, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { Calendar } from 'react-native-calendars';
+
+const { height } = Dimensions.get('window')
+
 
 const Test = () => {
-  const [text, setText] = useState('');
+  const [showJoiningCalendar, setShowJoiningCalendar] = useState(false);
+  const [showResigningCalendar, setShowResigningCalendar] = useState(false);
+  const [joiningDate, setJoiningDate] = useState(null);
+  const [resigningDate, setResigningDate] = useState(null);
+  const [maxSelectableDate, setMaxSelectableDate] = useState(moment().format("mm-dd-yyyy"))
 
-  const handlePress = (value) => {
-    if (value === 'del') {
-      setText(text.slice(0, -1));
+
+  useEffect(() => {
+    setMaxSelectableDate(moment().format('mm-dd-yyyy'))
+
+  }, [])
+
+  const handleJoiningCalendarPress = () => {
+    setShowJoiningCalendar(!showJoiningCalendar);
+  };
+
+  const handleResigningCalendarPress = () => {
+    setShowResigningCalendar(!showResigningCalendar);
+  };
+
+  const handleJoiningDateSelect = (day) => {
+    setJoiningDate(day.dateString);
+    setShowJoiningCalendar(false);
+  };
+
+  const handleResigningDateSelect = (day) => {
+    const selectedResigningDate = day.dateString;
+
+    // Check if resigning date is not less than joining date
+    if (joiningDate && selectedResigningDate < joiningDate) {
+      Alert.alert('Invalid Selection', 'Resigning date cannot be less than Joining date.');
     } else {
-      setText(text + value);
+      setResigningDate(selectedResigningDate);
+      setShowResigningCalendar(false);
     }
+  };
+
+  // Function to format the date in "mm/dd/yyyy" format
+  const formatDate = (dateString) => {
+    return moment(dateString).format("MM-DD-YYYY")
   };
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        value={text}
-        placeholder="Type here..."
-        editable={false} // Disable direct text input
-      />
-
-      <View style={styles.keyboard}>
-        <TouchableOpacity style={styles.key} onPress={() => handlePress('1')}>
-          <Text>1</Text>
+      <View style={styles.row}>
+        <TouchableOpacity onPress={handleJoiningCalendarPress}>
+          <Text style={styles.buttonText}>Select Joining Date</Text>
         </TouchableOpacity>
-        {/* Add more keys as needed */}
-        <TouchableOpacity style={styles.key} onPress={() => handlePress('del')}>
-          <Text>DEL</Text>
+
+        <TouchableOpacity onPress={handleResigningCalendarPress}>
+          <Text style={styles.buttonText}>Select Resigning Date</Text>
         </TouchableOpacity>
       </View>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={showJoiningCalendar || showResigningCalendar}
+        onRequestClose={() => {
+          setShowJoiningCalendar(false);
+          setShowResigningCalendar(false);
+        }}
+      >
+        <View style = {{height:height,backgroundColor:'#00000050',}}>
+          <View style={styles.modalContainer}>
+            <Calendar
+              onDayPress={(day) => (showJoiningCalendar ? handleJoiningDateSelect(day) : handleResigningDateSelect(day))}
+              markedDates={{ [showJoiningCalendar ? joiningDate : resigningDate]: { selected: true, selectedColor: 'blue' } }}
+              maxDate={maxSelectableDate}
+            />
+          </View>
+        </View>
+      </Modal>
+
+      {joiningDate && (
+        <View>
+          <Text>Joining Date: {formatDate(joiningDate)}</Text>
+        </View>
+      )}
+
+      {resigningDate && (
+        <View>
+          <Text>Resigning Date: {formatDate(resigningDate)}</Text>
+        </View>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+   // flex: 1,
+    padding: 10,
+    height:height,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'blue',
+    textDecorationLine: 'underline',
+  },
+  modalContainer: {
+    // flex: 1,
+    height: height,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: 'black',
-    padding: 10,
-    marginBottom: 10,
-    width: 200,
-  },
-  keyboard: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-  },
-  key: {
-    padding: 10,
-    margin: 5,
-    borderWidth: 1,
-    borderColor: 'black',
   },
 });
 

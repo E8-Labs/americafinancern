@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Apis from "../Api/apipath";
 import ApplicationDetailsScreen from "./ApplicationDetailsScreen";
 import MonthlyDebtObligation from "./MonthlyDebtObligation";
+import DashboardBase from "../tabNavigation/DashboardBase";
 
 
 const ThreeDoteIcon = require("../assets/American_Finance_App_image/ThreeDoteIcon-3x.png");
@@ -45,9 +46,12 @@ const OutstandingDebtScreen = (props) => {
 
     
 const addAnotherAccount = () =>{
+    props.navigation.navigate("ApplicationDetailsScreen")
+};
+
+const nextBtnHandle=()=>{
+    props.navigation.navigate("DashboardBase")
 }
-
-
     useEffect(() => {
         const getDebtList = async () => {
             const d = await AsyncStorage.getItem("USER")
@@ -181,7 +185,7 @@ const addAnotherAccount = () =>{
                             return (listItem.index < data.length - 1 ?
                                 debtDataVeiw(listItem.item) : (
 
-                                    <TouchableOpacity style={{ height: 93 / 852 * height, width: 354 / 393 * width, borderWidth: 1, borderRadius: 31 / 852 * height, alignSelf: "center", marginTop: 18 / 852 * height, borderColor: "#ececec", justifyContent: "center", alignContent: "center" }} onPress={()=>props.navigation.navigate("MonthlyDebtObligation")} >
+                                    <TouchableOpacity style={{ height: 93 / 852 * height, width: 354 / 393 * width, borderWidth: 1, borderRadius: 31 / 852 * height, alignSelf: "center", marginTop: 18 / 852 * height, borderColor: "#ececec", justifyContent: "center", alignContent: "center" }} onPress={addAnotherAccount} >
                                         <View style={{ borderColor: "#1f0505", flexDirection: "row", alignItems: "center", }}>
                                             <Text style={{ fontSize: 14 / 852 * height, color: "#1f0505", flexDirection: "row", flex: 1, marginLeft: 17 / 852 * height, fontWeight: "500", }}>Add another</Text>
 
@@ -199,7 +203,9 @@ const addAnotherAccount = () =>{
                     />
                 </View>
                 <View style={{ width: width - 20 / 393 * width, marginTop: 20 / 852 * height, }}>
-                    <TouchableOpacity style={{ borderRadius: 30 / 852 * height, alignSelf: 'flex-end' }} >
+                    <TouchableOpacity style={{ borderRadius: 30 / 852 * height, alignSelf: 'flex-end' }} 
+                        onPress={nextBtnHandle}
+                    >
                         <View style={globalStyles.arrowBotton}>
                             <Image source={Arrowicon}
                                 style={{ height: 24 / 852 * height, width: 24 / 393 * width, resizeMode: "center" }}

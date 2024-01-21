@@ -42,14 +42,18 @@ const StateScreen = (props) => {
                     const result = await fetch(Apis.ApiUpdateProfile, {
                         method: 'Post',
                         headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
-                        body: JSON.stringify({ "state": slected.Name })
+                        body: JSON.stringify({ "state": slected })
                         
                     })
                     if (result) {
                         let json = await result.json();
                         console.log("data is ", json)
                         if (json.status === true) {
-                            props.navigation.navigate("LoanRequest");
+                            props.navigation.navigate("LoanRequest",{
+                               
+                                    state:slected
+                            }
+                            );
                         }
                     }
                 }

@@ -11,7 +11,7 @@ const CloseIcon = require("../assets/American_Finance_App_image/CloseBlackIcon-3
 
 const MonthlyDebtObligation = ({ navigation, route }) => {
 
-    const [amount, setAmount] = useState('')
+    const [amount, setAmount] = useState('');
 
 
     const num  = Number(amount)

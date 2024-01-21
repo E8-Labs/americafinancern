@@ -4,6 +4,7 @@ import { globalStyles } from "./GlobalStyles";
 import Apis from "../Api/apipath";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Snackbar from "react-native-snackbar";
+import HouseDetails from "./HouseDetails";
 
 const { height, width } = Dimensions.get('window');
 const CloseIcon = require("../assets/American_Finance_App_image/CloseIcon-3x.png")
@@ -74,7 +75,7 @@ const RecentHousingHistory = (props) => {
     return (
         <View style={globalStyles.container}>
             <View style={{ flexDirection: 'row', marginTop: 36 / 852 * height, width: width, marginLeft: 20 / 852 * height }}>
-                <TouchableOpacity style={{ alignItems: 'flex-start', }} onPress={() => navigation.goBack()}>
+                <TouchableOpacity style={{ alignItems: 'flex-start', }} onPress={() =>props.navigation.goBack("HouseDetails")}>
                     <Image
                         source={require('../assets/blackArrowicon-3x.png')}
                         style={{ height: 24 / 852 * height, width: 20 * width / 393, resizeMode: 'contain', }}
