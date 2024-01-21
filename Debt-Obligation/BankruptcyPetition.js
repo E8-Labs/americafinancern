@@ -9,8 +9,8 @@ const { width } = Dimensions.get("window");
 
 
 const PiggyBank = require("../assets/American_Finance_App_image/PiggyBank-3x.png");
-const blackcheckicon = require("../assets/American_Finance_App_image/blackcheckicon-3x.png");
-const whitecheckicon = require("../assets/American_Finance_App_image/whitecheckicon-3x.png");
+const blackcheckicon = require("../assets/vector2.png");
+const whitecheckicon = require("../assets/vector.png");
 const Arrowicon = require("../assets/American_Finance_App_image/whiteArrowicon-3x.png");
 const blackArrowicon =require ("../assets/American_Finance_App_image/blackArrowicon-3x.png");
 
@@ -61,7 +61,6 @@ const BankruptcyPetition = ({navigation,route}) => {
     const [selectedOption, setSelectedOption] = useState("");
 
     const obligation = route.params.obligation;
-  
     obligation.bankruptcy_min_year = selectedOption.minYear;
     obligation.bankruptcy_max_year = selectedOption.maxYear;
     console.log(obligation)
@@ -82,7 +81,7 @@ const BankruptcyPetition = ({navigation,route}) => {
                 <TouchableOpacity style={{ height: 30 / 852 * height, width: 30 / 852 * height, borderRadius: 15 / 852 * height, backgroundColor: "#ececec", justifyContent: "center", alignItems: "center", }}>
                     <Image style={{ height: 10 / 852 * height, width: 10 / 393 * width, resizeMode: "contain" }} source={blackArrowicon} />
                 </TouchableOpacity>
-                <Text style={{ marginTop: -20 / 852 * height, alignSelf: "center", alignItems: "center", justifyContent: "Center", color: "#000", fontSize: 12 / 852 * height, fontWeight: "500", }}>
+                <Text style={{ marginTop: -20 / 852 * height, alignSelf: "center", color: "#000", fontSize: 12 / 852 * height, fontWeight: "500", }}>
                     Application Details
                 </Text>
             </View>
@@ -141,7 +140,7 @@ const BankruptcyPetition = ({navigation,route}) => {
                                     <Text numberOfLines={2} lineBreakMode="tail" style={styles.textST}>{item.name}</Text>
 
 
-                                    <View style={[styles.imageViewSt, { backgroundColor: selectedOption === item ? "#2468E8" : "#f2f2f2" }]}>
+                                    <View style={[styles.imageViewSt, { backgroundColor: selectedOption === item ? "#2468E8" : "#ececec" }]}>
                                         <Image source={selectedOption === item ? whitecheckicon : blackcheckicon} style={styles.imageSt} />
                                     </View>
 

@@ -1,99 +1,129 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList } from "react-native";
+import React, { useState, useEffect } from 'react';
+import { View, Button, Text, Alert, Modal, StyleSheet, TouchableOpacity } from 'react-native';
+import { Calendar } from 'react-native-calendars';
+import moment from 'moment';
 
-const Test = () => {
+const Dropdown = () => {
+  const [showJoiningCalendar, setShowJoiningCalendar] = useState(false);
+  const [showResigningCalendar, setShowResigningCalendar] = useState(false);
+  const [joiningDate, setJoiningDate] = useState(null);
+  const [resigningDate, setResigningDate] = useState(null);
+  const [maxSelectableDate, setMaxSelectableDate] = useState(moment().format('YYYY-MM-DD'));
 
-  const [slectedState, setSelectedState] = useState('Please Slect Your State');
-  const [isClicked, setIsClicked] = useState(false);
+  
+  useEffect(() => {
+    // Update maxSelectableDate when needed
+    setMaxSelectableDate(moment().format('YYYY-MM-DD'));
+  }, [/* add dependencies that trigger the update */]);
 
+  const handleJoiningCalendarPress = () => {
+    setShowJoiningCalendar(!showJoiningCalendar);
+  };
 
-  const states = [
-    { name: "Texas" },
-    { name: "New York" },
-    { name: "Ohio" },
-    { name: "virginia" },
-    { name: "Huwaii" },
-    { name: "Gorgea" },
-    { name: "Arizona" },
-    { name: "Washington" },
-    { name: "New Jersy" },
-    { name: "Colorado" },
+  const handleResigningCalendarPress = () => {
+    setShowResigningCalendar(!showResigningCalendar);
+  };
 
-  ]
+  const handleJoiningDateSelect = (day) => {
+    const selectedDate = moment(day.dateString);
+
+    // Check if the selected date is not after the current date
+    if (selectedDate.isSameOrBefore(moment(), 'day')) {
+      setJoiningDate(day.dateString);
+      setShowJoiningCalendar(false);
+    } else {
+      Alert.alert('Invalid Selection', 'Please select a date up to the current date.');
+    }
+  };
+
+  const handleResigningDateSelect = (day) => {
+    const selectedDate = moment(day.dateString);
+
+    // Check if the selected date is not after the current date
+    if (selectedDate.isSameOrBefore(moment(), 'day')) {
+      // Check if resigning date is not less than joining date
+      if (joiningDate && selectedDate.isSameOrAfter(moment(joiningDate), 'day')) {
+        setResigningDate(day.dateString);
+        setShowResigningCalendar(false);
+      } else {
+        Alert.alert('Invalid Selection', 'Resigning date cannot be less than Joining date.');
+      }
+    } else {
+      Alert.alert('Invalid Selection', 'Please select a date up to the current date.');
+    }
+  };
+
+  // Function to format the date in "mm/dd/yyyy" format
+  const formatDate = (dateString) => {
+   // const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    return moment(dateString).format('MM/DD/YYYY');
+  };
 
   return (
-    <View>
-      <Text>
-        hi
-      </Text>
-      <TouchableOpacity style={styles.dropdownContainer}
-        onPress={() => setIsClicked(!isClicked)}
+    <View style={styles.container}>
+      <View style={styles.row}>
+        <TouchableOpacity onPress={handleJoiningCalendarPress}>
+          <Text style={styles.buttonText}>Select Joining Date</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={handleResigningCalendarPress}>
+          <Text style={styles.buttonText}>Select Resigning Date</Text>
+        </TouchableOpacity>
+      </View>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={showJoiningCalendar || showResigningCalendar}
+        onRequestClose={() => {
+          setShowJoiningCalendar(false);
+          setShowResigningCalendar(false);
+        }}
       >
-        <Text>{slectedState}</Text>
-        {isClicked ? (
-          <Image source={require("../assets/upArrow.png")}
-            style={{ height: 24, width: 24 }}
+        <View style={styles.modalContainer}>
+          <Calendar
+            onDayPress={(day) => (showJoiningCalendar ? handleJoiningDateSelect(day) : handleResigningDateSelect(day))}
+            markedDates={{ [showJoiningCalendar ? joiningDate : resigningDate]: { selected: true, selectedColor: 'blue' } }}
+            maxDate={maxSelectableDate} // Set the maximum selectable date to the current date
           />
-        ) : (
-          <Image source={require("../assets/downArrow.png")}
-            style={{ height: 24, width: 24 }}
-          />
-        )}
-      </TouchableOpacity>
-      {isClicked ? <View style={styles.dropdownArea}>
-        <FlatList data={states}
-          renderItem={({ item, index }) => {
-            return (
-              <TouchableOpacity style={styles.stateItem}
-                onPress={() => {
-                  setSelectedState(item.name);
-                  setIsClicked(false);
-                }}
-              >
-                <Text>
-                  {item.name}
-                </Text>
-              </TouchableOpacity>
-            )
-          }}
-        />
-      </View> : null}
+        </View>
+      </Modal>
+
+      {joiningDate && (
+        <View>
+          <Text>Joining Date: {formatDate(joiningDate)}</Text>
+        </View>
+      )}
+
+      {resigningDate && (
+        <View>
+          <Text>Resigning Date: {formatDate(resigningDate)}</Text>
+        </View>
+      )}
     </View>
-  )
+  );
 };
 
-export default Test;
-
 const styles = StyleSheet.create({
-  dropdownContainer: {
-    width: "90%",
-    height: 50,
-    borderRadius: 10,
-    alignSelf: "center",
-    justifyContent: 'space-between',
-    marginTop: 20,
+  container: {
+    flex: 1,
+    padding: 10,
+  },
+  row: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'blue',
+    textDecorationLine: 'underline',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingLeft: 15,
-    paddingRight: 15,
-    backgroundColor: '#ececec'
   },
-  dropdownArea: {
-    width: "90%",
-    height: 300,
-    marginTop: 0,
-    elevation: 3,
-    alignSelf: "center",
-    backgroundColor: '#fff',
-    borderRadius: 10
-  },
-  stateItem: {
-    width: '85%',
-    height: 50,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ececec",
-    alignSelf: 'center',
-    justifyContent: 'center'
+});
 
-  }
-})
+export default Dropdown;

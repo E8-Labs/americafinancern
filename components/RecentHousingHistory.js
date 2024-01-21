@@ -4,6 +4,7 @@ import { globalStyles } from "./GlobalStyles";
 import Apis from "../Api/apipath";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Snackbar from "react-native-snackbar";
+import HouseDetails from "./HouseDetails";
 
 const { height, width } = Dimensions.get('window');
 const CloseIcon = require("../assets/American_Finance_App_image/CloseIcon-3x.png")
@@ -74,7 +75,7 @@ const RecentHousingHistory = (props) => {
     return (
         <View style={globalStyles.container}>
             <View style={{ flexDirection: 'row', marginTop: 36 / 852 * height, width: width, marginLeft: 20 / 852 * height }}>
-                <TouchableOpacity style={{ alignItems: 'flex-start', }} onPress={() => navigation.goBack()}>
+                <TouchableOpacity style={{ alignItems: 'flex-start', }} onPress={() =>props.navigation.goBack("HouseDetails")}>
                     <Image
                         source={require('../assets/blackArrowicon-3x.png')}
                         style={{ height: 24 / 852 * height, width: 20 * width / 393, resizeMode: 'contain', }}
@@ -121,11 +122,12 @@ const RecentHousingHistory = (props) => {
                 {
                     houses.map((item, index) =>
                         index < houses.length - 1 ? (
+                            
                             SinglueHouseView(item, setShowModal)
                         )
                             :
                             (
-                                <TouchableOpacity style={{ marginTop: 10 }}
+                                <TouchableOpacity key={1212321} style={{ margin: 30,alignSelf:"center" }}
                                     onPress={() => props.navigation.navigate("HousingSituition")}
                                 >
                                     <View style={[globalStyles.arrowBotton, { backgroundColor: 'skyblue' }]}>
@@ -212,8 +214,8 @@ const RecentHousingHistory = (props) => {
 export default RecentHousingHistory;
 
 function SinglueHouseView(item, setShowModal) {
-    return <View style={{
-        height: 108 / 852 * height, width: 350 / 393 * width, borderColor: '#ececec', borderWidth: 1, borderRadius: 20,
+    return <View  style={{
+        width: 350 / 393 * width, borderColor: '#ececec', borderWidth: 1, borderRadius: 20,
         flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 / 852 * height
     }} key={item.id}>
         <View style={{ paddingTop: 20, paddingBottom: 20, paddingLeft: 15, paddingRight: 23 }}>

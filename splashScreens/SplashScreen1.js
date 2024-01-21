@@ -37,19 +37,17 @@ const SplashScreen1 = (props) => {
                     const saved = await AsyncStorage.setItem("USER", JSON.stringify(u))
                     console.log("Saved user data ", u)
                     if (json.status === true) {
-                        if (json.data.bank_connected === true) {
-                            if (json.data.houses_connected === true) {
-                                props.navigation.replace("DashboardBase")
-                            }
-                            else{
-                                props.navigation.replace("HousingSituition")
-                            } 
-                        } 
-                        else{ 
-                            props.navigation.replace("BankAccountMainScreen")
+                        console.log(json.data.state)
+                        if (json.data.state === null || json.data.state === "") {
+                            props.navigation.replace("StateScreen")
+                        } else if (json.data.bank_connected === true) {
+                            props.navigation.replace("DashboardBase")
                         }
-                   } else {
-                      props.navigation.replace("SplashScreen2")
+                        else {
+                            props.navigation.replace("BankAccountMainScreen")
+                        } 
+                    } else {
+                        props.navigation.replace("SplashScreen2")
                         //props.navigation.replace("HousingSituition")
                     }
                 }

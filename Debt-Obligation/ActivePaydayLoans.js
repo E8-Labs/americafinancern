@@ -13,8 +13,8 @@ const whiteArrowiconWidth = 24 / 412 * width;
 
 
 const PaymentWallet = require("../assets/American_Finance_App_image/Payment-Finance-Wallet-3x.png");
-const blackcheckicon = require("../assets/American_Finance_App_image/blackcheckicon-3x.png");
-const whitecheckicon = require("../assets/American_Finance_App_image/whitecheckicon-3x.png");
+const blackcheckicon = require("../assets/vector2.png");
+const whitecheckicon = require("../assets/vector.png");
 const Arrowicon = require("../assets/American_Finance_App_image/whiteArrowicon-3x.png");
 const blackArrowicon =require ("../assets/American_Finance_App_image/blackArrowicon-3x.png");
 
@@ -23,10 +23,12 @@ const blackArrowicon =require ("../assets/American_Finance_App_image/blackArrowi
 
 const Status = [
     {
-        name: "Yes"
+        name: "Yes",
+        condition:true
     },
     {
-        name: "No"
+        name: "No",
+        condition:false
 
     },
 
@@ -36,7 +38,8 @@ const Status = [
 
 const ActivePaydayLoans = ({ navigation, route }) => {
 
-    const [selectedOption, setSelectedOption] = useState("")
+    const [selectedOption, setSelectedOption] = useState(null)
+    
 
     const obligation = route.params.obligation;
     obligation.active_pay_day_loan = selectedOption;
@@ -57,7 +60,7 @@ const ActivePaydayLoans = ({ navigation, route }) => {
                 <TouchableOpacity style={{ height: 30 / 852 * height, width: 30 / 852 * height, borderRadius: 15 / 852 * height, backgroundColor: "#ececec", justifyContent: "center", alignItems: "center", }}>
                     <Image style={{ height: 10 / 852 * height, width: 10 / 393 * width, resizeMode: "contain" }} source={blackArrowicon} />
                 </TouchableOpacity>
-                <Text style={{ marginTop: -20 / 852 * height, alignSelf: "center", alignItems: "center", justifyContent: "Center", color: "#000", fontSize: 12 / 852 * height, fontWeight: "500", }}>
+                <Text style={{ marginTop: -20 / 852 * height,color: "#000", fontSize: 12 / 852 * height, fontWeight: "500",alignSelf:'center' }}>
                     Application Details
                 </Text>
             </View>
@@ -106,14 +109,14 @@ const ActivePaydayLoans = ({ navigation, route }) => {
                     data={Status}
                     renderItem={({ item }) =>
                         <TouchableOpacity style={{ margin: 15 / 852 * height, borderWidth: 0.5, borderRadius: 23 / 852 * height,borderColor:"#cccc",height:80/ 852 * height,alignItems:"center",justifyContent:"center"  }} onPress={() => {
-                            setSelectedOption(item.name)
+                            setSelectedOption(item)
                         }}>
                             <View style={styles.textViewSt}>
                                 <Text style={styles.textST}>{item.name}</Text>
 
 
-                                <View style={[styles.imageViewSt, { backgroundColor: selectedOption === item.name ? "#2468E8" : "#f2f2f2" }]}>
-                                    <Image source={selectedOption === item.name ? whitecheckicon : blackcheckicon} style={styles.imageSt} />
+                                <View style={[styles.imageViewSt, { backgroundColor: selectedOption === item ? "#2468E8" : "#ececec" }]}>
+                                    <Image source={selectedOption === item ? whitecheckicon : blackcheckicon} style={styles.imageSt} />
                                 </View>
 
 

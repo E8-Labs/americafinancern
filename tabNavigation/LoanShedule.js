@@ -4,7 +4,6 @@ import CircularProgress from "react-native-circular-progress-indicator";
 import LoanDetails from "./LoanDetails";
 import PayPlanView from "./PayPlanView";
 
-
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 
@@ -148,18 +147,18 @@ const LoanShedule = ({ navigation, route }) => {
                     </View>
                 </View>
             </View>
-            <View style={{marginTop:-140/852*height}} > 
-            {
-                selectedTab == 0 && (
+            <View style={{ marginTop: -140 / 852 * height }} >
+                {
+                    selectedTab == 0 && (
 
-                    <PayPlanView />
-                )
-            }
-            {
-                selectedTab == 1 && (
-                    <LoanDetails loan={loan} />
-                )
-            }
+                        <PayPlanView />
+                    )
+                }  
+                {
+                    selectedTab == 1 && (
+                        <LoanDetails loan={loan} />
+                    )
+                }
             </View>
         </View>
     )

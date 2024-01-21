@@ -8,15 +8,15 @@ const Apis = {
     ApiApproveLoan: `${BasePath}api/loans/approve_loan`,
     ApiExchangePublicToken: `${BasePath}api/plaid/exchange_public_token`,
     ApiCreateLinkToken: `${BasePath}api/plaid/create_link_token`,
-    // ApiExchangePublicToken: `${BasePath}api/plaid/exchange_public_token`,
-
+    ApiExchangePublicToken: `${BasePath}api/plaid/exchange_public_token`,
     ApiAddHouse:`${BasePath}api/houses/add_house`,
     ApiGetHouseList:`${BasePath}api/houses/get_houses_list`,
     ApiGetUserLoans:`${BasePath}api/loans/get_user_loans?offset=0`,
     ApiUpdateProfile:`${BasePath}api/users/update_profile`,
     ApiGetLoanCalculations:`${BasePath}api/loans/get_loan_calculations`,
-    ApiAddDebt:`${BasePath}api/loans/add_debt`
+    ApiAddDebt:`${BasePath}api/loans/add_debt`,
+    ApiGetDebt:`${BasePath}api/loans/get_debts_list`,
+    ApiLiabilities:`${BasePath}api/plaid/liabilities`
 }
-
 
 export default Apis;

@@ -28,7 +28,7 @@ const HousingDurationScreen = ({ navigation, route }) => {
             housingData.duration = slected.data,
 
             console.log("Duration is", housingData)
-        console.log("data is", housingData.max_living_year)
+        // console.log("data is", housingData.max_living_year)
 
         navigation.navigate("HouseDetails", {
             house: housingData,
@@ -113,7 +113,7 @@ const HousingDurationScreen = ({ navigation, route }) => {
             <Text style={{ fontSize: 12, fontWeight: '500', color: '#717171', marginBottom: 30 / 852 * height }}>
                 Length of time at this location?
             </Text>
-            <ScrollView style={{ flex: 2.5 }}>
+            <ScrollView style={{ flex: 2.5 }}  showsVerticalScrollIndicator = {false}>
 
                 {
                     durations.map((item) =>

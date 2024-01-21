@@ -32,7 +32,7 @@ const globalStyles = StyleSheet.create({
 
       },
       android: {
-        elevation: 6,
+        elevation: 2,
       }
     })
   },
@@ -49,6 +49,7 @@ const globalStyles = StyleSheet.create({
     height:55/852*height,
     fontSize:14/852*height,
     fontWeight:'500',
+    paddingLeft:15/852*height
   },
   capsuleButton:{
     height:64 / 852 * height,

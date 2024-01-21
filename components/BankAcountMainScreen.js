@@ -11,11 +11,11 @@ const { height, width } = Dimensions.get('window')
 const BankAccountMainScreen = (props) => {
 
 
-    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo3LCJmaXJzdG5hbWUiOiJOb2FoIiwibWlkZGxlbmFtZSI6Ik5haG9tIiwibGFzdG5hbWUiOiJOZWdhIiwicGhvbmUiOm51bGwsImVtYWlsIjoibm9haGRldmVsb3BlcnJAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkT1ZENmlOSEFQTGlHek1JN0F6SEYydXRRSDFSVUM5VDVoQlFoOTBpazVreDlINlBhWXNqMGkiLCJiaW8iOm51bGwsInByb2ZpbGVfaW1hZ2UiOiIiLCJmY21fdG9rZW4iOm51bGwsInBsYWlkX2FjY2Vzc190b2tlbiI6bnVsbCwicGxhaWRfdXNlcl90b2tlbiI6InVzZXItc2FuZGJveC01M2JmMzY2Yy03Y2M1LTRmMzUtYTBjOS0zMmQ3ZGI3ZWMzYTAiLCJjcmVhdGVkQXQiOiIyMDIzLTEyLTIzVDE0OjEzOjUxLjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEyLTIzVDE0OjEzOjUzLjAwMFoifSwiaWF0IjoxNzAzNDAyNjU4LCJleHAiOjE3MzQ5Mzg2NTh9.SxYwrrmkAYY8bCeSMkRTOOkUlbY4SDAGSV6LfJlGv2E"
+    // const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo3LCJmaXJzdG5hbWUiOiJOb2FoIiwibWlkZGxlbmFtZSI6Ik5haG9tIiwibGFzdG5hbWUiOiJOZWdhIiwicGhvbmUiOm51bGwsImVtYWlsIjoibm9haGRldmVsb3BlcnJAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkT1ZENmlOSEFQTGlHek1JN0F6SEYydXRRSDFSVUM5VDVoQlFoOTBpazVreDlINlBhWXNqMGkiLCJiaW8iOm51bGwsInByb2ZpbGVfaW1hZ2UiOiIiLCJmY21fdG9rZW4iOm51bGwsInBsYWlkX2FjY2Vzc190b2tlbiI6bnVsbCwicGxhaWRfdXNlcl90b2tlbiI6InVzZXItc2FuZGJveC01M2JmMzY2Yy03Y2M1LTRmMzUtYTBjOS0zMmQ3ZGI3ZWMzYTAiLCJjcmVhdGVkQXQiOiIyMDIzLTEyLTIzVDE0OjEzOjUxLjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTEyLTIzVDE0OjEzOjUzLjAwMFoifSwiaWF0IjoxNzAzNDAyNjU4LCJleHAiOjE3MzQ5Mzg2NTh9.SxYwrrmkAYY8bCeSMkRTOOkUlbY4SDAGSV6LfJlGv2E"
     const [user, setUser] = useState(null)
     const [linkToken, setLinkToken] = useState("");
     const address = 'eb16-154-81-245-244.ngrok-free.app'//Platform.OS === 'ios' ? 'localhost' : '10.0.2.2';
-
+// 
     // usePlaidEmitter((event) => {
     //   console.log("Plaid Event")
     //   console.log(event);
@@ -91,7 +91,7 @@ const BankAccountMainScreen = (props) => {
             .then((data) => {
                 console.log("data is ", data)
                 if (data.status === true) {
-                    props.navigation.navigate("HousingSituition")
+                    props.navigation.navigate("ApplicationDetailsScreen")
                 }
                 // setLinkToken(data.data.link_token);
             })
