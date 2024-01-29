@@ -3,6 +3,7 @@ import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
 import { globalStyles } from "./GlobalStyles";
 import PlaidLink from "react-native-plaid-link-sdk";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SafeAreaView } from "react-native";
 import Apis from "../Api/apipath";
 
 const { height, width } = Dimensions.get('window')
@@ -15,7 +16,7 @@ const BankAccountMainScreen = (props) => {
     const [user, setUser] = useState(null)
     const [linkToken, setLinkToken] = useState("");
     const address = 'eb16-154-81-245-244.ngrok-free.app'//Platform.OS === 'ios' ? 'localhost' : '10.0.2.2';
-// 
+    // 
     // usePlaidEmitter((event) => {
     //   console.log("Plaid Event")
     //   console.log(event);
@@ -58,6 +59,8 @@ const BankAccountMainScreen = (props) => {
             let user = JSON.parse(data)
             console.log("data is ", user)
             setUser(user)
+            console.log("Platform is ", Platform.OS)
+
             await fetch(Apis.ApiCreateLinkToken, {
                 method: "POST",
                 headers: {
@@ -67,7 +70,7 @@ const BankAccountMainScreen = (props) => {
                 body: JSON.stringify({ address: address, platform: Platform.OS })
             })
                 .then((response) => response.json())
-                .then((data) => {
+                .then((data) => { 
                     console.log(data)
                     setLinkToken(data.data.link_token);
                 })
@@ -91,7 +94,7 @@ const BankAccountMainScreen = (props) => {
             .then((data) => {
                 console.log("data is ", data)
                 if (data.status === true) {
-                    props.navigation.navigate("ApplicationDetailsScreen")
+                    props.navigation.navigate("ActivePaydayLoans")
                 }
                 // setLinkToken(data.data.link_token);
             })
@@ -107,65 +110,67 @@ const BankAccountMainScreen = (props) => {
         console.log("Link token is ", linkToken)
     }, [linkToken]);
 
-
-
     return (
-        <View>
-            <View style={globalStyles.container}>
-                <View style={{ flexDirection: 'row', marginTop: 36 / 852 * height, width: width, marginLeft: 20 / 852 * height }}>
-                    <TouchableOpacity style={{ alignItems: 'flex-start', }} onPress={() => props.navigation.goBack()}>
-                        <Image
-                            source={require('../assets/blackArrowicon-3x.png')}
-                            style={{ height: 24 / 852 * height, width: 20 * width / 393, resizeMode: 'contain', }}
-                        />
-                    </TouchableOpacity>
-                    <View style={{ alignItems: 'center', width: width, marginLeft: -30 }}>
-                        <Text style={{ fontSize: 12 / 852 * height, color: "#000", fontWeight: '500', }}>
-                            Account Details
-                        </Text>
-                    </View>
+        <SafeAreaView style={{ flex: 1 }}>
+                <View style={globalStyles.container}>
+                    {/* <View style={{ flexDirection: 'row', width: width, paddingHorizontal: 12 / 393 * width, justifyContent: 'space-between', alignItems: 'center', }}> */}
+                        {/* <TouchableOpacity style={{ alignSelf: 'flex-start', }} onPress={() =>props.navigation.goBack()} >
+                            <Image
+                                source={require('../assets/blackArrowicon-3x.png')}
+                                style={{ height: 24 / 852 * height, width: 20 * width / 393, resizeMode: 'contain', }}
+                            />
+                            
+                        </TouchableOpacity> */}
+                        <View style={{ alignItems: 'center',justifyContent:'center' }}>
+                            <Text style={{ fontSize: 12 / 852 * height, color: "#000", fontWeight: '500', }}>
+                                New Account 
+                            </Text>
+                        </View >
+
+                        <View style={{ height: 24 / 852 * height, width: 20 * width / 393, resizeMode: 'contain' }}>
+
+                        </View>
+                    {/* </View> */}
+                    <Image source={require("../assets/bankIcon.png")}
+                        style={{ height: 146 / 852 * height, width: 146 / 393 * width, marginTop: 140 / 852 * height, resizeMode: 'contain',}}
+                    />
+
+                    <Text style={{ fontSize: 18 / 852 * height, fontWeight: '500', marginTop: 50 / 852 * height, height: 20 / 852 * height }}>
+                        Click The Button Below To
+
+                    </Text>
+                    <Text style={{ fontSize: 18 / 852 * height, fontWeight: '500', height: 20 / 852 * height }}>
+                        Manually Enter Bank Details
+                    </Text>
+
+                    <PlaidLink
+
+                        tokenConfig={{
+                            token: linkToken,
+                            logLevel: 'Debug',
+                            noLoadingState: false
+                        }}
+                        onSuccess={(success) => {
+                            let suc = JSON.stringify(success)
+                            let ptoken = success.publicToken;
+                            exchangePublicToken(ptoken);
+                            console.log(suc);
+                        }}
+                        onExit={(exit) => {
+                            console.log(exit);
+                        }}
+                    >
+                        <View style={[globalStyles.capsuleButton, { flexDirection: 'row', backgroundColor: '#000', marginTop: 40 / 852 * height }]}>
+                            <Image source={require('../assets/buttonImage.png')}
+                                style={{ height: 31 / 852 * height, width: 31 / 393 * width, resizeMode: 'contain' }}
+                            />
+                            <Text style={{ color: '#fff', fontSize: 14/852*height, fontWeight: '500' }}>
+                                Login to My Bank
+                            </Text>
+                        </View>
+                    </PlaidLink>
                 </View>
-
-                <Image source={require("../assets/bankIcon.png")}
-                    style={{ height: 146 / 852 * height, width: 146 / 393 * width, marginTop: 140 / 852 * height, resizeMode: 'contain' }}
-                />
-
-                <Text style={{ fontSize: 15, fontWeight: '500', marginTop: 50 / 852 * height }}>
-                    Click The Button Below To
-
-                </Text>
-                <Text style={{ fontSize: 15, fontWeight: '500', }}>
-                    Manually Enter Bank Details
-                </Text>
-
-                <PlaidLink
-
-                    tokenConfig={{
-                        token: linkToken,
-                        logLevel: 'Debug',
-                        noLoadingState: false
-                    }}
-                    onSuccess={(success) => {
-                        let suc = JSON.stringify(success)
-                        let ptoken = success.publicToken;
-                        exchangePublicToken(ptoken);
-                        console.log(suc);
-                    }}
-                    onExit={(exit) => {
-                        console.log(exit);
-                    }}
-                >
-                    <View style={[globalStyles.capsuleButton, { flexDirection: 'row', backgroundColor: '#000', marginTop: 40 / 852 * height }]}>
-                        <Image source={require('../assets/buttonImage.png')}
-                            style={{ height: 31 / 852 * height, width: 31 / 393 * width, resizeMode: 'contain' }}
-                        />
-                        <Text style={{ color: '#fff', fontSize: 10, fontWeight: '500' }}>
-                            Login to My Bank
-                        </Text>
-                    </View>
-                </PlaidLink>
-            </View>
-        </View>
+        </SafeAreaView>
     );
 }
 

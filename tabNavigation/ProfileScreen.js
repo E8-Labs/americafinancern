@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { TouchableOpacity, View, Text, Image, Dimensions, ScrollView, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { TouchableOpacity, View, Text, Image, Dimensions, ScrollView, StyleSheet, Platform,ImageBackground } from "react-native";
 import { globalStyles } from "../StylesSheet/GlobalStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -23,28 +23,42 @@ const HeadphoneIcon = require("../assets/American_Finance_App_image/HeadphoneIco
 const MessageIcon = require("../assets/American_Finance_App_image/MessageIcon-3x.png");
 const TicketIcon = require("../assets/American_Finance_App_image/TicketIcon-3x.png");
 const LogoutIcon = require("../assets/American_Finance_App_image/LogoutIcon-3x.png");
+const Hosingicon = require("../assets/American_Finance_App_image/HousingIcon-3x.png")
 
 const ProfileScreen = (props) => {
 
+    const [user, setUser] = useState(null)
 
-    const logoutUser =async () =>{
-        
-            try {
-              await AsyncStorage.clear()
-            } catch(e) {
-                console.log('user could not logged in')
+    useEffect(() => {
+        const getProfile = async () => {
+            const data = await AsyncStorage.getItem("USER")
+            if (data) {
+                let d = JSON.parse(data)
+                setUser(d)
+                console.log("get profile data", d)
             }
-            
-          props.navigation.push('SplashScreen1')
-            console.log('Done.')
+        };
+        getProfile();
+    }, [])
+    const logoutUser = async () => {
+
+        try {
+            await AsyncStorage.clear()
+        } catch (e) {
+            console.log('user could not logged in')
+        }
+
+        props.navigation.push('SplashScreen1')
+        console.log('Done.')
 
     }
 
 
 
     return (
-        <ScrollView style={{ height: height, width: width, backgroundColor: "#fff" }}>
+        <ScrollView style={{ height: height, width: width, backgroundColor: "#fff" }} showsVerticalScrollIndicator={false}>
             <View style={{ alignItems: "center", marginTop: 70 / 852 * height, }}>
+
                 <View style={{
                     ...Platform.select({
                         ios: {
@@ -58,25 +72,30 @@ const ProfileScreen = (props) => {
                         }
                     })
                 }}>
-                    <Image style={{ height: 172 / 852 * height, width: 172 / 852 * height, }} source={ProfileCircal} />
+                    <ImageBackground style={{ height: 172 / 852 * height, width: 172 / 852 * height, alignItems: "center", }} source={ProfileCircal}>
+                        <TouchableOpacity >
+                            <ImageBackground style={{ height: 140 / 852 * height, width: 140 / 852 * height, marginBottom: -20 / 852 * height, marginTop: 11 / 852 * height }} source={ProfileImage} >
+                            </ImageBackground>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{ height: 44 / 852 * height, width: 44 / 852 * height, borderRadius: 22 / 852 * height, backgroundColor: "#2468E8", justifyContent: "center", alignItems: "center", }}>
+                            <Image style={{ height: 24 / 852 * height, width: 24 / 852 * height }} source={whiteMarker} />
+                        </TouchableOpacity>
+
+                    </ImageBackground>
+
+
                 </View>
-                <Image style={{ height: 140 / 852 * height, width: 140 / 852 * height, marginTop: -161 / 852 * height }} source={ProfileImage} />
-                <View style={{ height: 44 / 852 * height, width: 44 / 852 * height, borderRadius: 22 / 852 * height, backgroundColor: "#2468E8", justifyContent: "center", alignItems: "center", marginTop: -25 / 852 * height }}>
-                    <Image style={{ height: 24 / 852 * height, width: 24 / 852 * height }} source={whiteMarker} />
-                </View>
-                <View style={{ flexDirection: "row", gap: 10 / 852 * height, }}>
-                    <Text style={{ fontSize: 38 / 852 * height, fontWeight: "500", color: "#000" }}>
-                        Noah
+                <View style={{ marginTop: 6 / 852 * height, flexDirection: "row", gap: 10 / 852 * height, marginBottom: 3 / 852 * height }}>
+                    <Text style={{ fontSize: 25 / 852 * height, fontWeight: "500", color: "#000" }}>
+                        {user ? user.user.firstname : ''} {user ? user.user.lastname : ''}
                     </Text>
-                    <Text style={{ fontSize: 38 / 852 * height, color: "#000", fontWeight: "300" }}>
-                        Nega
-                    </Text>
+
                 </View>
                 <Text style={{ fontSize: 14 / 852 * height, color: "#000", }} >
                     Dona Elquita
                 </Text>
-                <Text style={{ fontSize: 14 / 852 * height, fontWeight: "500", justifyContent: "space-between" }}>
-                    San Francisco, CA
+                <Text style={{ fontSize: 14 / 852 * height, fontWeight: "500", justifyContent: "space-between", marginBottom: 3 / 852 * height }}>
+                    San Francisco, {user ? user.user.state : ''}
                 </Text>
             </View>
 
@@ -87,7 +106,7 @@ const ProfileScreen = (props) => {
             </View>
 
             <View style={{ flexDirection: "row" }}>
-                <ScrollView horizontal={true} style={{ margin: 13 / 852 * height, marginBottom: 0, }}  >
+                <ScrollView horizontal={true} style={{ margin: 13 / 852 * height, marginBottom: 0, }} showsHorizontalScrollIndicator={false} >
 
                     <View>
                         <Image style={styles.RewardImageStyle} source={RedRewardView} />
@@ -294,6 +313,25 @@ const ProfileScreen = (props) => {
 
                     </TouchableOpacity>
                 </View>
+                <View style={styles.secondViewStyle}>
+                    <TouchableOpacity style={styles.BouttonViewStyle}>
+                        <View style={styles.ThirdViewStyle}>
+
+                            <Image style={styles.ImageStyle}
+                                source={Hosingicon}
+                            />
+                            <Text style={styles.textStyle} >
+                                Housing Details
+                            </Text>
+                        </View>
+                        <View style={styles.forthViewStyle}>
+                            <Image style={styles.ImageStyle}
+                                source={RightArrowIcon}
+                            />
+                        </View>
+
+                    </TouchableOpacity>
+                </View>
 
                 <View style={styles.secondViewStyle}>
                     <TouchableOpacity style={styles.BouttonViewStyle}>
@@ -410,6 +448,8 @@ const styles = StyleSheet.create({
         height: 76 / 852 * height,
         width: 370 / 393 * width,
         alignItems: "center",
+
+
     },
     secondViewStyle: {
         alignItems: "center",
@@ -424,6 +464,7 @@ const styles = StyleSheet.create({
     ImageStyle: {
         height: 24 / 852 * height,
         width: 24 / 393 * width,
+        resizeMode: "contain"
     },
     textStyle: {
         marginLeft: 10 / 852 * height,
@@ -438,7 +479,21 @@ const styles = StyleSheet.create({
         borderRadius: 22 / 852 * height,
         backgroundColor: "#fff",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+
+        ...Platform.select({
+            ios: {
+                shadowColor: 'grey',
+                shadowOffset: { height: 1, width: 0 },
+                shadowRadius: 5,
+                shadowOpacity: .2
+
+            },
+            android: {
+                elevation: 5,
+            }
+        })
+
     },
 
 

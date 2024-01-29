@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react";
 import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
 import { globalStyles } from "../components/GlobalStyles";
 import Apis from "../Api/apipath";
+import { SafeAreaView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
@@ -45,7 +46,7 @@ const DebtFlowMainScreen = () =>{
  
     return(
 
-
+        <SafeAreaView style={{ flex: 1 }}>
         <View>
             <View style={globalStyles.container}>
                 <View style={{ flexDirection: 'row', marginTop: 36 / 852 * height, width: width, marginLeft: 20 / 852 * height }}>
@@ -87,6 +88,7 @@ const DebtFlowMainScreen = () =>{
                     </TouchableOpacity>
             </View>
         </View>
+        </SafeAreaView>
     )
 }
 

@@ -1,6 +1,7 @@
 import React ,{useState} from "react";
 import { View, Text, Image, Dimensions, TextInput, TouchableOpacity } from 'react-native';
 import { globalStyles } from "./GlobalStyles";
+import { SafeAreaView } from "react-native";
 import Snackbar from "react-native-snackbar";
 
 
@@ -30,6 +31,7 @@ const HomeAddressScreen = (props) => {
 
 
     return (
+        <SafeAreaView style={{ flex: 1 }}>
 
             <View style={globalStyles.container}>
                 <Text style={{ fontSize: 12 }}>
@@ -89,7 +91,7 @@ const HomeAddressScreen = (props) => {
                             Why do we collect this information
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ alignSelf: 'flex-end', marginTop: 20, marginEnd: 12 }} 
+                    <TouchableOpacity style={[globalStyles.shadowStyle,{ alignSelf: 'flex-end', marginTop: 20, marginEnd: 12 }]} 
                         onPress={nextButtonAction}
                     >
                         <View style={globalStyles.arrowBotton}>
@@ -102,6 +104,7 @@ const HomeAddressScreen = (props) => {
                 </View>
 
             </View>
+            </SafeAreaView>
 
     );
 }

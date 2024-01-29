@@ -13,6 +13,7 @@ const BankAccountDetails = () => {
     const [selectedIcon, setSlectedIcon] = useState(false)
 
     return (
+        <SafeAreaView style={{ flex: 1 }}>
             <View style={globalStyles.container}>
                 <Text style={{ fontSize: 10, fontWeight: '500' }}>
                     Application Details
@@ -104,6 +105,7 @@ const BankAccountDetails = () => {
                     </View>
                 </TouchableOpacity>
             </View>
+            </SafeAreaView>
     )
 }
 

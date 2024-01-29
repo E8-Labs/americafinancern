@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef,useState } from "react";
 import { View, Image, Dimensions, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import { SafeAreaView } from "react-native";
 import { globalStyles } from "./GlobalStyles";
 
 
@@ -14,11 +15,17 @@ const arrowBotton = require('../assets/arrow.png');
 
 const VerifyNumberScreen = ({ navigation, route }) => {
 
-
+    const user =  route.params.user
+    const[number,setNumber] = useState(user.phone)
     const nextButtonAction = () => {
+       
+        console.log("number is ")
+        console.log(number);
+    
 
         navigation.navigate('FaceIdScreen', {
-            user: route.params.user
+            user:user
+            
         })
     }
 
@@ -35,10 +42,11 @@ const VerifyNumberScreen = ({ navigation, route }) => {
 
 
     return (
+ 
         <View style={globalStyles.container}>
             <View style={{
-                height: 307 / 852 * height, width: 393 / 393 * width, borderBottomLeftRadius: 180/852*height,
-                borderBottomRightRadius: 180/852*height, backgroundColor: '#2468E8', alignItems: 'center', marginTop: -30
+                height: 307 / 852 * height, width: 393 / 393 * width, borderBottomLeftRadius: 300/852*height,
+                borderBottomRightRadius: 300/852*height, backgroundColor: '#2468E8', alignItems: 'center', 
             }}>
 
                 <View style={{ alignItems: 'flex-start', width: width }}>
@@ -79,7 +87,7 @@ const VerifyNumberScreen = ({ navigation, route }) => {
                     Enter the verification code sent to
                 </Text>
                 <Text style={{ fontSize: 16/852 *height, fontWeight: '500', color: '#fff', }}>
-                    sent to +1 408 679 9068
+                    sent to {number}
                 </Text>
 
                 <View style={{ flexDirection: 'row', marginTop: 109 / 852 * height, gap: 10/393 *width }}>
@@ -121,7 +129,7 @@ const VerifyNumberScreen = ({ navigation, route }) => {
                 </View>
 
                 <View style={{ marginTop: 45 / 852 * height }}>
-                    <TouchableOpacity style={{ marginTop: 20/852*height, }}
+                    <TouchableOpacity style={[globalStyles.shadowStyle,{ marginTop: 20/852*height, }]}
                         onPress={nextButtonAction}
                     >
                         <View style={globalStyles.arrowBotton}>
@@ -146,6 +154,7 @@ const VerifyNumberScreen = ({ navigation, route }) => {
 
             </View>
         </View >
+
     )
 }
 

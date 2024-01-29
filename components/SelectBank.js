@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, Dimensions, TextInput, TouchableOpacity } from "react-native";
 import { globalStyles } from "./GlobalStyles";
+import { SafeAreaView } from "react-native";
 
 const { height, width } = Dimensions.get('window');
 

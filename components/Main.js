@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, Image, View, Dimensions, TextInput, TouchableOpacity, Platform } from 'react-native';
 import { globalStyles } from './GlobalStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SafeAreaView } from "react-native";
 import Apis from '../Api/apipath';
 
 
@@ -42,8 +43,9 @@ const Main = (props) => {
 
 
   return (
+    <SafeAreaView style={{ flex: 1 ,backgroundColor:'#fff'}}>
 
-    <View style={[globalStyles.container]}>
+    <View style={[globalStyles.container,{backgroundColor:'#fff'}]}>
       {/* <View style={{ flex: 5 }}> */}
         <Image source={afimage}
           style={[globalStyles.logoImageStyle, { marginTop: 114 / 852 * height }]}
@@ -60,7 +62,7 @@ const Main = (props) => {
       {/* </View> */}
       <View style={{
         flexDirection: 'row', justifyContent: 'space-between',alignItems:'center',
-        borderLeftWidth: 4, borderLeftColor: '#2468E8', height: 74/852*height,width:width-30,marginTop:100/852*height
+        borderLeftWidth: 4, borderLeftColor: '#2468E8', height: 74/852*height,width:width-30,marginTop:100/852*height,
        }}>
         <Text
           style={{
@@ -69,7 +71,7 @@ const Main = (props) => {
           Already A Member? Sign In
         </Text>
 
-        <TouchableOpacity
+        <TouchableOpacity style = {globalStyles.shadowStyle}
           onPress={() => props.navigation.navigate('SignInScreen')}
         >
           <View style={globalStyles.arrowBotton}>
@@ -90,7 +92,7 @@ const Main = (props) => {
             }}>
             New Member? Apply Now
           </Text>
-          <TouchableOpacity
+          <TouchableOpacity style = {globalStyles.shadowStyle}
             onPress={() => props.navigation.navigate('NameDetails')}
           >
             <View style={globalStyles.arrowBotton}>
@@ -127,6 +129,7 @@ const Main = (props) => {
         </Text>
       </View>
     </View>
+    </SafeAreaView>
   );
 }
 export default Main;

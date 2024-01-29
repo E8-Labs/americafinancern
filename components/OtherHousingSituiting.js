@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Dimensions, TouchableOpacity, Image } from "react-native";
+import { SafeAreaView } from "react-native";
 import { globalStyles } from "./GlobalStyles";
 
 const { height, width } = Dimensions.get('window');
@@ -20,6 +21,7 @@ const OtherHousingSituition = (props) => {
     }
 
     return (
+        <SafeAreaView style={{ flex: 1 }}>
         <View style={globalStyles.container}>
            
            <View style={{alignItems:'center', flexDirection: 'row', marginTop: 36 / 852 * height, width: width, marginLeft: 20 / 852 * height }}>
@@ -57,7 +59,9 @@ const OtherHousingSituition = (props) => {
 
 
             <View style={{ width: width, alignItems: 'flex-end', marginRight: 20, marginTop: 75 / 852 * height }}>
-                <TouchableOpacity onPress={nextBtnAction}>
+                <TouchableOpacity 
+                    style = {globalStyles.shadowStyle}
+                onPress={nextBtnAction}>
                     <View style={globalStyles.arrowBotton}>
                         <Image source={require('../assets/arrow.png')} 
                         
@@ -67,6 +71,7 @@ const OtherHousingSituition = (props) => {
                 </TouchableOpacity>
             </View>
         </View>
+        </SafeAreaView>
     )
 }
 

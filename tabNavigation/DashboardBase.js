@@ -9,10 +9,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import ProfileScreen from './ProfileScreen';
 
 const homeIcon = require('../assets/American_Finance_App_image/HiconLinear-3x.png');
-const Documenticon = require('../assets/American_Finance_App_image/HiconLinearhome3-3x.png');
+const Documenticon = require('../assets/American_Finance_App_image/DocumentIcon-3x.png');
 const AddCircleIcon = require('../assets/American_Finance_App_image/AddCircleIcon-3x.png');
-const NotifacationIcon = require('../assets/American_Finance_App_image/NotifacationBall-3x.png');
-const ProfileCircleIcon = require('../assets/American_Finance_App_image/ProfileCircleIcon-3x.png');
+const NotifacationIcon = require('../assets/American_Finance_App_image/Notificationicon-3x.png');
+const ProfileCircleIcon = require('../assets/American_Finance_App_image/ProfileCircleBlac.png');
 
 
 const { height, width } = Dimensions.get('window');
@@ -27,7 +27,7 @@ function DashboardBase(props) {
   // const [fromTabBar,setFromTabBar] = useState(false)
 
   return (
-    <SafeAreaView style={{ height: height, width: width }}>
+    // <SafeAreaView style={{ height: height, width: width }}>
       <Tab.Navigator initialRouteName='Dashboard' screenOptions={{
 
         headerShown: false, tabBarStyle:
@@ -49,7 +49,7 @@ function DashboardBase(props) {
                 style={{
                   width: homeIconWidth,
                   height: homeIconHight,
-                  resizeMode: "center",
+                  resizeMode: 'contain',
                   tintColor: focused ? '#2468E8' : '#717171',
                 }}
               />
@@ -150,7 +150,7 @@ function DashboardBase(props) {
 
         />
       </Tab.Navigator>
-    </SafeAreaView>
+    // </SafeAreaView>
   );
 };
 

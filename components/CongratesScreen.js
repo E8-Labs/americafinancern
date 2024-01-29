@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from "react-native";
 import { globalStyles } from "./GlobalStyles";
 
 const { height, width } = Dimensions.get('window')
@@ -8,10 +9,11 @@ const { height, width } = Dimensions.get('window')
 const CongratesScreen = (props) => {
 
     const nextButtonAction = () => {
-        props.navigation.replace('StateScreen')
+        props.navigation.navigate('StateScreen')
     }
 
     return (
+        <SafeAreaView style={{ flex: 1 }}>
         <View style={globalStyles.container}>
             <Text style={[globalStyles.uperMainText, { marginTop: 92 / 853 * height, fontSize: 32 / 852 * height }]}>
                 Congratulations
@@ -27,7 +29,7 @@ const CongratesScreen = (props) => {
                 </Text>
                 <TouchableOpacity style={[globalStyles.capsuleButton, { marginTop: 136 / 853 * height }]}
                     onPress={nextButtonAction}>
-                    <Text style={{ color: '#fff', fontSize: 12/852*height, fontWeight: '500' }}>
+                    <Text style={{ color: '#fff', fontSize: 16/852*height, fontWeight: '500' }}>
                         Start Loan
                     </Text>
                 </TouchableOpacity>
@@ -47,6 +49,7 @@ const CongratesScreen = (props) => {
 
                 </TouchableOpacity>
             </View>
+            </SafeAreaView>
     );
 }
 

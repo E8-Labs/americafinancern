@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { View, Image, Dimensions, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import { SafeAreaView } from "react-native";
 import { globalStyles } from "./GlobalStyles";
 
 
@@ -11,24 +12,25 @@ const arrowBotton = require('../assets/arrow.png');
 
 
 const VerifyEmailScreen = ({ navigation, route }) => {
+    const user = route.params.user;
+    const[data,setData] = useState(user.email)
+
+    
+    // let d = setData()
+    console.log("Email is ")
+    console.log(data);
 
     const nextButtonAction = () => {
-
-        const user = route.params.user;
-        console.log(user);
-
+       
         navigation.navigate('PhoneNumberScreen', {
             user: user,
         })
     }
 
-
-
     const input1Ref = useRef(null);
     const input2Ref = useRef(null);
     const input3Ref = useRef(null);
     const input4Ref = useRef(null);
-
 
     const handelInputChange = (text, ref) => {
         if (text.length === 1 && ref) {
@@ -38,10 +40,11 @@ const VerifyEmailScreen = ({ navigation, route }) => {
 
 
     return (
-        <View style={globalStyles.container}>
+
+        <View style={[globalStyles.container]}>
             <View style={{
-                height: 307 / 852 * height, width: 393 / 393 * width, borderBottomLeftRadius: 180/852*height,
-                borderBottomRightRadius: 180/852*height, backgroundColor: '#2468E8', alignItems: 'center', marginTop: -30/852*height
+                height: 307 / 852 * height, width: width,  borderBottomLeftRadius: 300/852*height,
+                borderBottomRightRadius: 300/852*height,backgroundColor: '#2468E8', alignItems: 'center',
             }}>
                 <View style = {{alignItems:'flex-start',width:width}}>
                     <TouchableOpacity style={{ marginTop: 60/852 *height,marginLeft:17/393*width }} onPress={() => navigation.goBack()}>
@@ -81,10 +84,10 @@ const VerifyEmailScreen = ({ navigation, route }) => {
                     Enter the verification code sent to
                 </Text>
                 <Text style={{  fontSize: 16/852 *height, fontWeight: '500', color: '#fff', }}>
-                    noah@gmail.com
+                    {data}
                 </Text>
 
-                <View style={{ flexDirection: 'row', marginTop: 106 / 852 * height, gap: 10/852*height, }}>
+                <View style={{ flexDirection: 'row', marginTop: 106 / 852 * height, gap: 20/393*width, }}>
 
                     <TextInput placeholder="0"
                         autoFocus={true}
@@ -123,7 +126,7 @@ const VerifyEmailScreen = ({ navigation, route }) => {
                 </View>
 
                 <View style={{ marginTop: 45 / 852 * height }}>
-                    <TouchableOpacity style={{ marginTop: 20/852*height, }}
+                    <TouchableOpacity style={[globalStyles.shadowStyle,{ marginTop: 20/852*height, }]}
                         onPress={nextButtonAction}
 
                     >
@@ -149,6 +152,7 @@ const VerifyEmailScreen = ({ navigation, route }) => {
 
             </View>
         </View>
+
     )
 }
 
@@ -157,14 +161,17 @@ export default VerifyEmailScreen;
 const styles = StyleSheet.create({
     inputStyle: {
         backgroundColor: '#ececec',
-        height: 58 / 852 * height,
-        width: 64 / 393 * width,
-        paddingLeft: 20,
-        paddingRight: 20,
+        // height: 58 / 852 * height,
+        // width: 64 / 393 * width,
+        padding: 20/ 852 * height,
+        paddingHorizontal:25/ 852 * height,
+        // paddingRight: 20,
         borderWidth: 1,
         borderColor: '#ececec',
         borderRadius: 15,
         alignItems: 'center',
+        justifyContent:'center',
+        fontSize:20/ 852 * height,
     }
 
 })

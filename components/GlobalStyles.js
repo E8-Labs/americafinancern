@@ -10,7 +10,7 @@ const afimageWidth = 106 / 393 * width;
 const globalStyles = StyleSheet.create({
 
   container :{
-    //flex:1,
+    // flex:1,
     height: height,
     width:width,
     alignItems: 'center',
@@ -24,17 +24,7 @@ const globalStyles = StyleSheet.create({
     width: arrowIconWidth,
     alignItems: 'center',
     justifyContent: 'center',
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: 1, width: -1 },
-        shadowRadius: 10,
-
-      },
-      android: {
-        elevation: 2,
-      }
-    })
+   
   },
   logoImageStyle: {
     height: afimageHeight,
@@ -54,20 +44,38 @@ const globalStyles = StyleSheet.create({
   capsuleButton:{
     height:64 / 852 * height,
     width:178 / 393 *width,
-    backgroundColor:'#2468E8',
-    borderRadius:58,
+    // padding:20,
+    borderRadius:58/852*height,
     justifyContent:'center',
     alignItems:'center',
+    backgroundColor:'#2468E8',
 
     ...Platform.select({
       ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: 1, width: -1 },
-        shadowRadius: 10,
+          shadowColor: 'grey',
+          shadowOffset: { height: 1, width: 0 },
+          shadowRadius: 5,
+          shadowOpacity: .2
 
       },
       android: {
-        elevation: 15,
+          elevation: 5,
+      }
+  })
+
+  },
+
+  shadowStyle :{
+    ...Platform.select({
+      ios: {
+          shadowColor: 'grey',
+          shadowOffset: { height: 1, width: 0 },
+          shadowRadius: 5,
+          shadowOpacity: .2
+
+      },
+      android: {
+          elevation: 5,
       }
     })
   },
@@ -81,8 +89,8 @@ const globalStyles = StyleSheet.create({
   uperMainText:{
     fontSize: 26/852 * height,
      fontWeight: '700',
-      marginTop: 5/852 * height ,
-      color:'#000'
+      marginTop: 10/852 * height ,
+      color:'#000',
   }
 
 })

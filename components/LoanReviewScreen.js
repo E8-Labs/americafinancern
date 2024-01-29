@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Image, Dimensions, TouchableOpacity, ScrollView, StyleSheet, FlatList, } from "react-native";
 import { globalStyles } from "./GlobalStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SafeAreaView } from "react-native";
 import Apis from "../Api/apipath";
 
 const { height } = Dimensions.get("window");
@@ -40,7 +41,6 @@ const LoanReviewScreen = ({ navigation, route }) => {
   useEffect(() => {
     const getLoanCalculations = async () => {
 
-
       const data = await AsyncStorage.getItem("USER")
 
       if (data) {
@@ -63,7 +63,7 @@ const LoanReviewScreen = ({ navigation, route }) => {
           if (json.status === true) {
             console.log('Loan calculations are ', json)
             setCalculationData(json.data)
-          }
+          }``
         }
       }
     };
@@ -135,284 +135,290 @@ const LoanReviewScreen = ({ navigation, route }) => {
 
 
   return (
+    <SafeAreaView style={{ flex: 1 }} >
 
-    <ScrollView >
+      <ScrollView showsVerticalScrollIndicator = {false}>
 
-      <View style={{ flexDirection: "column", alignItems: "center", }}>
-        <View style={{ flexDirection: 'row', marginTop: 36 / 852 * height, width: width, marginLeft: 20 / 852 * height }}>
-          <TouchableOpacity style={{ alignItems: 'flex-start', }} onPress={() => navigation.goBack()}>
-            <Image
-              source={require('../assets/blackArrowicon-3x.png')}
-              style={{ height: 24 / 852 * height, width: 20 * width / 393, resizeMode: 'contain', }}
-            />
-          </TouchableOpacity>
-          <View style={{ alignItems: 'center', width: width, marginLeft: -30 }}>
-            <Text style={{ fontSize: 12 / 852 * height, color: "#000", fontWeight: '500', }}>
-              Account Security
-            </Text>
-          </View>
-        </View>
-
-        <View style={{ flexDirection: 'row', marginTop: 15 / 852 * height, alignItems: 'center', }}>
-
-          <View style={{ width: 2, height: 2, borderRadius: 2, backgroundColor: "#000" }}></View>
-
-          <View style={{ width: 6 / 852 * height, height: 6 / 852 * height, borderRadius: 3, backgroundColor: "#000", marginRight: 9 / 852 * height, marginLeft: 6 / 852 * height }}></View>
-
-          <View style={{
-            height: 35 / 852 * height, width: 35 / 852 * height, borderRadius: 17.5 / 852 * height, borderWidth: 1, alignSelf: "center", justifyContent: "center", alignItems: "center"
-          }}>
-            <Image source={Solardocument}
-              style={{
-                height: 20852 * height, width: 20 / 852 * height, resizeMode: 'contain', alignSelf: 'center', justifyContent: 'center'
-              }}
-            />
-          </View>
-
-          <View style={{ width: 6 / 852 * height, height: 6 / 852 * height, borderRadius: 3, backgroundColor: "#000", marginRight: 9 / 852 * height, marginLeft: 6 / 852 * height }}></View>
-          <View style={{ width: 2, height: 2, borderRadius: 2, backgroundColor: "#000" }}></View>
-
-
-
-        </View>
-      </View>
-
-
-      <Text style={{ marginTop: 8 / 852 * height, textAlign: "center", fontSize: 24 / 852 * height, color: "#000" }}>Review Loan Details</Text>
-
-      <Text style={{ color: '#717171', textAlign: "center", fontFamily: "PoppinsMedium", fontSize: 18 / 852 * height, marginLeft: 6 / 852 * height, marginRight: 6 / 852 * height, marginTop: 6 / 852 * height, color: "#000" }} >Loan Terms</Text>
-      <View style={{ alignItems: "center" }}>
-
-
-
-        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
-          <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center" }}>
-            <Text style={{ fontSize: 14 / 852 * height, color: "#000" }} >
-              Annual percentage rate
-            </Text>
-            <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
-              {calculationData ? calculationData.apr : ''} %
-            </Text>
-
-          </View>
-        </View>
-
-        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
-          <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
-                Finance charge
+        <View style={{ flexDirection: "column", alignItems: "center", }}>
+          <View style={{ flexDirection: 'row', width: width, paddingHorizontal: 12 / 393 * width, justifyContent: 'space-between', alignItems: 'center', }}>
+            <TouchableOpacity style={{ alignSelf: 'flex-start', }} onPress={() => navigation.goBack()} >
+              <Image
+                source={require('../assets/blackArrowicon-3x.png')}
+                style={{ height: 24 / 852 * height, width: 20 * width / 393, resizeMode: 'contain', }}
+              />
+              {/* error */}
+            </TouchableOpacity>
+            <View style={{ alignItems: 'center' }}>
+              <Text style={{ fontSize: 12 / 852 * height, color: "#000", fontWeight: '500', }}>
+                Account Details
               </Text>
-              <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
-                source={QuestionIcon}
+            </View >
+            <View style={{ height: 24 / 852 * height, width: 20 * width / 393, resizeMode: 'contain' }}>
+
+            </View>
+          </View>
+
+          <View style={{ flexDirection: 'row', marginTop: 15 / 852 * height, alignItems: 'center', }}>
+
+            <View style={{ width: 2, height: 2, borderRadius: 2, backgroundColor: "#000" }}></View>
+
+            <View style={{ width: 6 / 852 * height, height: 6 / 852 * height, borderRadius: 3, backgroundColor: "#000", marginRight: 9 / 852 * height, marginLeft: 6 / 852 * height }}></View>
+
+            <View style={{
+              height: 35 / 852 * height, width: 35 / 852 * height, borderRadius: 17.5 / 852 * height, borderWidth: 1, alignSelf: "center", justifyContent: "center", alignItems: "center"
+            }}>
+              <Image source={Solardocument}
+                style={{
+                  height: 20852 * height, width: 20 / 852 * height, resizeMode: 'contain', alignSelf: 'center', justifyContent: 'center'
+                }}
               />
             </View>
-            <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
-              ${calculationData ? calculationData.finance_fee : ''}
-            </Text>
+
+            <View style={{ width: 6 / 852 * height, height: 6 / 852 * height, borderRadius: 3, backgroundColor: "#000", marginRight: 9 / 852 * height, marginLeft: 6 / 852 * height }}></View>
+            <View style={{ width: 2, height: 2, borderRadius: 2, backgroundColor: "#000" }}></View>
+
+
 
           </View>
         </View>
 
-        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
-          <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
-                Amount finance
+
+        <Text style={{ marginTop: 8 / 852 * height, textAlign: "center", fontSize: 24 / 852 * height, color: "#000" }}>Review Loan Details</Text>
+
+        <Text style={{ color: '#717171', textAlign: "center", fontFamily: "PoppinsMedium", fontSize: 18 / 852 * height, marginLeft: 6 / 852 * height, marginRight: 6 / 852 * height, marginTop: 6 / 852 * height, color: "#000" }} >Loan Terms</Text>
+        <View style={{ alignItems: "center" }}>
+
+
+
+          <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
+            <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center" }}>
+              <Text style={{ fontSize: 14 / 852 * height, color: "#000" }} >
+                Annual percentage rate
               </Text>
-              <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
-                source={QuestionIcon}
-              />
-            </View>
-            <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
-              ${calculationData ? calculationData.principal_amount : ''}
-            </Text>
-
-          </View>
-        </View>
-
-        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
-          <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
-                Total payment
+              <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
+                {calculationData ? calculationData.apr : ''} %
               </Text>
-              <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
-                source={QuestionIcon}
-              />
+
             </View>
-            <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
-              ${calculationData ? calculationData.total_due : ''}
-            </Text>
-
           </View>
-        </View>
 
-        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
-          <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
-                Number of payments
+          <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
+            <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
+                  Finance charge
+                </Text>
+                <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
+                  source={QuestionIcon}
+                />
+              </View>
+              <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
+                ${calculationData ? calculationData.finance_fee : ''}
               </Text>
-              <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
-                source={QuestionIcon}
-              />
+
             </View>
-            <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
-              01
-            </Text>
-
           </View>
-        </View>
 
-        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
-          <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
-                Amount of payments
+          <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
+            <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
+                  Amount finance
+                </Text>
+                <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
+                  source={QuestionIcon}
+                />
+              </View>
+              <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
+                ${calculationData ? calculationData.principal_amount : ''}
               </Text>
-              <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
-                source={QuestionIcon}
-              />
+
             </View>
-            <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
-              01
-            </Text>
-
           </View>
-        </View>
 
-        <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
-          <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text style={{ fontSize: 14 / 852 * height, marginRight: 5 / 852 * height, color: "#000" }} >
-                When payment is due
+          <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
+            <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
+                  Total payment
+                </Text>
+                <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
+                  source={QuestionIcon}
+                />
+              </View>
+              <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
+                ${calculationData ? calculationData.total_due : ''}
               </Text>
-              <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
-                source={QuestionIcon}
-              />
-            </View>
-            <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
-              {calculationData ? calculationData.estimated_due_date : "--/--/--"}
-            </Text>
 
+            </View>
           </View>
+
+          <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
+            <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
+                  Number of payments
+                </Text>
+                <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
+                  source={QuestionIcon}
+                />
+              </View>
+              <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
+                01
+              </Text>
+
+            </View>
+          </View>
+
+          <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
+            <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text style={{ fontSize: 14 / 852 * height, marginRight: 5, color: "#000" }} >
+                  Amount of payments
+                </Text>
+                <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
+                  source={QuestionIcon}
+                />
+              </View>
+              <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
+                01
+              </Text>
+
+            </View>
+          </View>
+
+          <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
+            <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center", }}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text style={{ fontSize: 14 / 852 * height, marginRight: 5 / 852 * height, color: "#000" }} >
+                  When payment is due
+                </Text>
+                <Image style={{ height: 17.5 / 852 * height, width: 17.5 / 393 * width, }}
+                  source={QuestionIcon}
+                />
+              </View>
+              <Text style={{ fontSize: 24 / 852 * height, color: "#000" }}>
+                {calculationData ? calculationData.estimated_due_date : "--/--/--"}
+              </Text>
+
+            </View>
+          </View>
+
         </View>
 
-      </View>
 
 
+        <View style={{ flexDirection: "column", alignItems: "center", marginTop: 18 / 852 * height }}>
 
-      <View style={{ flexDirection: "column", alignItems: "center", marginTop: 18 / 852 * height }}>
-
-        <Text style={{ fontSize: 14 / 852 * height, color: '#717171', margin: 10 / 852 * height, marginBottom: 0, fontFamily: "PoppinsMedium" }}>America Finance, Inc agrees to loan you the</Text>
-        <View style={{ flexDirection: "row" }}>
+          <Text style={{ fontSize: 14 / 852 * height, color: '#717171', margin: 10 / 852 * height, marginBottom: 0, fontFamily: "PoppinsMedium" }}>America Finance, Inc agrees to loan you the</Text>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={{ fontSize: 14 / 852 * height, color: '#717171', fontFamily: "PoppinsMedium" }}>
+              principal amount sum of
+            </Text>
+            <Text style={{ marginBottom: 0, fontWeight: "600", fontSize: 18 / 852 * height, color: '#000', fontFamily: "PoppinsMedium" }}> $_ _
+            </Text>
+            <Text style={{ fontSize: 14 / 852 * height, color: '#717171', fontFamily: "PoppinsMedium" }}>, to bear interest at
+            </Text>
+          </View>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={{ fontSize: 14 / 852 * height, color: '#717171', fontFamily: "PoppinsMedium" }}>
+              a rate of
+            </Text>
+            <Text style={{ marginBottom: 0, fontWeight: "600", fontSize: 18 / 852 * height, color: '#000', fontFamily: "PoppinsMedium" }}> _ _ %
+            </Text>
+            <Text style={{ fontSize: 14 / 852 * height, color: '#717171', fontFamily: "PoppinsMedium" }}> per annum until paid in full. The
+            </Text>
+          </View>
           <Text style={{ fontSize: 14 / 852 * height, color: '#717171', fontFamily: "PoppinsMedium" }}>
-            principal amount sum of
-          </Text>
-          <Text style={{ marginBottom: 0, fontWeight: "600", fontSize: 18 / 852 * height, color: '#000', fontFamily: "PoppinsMedium" }}> $_ _
-          </Text>
-          <Text style={{ fontSize: 14 / 852 * height, color: '#717171', fontFamily: "PoppinsMedium" }}>, to bear interest at
+            loan is due and payable on date here
           </Text>
         </View>
-        <View style={{ flexDirection: "row" }}>
+
+
+        <View style={{ flexDirection: "column", alignItems: "center", marginTop: 15 / 852 * height }}>
+
+          <Text style={{ fontSize: 14 / 852 * height, color: '#717171', margin: 10 / 852 * height, marginBottom: 0, fontFamily: "PoppinsMedium" }}>
+            By submitting the loan application, you
+          </Text>
           <Text style={{ fontSize: 14 / 852 * height, color: '#717171', fontFamily: "PoppinsMedium" }}>
-            a rate of
+            acknowledge that you have read agreed to the
           </Text>
-          <Text style={{ marginBottom: 0, fontWeight: "600", fontSize: 18 / 852 * height, color: '#000', fontFamily: "PoppinsMedium" }}> _ _ %
+          <Text style={{ fontSize: 14 / 852 * height, color: '#717171', fontFamily: "PoppinsMedium" }}>
+            following:
           </Text>
-          <Text style={{ fontSize: 14 / 852 * height, color: '#717171', fontFamily: "PoppinsMedium" }}> per annum until paid in full. The
-          </Text>
-        </View>
-        <Text style={{ fontSize: 14 / 852 * height, color: '#717171', fontFamily: "PoppinsMedium" }}>
-          loan is due and payable on date here
-        </Text>
-      </View>
 
-
-      <View style={{ flexDirection: "column", alignItems: "center", marginTop: 15 / 852 * height }}>
-
-        <Text style={{ fontSize: 14 / 852 * height, color: '#717171', margin: 10 / 852 * height, marginBottom: 0, fontFamily: "PoppinsMedium" }}>
-          By submitting the loan application, you
-        </Text>
-        <Text style={{ fontSize: 14 / 852 * height, color: '#717171', fontFamily: "PoppinsMedium" }}>
-          acknowledge that you have read agreed to the
-        </Text>
-        <Text style={{ fontSize: 14 / 852 * height, color: '#717171', fontFamily: "PoppinsMedium" }}>
-          following:
-        </Text>
-
-      </View>
-
-      <View style={styles.container}>
-        <View style={{ marginLeft: 15 / 852 * height, gap: 20 / 852 * height, alignItems: "center", flexDirection: "row" }}>
-
-          <TouchableOpacity
-            style={[styles.item, { borderColor: selectedItems.includes(data[0]) ? "#2468E8" : "#717171" }]}
-            onPress={() => handleItemPress(data[0])}
-          >
-            <View style={[styles.imageViewSt, { backgroundColor: selectedItems.includes(data[0]) ? '#2468E8' : 'white', }]}>
-              <Image
-                source={selectedItems.includes(data[0]) ? whitecheckiconBold : blackcheckiconBold}
-                style={{ height: 9.49 / 852 * height, width: 11.31 / 852 * height, alignSelf: "center" }}
-              />
-            </View>
-
-          </TouchableOpacity>
-
-          <Text style={styles.textST}>{data[0]}</Text>
-        </View>
-        <View style={{ marginLeft: 15 / 852 * height, marginTop: 10 / 852 * height, gap: 20 / 852 * height, alignItems: "center", flexDirection: "row", }}>
-          <TouchableOpacity
-            style={[styles.item, { borderColor: selectedItems.includes(data[1]) ? "#2468E8" : "#717171" }]}
-            onPress={() => handleItemPress(data[1])}
-
-          >
-            <View style={[styles.imageViewSt, { backgroundColor: selectedItems.includes(data[1]) ? '#2468E8' : 'white', }]}>
-              <Image
-                source={selectedItems.includes(data[1]) ? whitecheckiconBold : blackcheckiconBold}
-                style={{ height: 9.49 / 852 * height, width: 11.31 / 852 * height, alignSelf: "center" }}
-              />
-            </View>
-
-          </TouchableOpacity>
-          <Text style={styles.textST}>{data[1]}</Text>
         </View>
 
-        <View style={{ marginLeft: 15 / 852 * height, marginTop: 10 / 852 * height, gap: 20 / 852 * height, alignItems: "center", flexDirection: "row" }}>
-          <TouchableOpacity
-            style={[styles.item, { borderColor: selectedItems.includes(data[2]) ? "#2468E8" : "#717171" }]}
-            onPress={() => handleItemPress(data[2])}
-          >
-            <View style={[styles.imageViewSt, { backgroundColor: selectedItems.includes(data[2]) ? '#2468E8' : 'white', }]}>
-              <Image
-                source={selectedItems.includes(data[2]) ? whitecheckiconBold : blackcheckiconBold}
-                style={{ height: 9.49 / 852 * height, width: 11.31 / 852 * height, alignSelf: "center" }}
-              />
-            </View>
+        <View style={styles.container}>
+          <View style={{ marginLeft: 15 / 852 * height, gap: 20 / 852 * height, alignItems: "center", flexDirection: "row" }}>
 
-          </TouchableOpacity>
-          <Text style={styles.textST}>{data[2]}</Text>
-        </View>
-      </View>
+            <TouchableOpacity
+              style={[styles.item, { borderColor: selectedItems.includes(data[0]) ? "#2468E8" : "#717171" }]}
+              onPress={() => handleItemPress(data[0])}
+            >
+              <View style={[styles.imageViewSt, { backgroundColor: selectedItems.includes(data[0]) ? '#2468E8' : 'white', }]}>
+                <Image
+                  source={selectedItems.includes(data[0]) ? whitecheckiconBold : blackcheckiconBold}
+                  style={{ height: 9.49 / 852 * height, width: 11.31 / 852 * height, alignSelf: "center" }}
+                />
+              </View>
 
-      <View style={{ justifyContent: 'flex-end', flexDirection: 'row' }}>
-        <TouchableOpacity style={{ margin: 20 }}
-          onPress={sndLoanRqust}
-        >
-          <View style={globalStyles.arrowBotton}>
-            <Image source={require('../assets/arrow.png')}
-              style={{ height: 24 / 852 * height, width: 24 / 393 * width, resizeMode: 'contain' }}
-            />
+            </TouchableOpacity>
+
+            <Text style={styles.textST}>{data[0]}</Text>
           </View>
-        </TouchableOpacity>
-      </View>
+          <View style={{ marginLeft: 15 / 852 * height, marginTop: 10 / 852 * height, gap: 20 / 852 * height, alignItems: "center", flexDirection: "row", }}>
+            <TouchableOpacity
+              style={[styles.item, { borderColor: selectedItems.includes(data[1]) ? "#2468E8" : "#717171" }]}
+              onPress={() => handleItemPress(data[1])}
+
+            >
+              <View style={[styles.imageViewSt, { backgroundColor: selectedItems.includes(data[1]) ? '#2468E8' : 'white', }]}>
+                <Image
+                  source={selectedItems.includes(data[1]) ? whitecheckiconBold : blackcheckiconBold}
+                  style={{ height: 9.49 / 852 * height, width: 11.31 / 852 * height, alignSelf: "center" }}
+                />
+              </View>
+
+            </TouchableOpacity>
+            <Text style={styles.textST}>{data[1]}</Text>
+          </View>
+
+          <View style={{ marginLeft: 15 / 852 * height, marginTop: 10 / 852 * height, gap: 20 / 852 * height, alignItems: "center", flexDirection: "row" }}>
+            <TouchableOpacity
+              style={[styles.item, { borderColor: selectedItems.includes(data[2]) ? "#2468E8" : "#717171" }]}
+              onPress={() => handleItemPress(data[2])}
+            >
+              <View style={[styles.imageViewSt, { backgroundColor: selectedItems.includes(data[2]) ? '#2468E8' : 'white', }]}>
+                <Image
+                  source={selectedItems.includes(data[2]) ? whitecheckiconBold : blackcheckiconBold}
+                  style={{ height: 9.49 / 852 * height, width: 11.31 / 852 * height, alignSelf: "center" }}
+                />
+              </View>
+
+            </TouchableOpacity>
+            <Text style={styles.textST}>{data[2]}</Text>
+          </View>
+        </View>
+
+        <View style={{ justifyContent: 'flex-end', flexDirection: 'row' }}>
+          <TouchableOpacity style={[globalStyles.shadowStyle,{ margin: 20/852*height }]}
+            onPress={sndLoanRqust}
+          >
+            <View style={globalStyles.arrowBotton}>
+              <Image source={require('../assets/arrow.png')}
+                style={{ height: 24 / 852 * height, width: 24 / 393 * width, resizeMode: 'contain' }}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
 
 
 
 
 
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 export default LoanReviewScreen;

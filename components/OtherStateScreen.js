@@ -4,6 +4,7 @@ import { globalStyles } from "./GlobalStyles";
 import Snackbar from "react-native-snackbar";
 import { states } from "./StateList";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SafeAreaView } from "react-native";
 import Apis from "../Api/apipath";
 
 
@@ -15,10 +16,10 @@ const OtherStateScreen = (props) => {
 
     const [slectedState, setSelectedState] = useState('Please Slect Your State');
     const [isClicked, setIsClicked] = useState(false);
-    const[user,setUser] = useState(null)
+    const [user, setUser] = useState(null)
 
 
-   
+
 
     submitBtnAction = () => {
 
@@ -27,12 +28,12 @@ const OtherStateScreen = (props) => {
 
         if (!validEmail) {
             Snackbar.show({
-                text: 'Ivalide Email',
+                text: 'Invalid Email',
                 backgroundColor: 'red',
                 marginBottom: 10,
                 duration: Snackbar.LENGTH_LONG,
             })
-        } else{
+        } else {
             const selectState = async () => {
 
                 const data = await AsyncStorage.getItem("USER")
@@ -48,32 +49,36 @@ const OtherStateScreen = (props) => {
                     const result = await fetch(Apis.ApiUpdateProfile, {
                         method: 'Post',
                         headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
-                        body: JSON.stringify({ "state":slectedState  })
-                        
+                        body: JSON.stringify({ "state": slectedState })
+
                     })
                     if (result) {
                         let json = await result.json();
                         console.log("data is ", json)
                         if (json.status === true) {
-                            props.navigation.navigate("HomeAddressScreen",{
-                                state:slectedState
-                        });
+                            props.navigation.navigate("HomeAddressScreen", {
+                                state: slectedState
+                            });
                         }
                     }
                 }
-               
+
             };
             selectState();
         }
     };
 
     return (
+
         <View style={globalStyles.container}>
             <Image source={require('../assets/veiwColor.png')}
-                style={{ height: 270 / 853 * height, }}
+                style={{ height: 270 / 853 * height, width: width }}
             />
-            <View style={{ alignItems: 'flex-start', width: width , marginTop: -300 / 852 * height, }}>
-                <TouchableOpacity style={{ marginTop: 60 / 852 * height, marginLeft: 17 / 393 * width }} onPress={() => props.navigation.goBack()}>
+            <View style={{
+                flexDirection: 'row', width: width, paddingHorizontal: 12 / 393 * width,
+                justifyContent: 'space-between', alignItems: 'center', marginTop: -300 / 852 * height
+            }}>
+                <TouchableOpacity style={{ marginTop: 70 / 852 * height,  }} onPress={() => props.navigation.goBack()}>
                     <Image
                         source={require('../assets/backArrow.png')}
                         style={{ height: 32 / 852 * height, width: 32 * width / 393 }}
@@ -81,10 +86,10 @@ const OtherStateScreen = (props) => {
                 </TouchableOpacity>
             </View>
 
-            <Text style={{ fontSize: 24/852 *height, fontWeight: '800', color: '#fff',marginTop:15/852 *height }}>
+            <Text style={{ fontSize: 24 / 852 * height, fontWeight: '800', color: '#fff', marginTop: 11 / 852 * height }}>
                 Uh Oh!
             </Text>
-            <Text style={styles.upperText}>
+            <Text style={[styles.upperText ,{marginTop:3}]}>
                 America Finance does not currently
             </Text>
             <Text style={styles.upperText}>
@@ -103,11 +108,11 @@ const OtherStateScreen = (props) => {
                 <Text>{slectedState}</Text>
                 {isClicked ? (
                     <Image source={require("../assets/upArrow.png")}
-                        style={{ height: 24/852 *height, width: 24/852 *height }}
+                        style={{ height: 24 / 852 * height, width: 24 / 852 * height }}
                     />
                 ) : (
                     <Image source={require("../assets/downArrow.png")}
-                        style={{ height: 24/852 *height, width: 24/852 *height }}
+                        style={{ height: 24 / 852 * height, width: 24 / 852 * height }}
                     />
                 )}
             </TouchableOpacity>
@@ -121,7 +126,7 @@ const OtherStateScreen = (props) => {
                                     setIsClicked(false);
                                 }}
                             >
-                                <Text style={{ fontSize: 14/852 *height, fontWeight: '500' }}>
+                                <Text style={{ fontSize: 14 / 852 * height, fontWeight: '500' }}>
                                     {item.name}
                                 </Text>
                             </TouchableOpacity>
@@ -135,18 +140,19 @@ const OtherStateScreen = (props) => {
                 placeholder="Join our waitlist by entering your email"
                 value={email}
                 onChangeText={(text) => setEmail(text)}
-                style={{backgroundColor:'#ececec',width :357/393*width,borderRadius:13,paddingLeft:15}}
+                style={[globalStyles.inputStyle,{marginTop:13/852*height}]}
             />
-            <View style={{ width: width, alignItems: 'flex-end', marginRight: 26/852 *height }}>
-                <TouchableOpacity style={[globalStyles.capsuleButton, { marginTop: 25, width: 139 / 393 * width }]}
+            <View style={{ width: width, alignItems: 'flex-end', marginRight: 26 / 852 * height,marginTop: 26 / 852 * height, }}>
+                <TouchableOpacity style={[globalStyles.capsuleButton, {  width: 139 / 393 * width }]}
                     onPress={submitBtnAction}
                 >
-                    <Text style={{ color: '#fff', fontSize: 12, fontWeight: '500' }}>
+                    <Text style={{ color: '#fff', fontSize: 16 / 852 * height, fontWeight: '500' }}>
                         Submit
                     </Text>
                 </TouchableOpacity>
             </View>
         </View>
+
     )
 };
 
@@ -154,38 +160,38 @@ export default OtherStateScreen;
 
 const styles = StyleSheet.create({
     upperText: {
-        fontSize: 18/852 *height,
+        fontSize: 18 / 852 * height,
         fontWeight: '500',
-        height: 25,
+        height: 25 / 852 * height,
         color: "#fff",
     },
 
     dropdownContainer: {
-        width: "90%",
-        height: 45,
-        borderRadius: 10,
+        width: 360 / 393 * width,
+        height: 55 / 852 * height,
+        borderRadius: 13 / 852 * height,
         alignSelf: "center",
         justifyContent: 'space-between',
         marginTop: 70 / 852 * height,
-        marginBottom:15/852 *height,
+        marginBottom: 15 / 852 * height,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft: 15,
-        paddingRight: 15,
+        paddingLeft: 15 / 852 * height,
+        paddingRight: 15 / 852 * height,
         backgroundColor: '#ececec'
     },
     dropdownArea: {
         width: "90%",
         height: 300 / 852 * height,
-        marginTop: 10/852 *height,
+        marginTop: 10 / 852 * height,
         elevation: 3,
         alignSelf: "center",
         backgroundColor: '#fff',
-        borderRadius: 10
+        borderRadius: 10 / 852 * height
     },
     stateItem: {
         width: '85%',
-        height: 50,
+        height: 50 / 852 * height,
         borderBottomWidth: 1,
         borderBottomColor: "#ececec",
         alignSelf: 'center',

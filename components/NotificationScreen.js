@@ -1,11 +1,13 @@
 import React from "react";
 import { View, Text, Dimensions, Image, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native";
 import { globalStyles } from "./GlobalStyles";
 
 const { height, width } = Dimensions.get('window')
 
 const NotificationScreen = (props) => {
     return (
+        <SafeAreaView style={{ flex: 1 }}>
         <View style={globalStyles.container}>
             <View style = {{width:width-20,alignItems:'flex-start',margin:20,}}>
             <TouchableOpacity  onPress={() => props.navigation.goBack()}>
@@ -33,13 +35,14 @@ const NotificationScreen = (props) => {
             </Text>
 
             <TouchableOpacity style={[globalStyles.capsuleButton, { marginTop: 100 / 852 * height }]}
-                onPress={() => props.navigation.navigate('HousingSituition')}
+                onPress={() => props.navigation.navigate('DashboardBase')}
             >
-                <Text style={{ fontSize: 10, fontWeight: '500', color: '#fff' }}>
+                <Text style={{ fontSize: 10, fontWeight: '500', color: '#fff',fontSize:16/852*height }}>
                     Allow Permission
                 </Text>
             </TouchableOpacity>
         </View>
+        </SafeAreaView>
     );
 }
 

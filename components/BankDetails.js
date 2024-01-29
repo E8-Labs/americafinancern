@@ -33,6 +33,7 @@ const BankDetails = (props) =>{
     }
 
     return(
+        <SafeAreaView style={{ flex: 1 }}>
         <View>
             <View style = {globalStyles.container}>
                 <View style = {{flexDirection:'row',justifyContent:'space-between',width:width}}>
@@ -96,7 +97,9 @@ const BankDetails = (props) =>{
                    </TouchableOpacity>
                   
             </View>
+            
         </View>
+        </SafeAreaView>
     )
 }
 

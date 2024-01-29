@@ -60,6 +60,8 @@ import { View } from "react-native";
 import { SafeAreaView, Dimensions } from "react-native";
 import LoanProgressViewScreen from "./tabNavigation/LoanProgressViewScreen";
 import DebtFlowMainScreen from "./Debt-Obligation/DebtFlowMainScreen";
+import LoanDetails from "./tabNavigation/LoanDetails";
+import ProfileScreen from "./tabNavigation/ProfileScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -68,7 +70,7 @@ const { height, width } = Dimensions.get('window');
 const App = () => {
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+  
       <NavigationContainer>
         <Stack.Navigator initialRouteName="SplashScreen1" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="SplashScreen1" component={SplashScreen1} />
@@ -103,7 +105,11 @@ const App = () => {
           <Stack.Screen name="RecentHousingHistory" component={RecentHousingHistory} />
           <Stack.Screen name="LoanReviewScreen" component={LoanReviewScreen} />
           <Stack.Screen name="DashboardBase" component={DashboardBase} />
+          <Stack.Screen name="LoanProgressViewScreen" component={LoanProgressViewScreen} />
+          <Stack.Screen name="DashboardScreen" component={DashboardScreen} />
+          <Stack.Screen name="LoanDetails" component={LoanDetails} />
           <Stack.Screen name="LoanShedule" component={LoanShedule} />
+          <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
           <Stack.Screen name="ActivePaydayLoans" component={ActivePaydayLoans} />
           <Stack.Screen name="ApplicationDetailActiveDuty" component={ApplicationDetailActiveDuty} />
           <Stack.Screen name="ApplicationDetailsScreen" component={ApplicationDetailsScreen} />
@@ -116,7 +122,6 @@ const App = () => {
           <Stack.Screen name="OutstandingDebtScreen" component={OutstandingDebtScreen} />
         </Stack.Navigator>
       </NavigationContainer>
-    </SafeAreaView>
     // <View>
     //   {/* <FinancialDetailsDebts/> */}
     //   <RecentHousingHistory/>
@@ -174,6 +179,7 @@ const App = () => {
     // <DashboardScreen/>
     // <LoanProgressViewScreen/>
     // <DebtFlowMainScreen/>
+    // <LoanReviewScreen/>
   )
 }
 export default App;

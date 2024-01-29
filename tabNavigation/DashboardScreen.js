@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, Dimensions, TextInput, TouchableOpacity, ScrollView, StyleSheet, FlatList, } from "react-native";
+import { View, Text, Image, Dimensions, TextInput, TouchableOpacity, ScrollView, StyleSheet, FlatList, ImageBackground, } from "react-native";
 import CircularProgress from "react-native-circular-progress-indicator";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -68,7 +68,6 @@ const DashboardScreen = (props) => {
 
         getUser();
 
-
         const getUserLoans = async () => {
 
             const data = await AsyncStorage.getItem('USER')
@@ -123,37 +122,38 @@ const DashboardScreen = (props) => {
         <View style={{ height: height, width: width, }}>
             <View style={{ flex: 1 }}>
                 <View style={{ backgroundColor: "#2468E8", height: height / 2, width: width, }}>
-                    <View>
-                        <Image
-                            style={{ height: height / 2, width: width }}
-                            source={lightDotte}
-                        />
-                    </View>
-                    <Image
-                        style={{ position: "absolute", height: height / 2, width: width }}
-                        source={lightBlueBG}
-                    />
+                   
+                        <ImageBackground style={{ height: height / 2, width: width, }} source={lightDotte}>
+                            <ImageBackground style={{ height: height / 2, width: width ,paddingTop:10}} source={lightBlueBG}>
+                                <View style={{ width: width }}>
+                                    <Image
+                                        style={{ height: 51 / 852 * height, width: 51 / 393 * width, marginTop: 18 / 852 * height, marginLeft: 23 / 852 * height, marginBottom: 0 }}
+                                        source={LogoIcon}
+                                    />
+                                    <Text style={{ fontSize: 28 / 852 * height, color: "#fff", marginLeft: 30 / 852 * height }}>
+                                        Dashboard
+                                    </Text>
+                                    {showProgressBarView ? progressBarView() : <LoanProgressViewScreen  onNext={() => {
+                                        props.navigation.navigate("HousingSituition")
+                                    }}/>}
+                                </View>
+                            </ImageBackground>
+                        </ImageBackground>
+                 
                 </View>
-                    <View style={{ position: "absolute", width: width }}>
-                    <Image
-                        style={{ height: 51 / 852 * height, width: 51 / 393 * width, marginTop: 18 / 852 * height, marginLeft: 23 / 852 * height, marginBottom: 0 }}
-                        source={LogoIcon}
-                    />
-                    <Text style={{ fontSize: 28 / 852 * height, color: "#fff", marginLeft: 30 / 852 * height }}>
-                        Dashboard
-                    </Text>
-                    {showProgressBarView ? progressBarView() : <LoanProgressViewScreen />}
-                </View>
+
             </View>
-            <View style={{ height: height / 2, width: width, paddingBottom: 90 / 852 * height, alignSelf: "center", }}>
-                <View style={{ marginTop: 10 / 852 * height }}>
+            <View style={{ height: height / 2.3, width: width, paddingBottom: 105 / 852 * height, alignSelf: "center",backgroundColor:"#fafafa",justifyContent:"center",alignItems:"center" }}>
+                <View style={{ height:350/852*height,backgroundColor:"#fff",width:371/393*width,marginTop:0/852*height,paddingTop:10/852*height,
+                            borderTopRightRadius:25/852*height,borderTopLeftRadius:25/852*height }}>
                     <Text style={{ marginLeft: 26 / 852 * height, fontSize: 16 / 852 * height, fontWeight: "500", color: "#000", }}>
                         Past Loans
                     </Text>
                     <View >
                         {loans.length < 1 ? <Text style={{ fontSize: 18 / 852 * height, fontWeight: '500', marginTop: 50 / 852 * height, alignSelf: 'center' }}>No Loans</Text> :
-                        
+
                             <FlatList style={{ marginTop: 20 / 852 * height, marginBottom: 30 / 852 * height }}
+                                showsVerticalScrollIndicator={false}
                                 data={loans}
                                 keyExtractor={item => item.id}
                                 renderItem={({ item }) =>
@@ -205,29 +205,37 @@ const DashboardScreen = (props) => {
 
 
     function progressBarView() {
-        return <View style={{ height: 268 / 852 * height, width: 359 / 393 * width, borderRadius: 29 / 852 * height, backgroundColor: "#fff", marginLeft: 20 / 852 * height, marginRight: 20 / 852 * height, marginTop: 20 / 852 * height }}>
-            {/* <View style = {{alignSelf:'flex-start',}}> */}
-            <Text style={{
-                backgroundColor: '#1CFF77', borderRadius: 34 / 852 * height, paddingTop: 5 / 852 * height, paddingBottom: 5 / 852 * height, paddingLeft: 10 / 852 * height, paddingRight: 10 / 852 * height,
-                marginLeft: 25 / 852 * height, fontSize: 14 / 852 * height, color: "#000", fontWeight: "500", marginBottom: 8 / 852 * height, alignSelf: 'flex-start', marginTop: 5
-            }}>
-                Active
-            </Text>
-            {/* </View> */}
-            <View style={{ position: "absolute", right: 0, margin: 17 / 852 * height }}>
-                <CircularProgress
-                    radius={50 / 852 * height}
-                    value={89}
-                    fontSize={24 / 852 * height}
-                    valueSuffix={"%"}
-                    activeStrokeColor={"#2468E8"}
-                    inActiveStrokeWidth={6 / 852 * height}
-                    progressValueColor="#000"
-                    activeStrokeWidth={6 / 852 * height}
-                    strokeLinecap="square"
-                    inActiveStrokeColor={"#a6c1f5"} />
+        return <View style={{  height: 268 / 852 * height, width: 359 / 393 * width, borderRadius: 29 / 852 * height, backgroundColor: "#fff", marginLeft: 20 / 852 * height, marginRight: 20 / 852 * height, marginTop: 20 / 852 * height }}>
+            <View style = {{flexDirection:'row',justifyContent:"space-between",}}>
+                <View style={{
+                    alignSelf: 'flex-start', backgroundColor: '#1CFF77', borderRadius: 34 / 852 * height, height: 23 / 852 * height,
+                    width: 60 / 393 * width, alignItems: "center", justifyContent: "center", marginLeft: 14, marginTop: 10 / 852 * height,
+                    marginBottom: 13 / 852 * height,
+                }}>
+
+                    <Text style={{
+                        fontSize: 14 / 852 * height, color: "#000", fontWeight: "500",
+
+                    }}>
+                        Active
+                    </Text>
+                </View>
+                <View style={{marginTop:22/852*height,marginRight:22/852*height }}>
+
+                    <CircularProgress
+                        radius={50 / 852 * height}
+                        value={89}
+                        fontSize={24 / 852 * height}
+                        valueSuffix={"%"}
+                        activeStrokeColor={"#2468E8"}
+                        inActiveStrokeWidth={4 / 852 * height}
+                        progressValueColor="#000"
+                        activeStrokeWidth={4 / 852 * height}
+                        strokeLinecap="square"
+                        inActiveStrokeColor={"#a6c1f5"} />
+                </View>
             </View>
-            <View style={{ marginLeft: 25 / 852 * height, flexDirection: "row", gap: 50 / 852 * height, }}>
+            <View style={{ marginTop:-76/852*height, marginLeft: 25 / 852 * height, flexDirection: "row", gap: 50 / 852 * height, }}>
 
                 <Text style={{ fontSize: 12 / 852 * height, }}>
                     Amount
@@ -246,8 +254,8 @@ const DashboardScreen = (props) => {
                 </Text>
             </View>
 
-            <View style={{ marginTop: 50 / 852 * height, marginLeft: 25 / 852 * height, marginRight: 25 / 852 * height, flexDirection: "row", justifyContent: "space-between", marginBottom: 18 / 852 * height }}>
-                <Text style={{ fontSize: 12 / 852 * height }}>
+            <View style={{ marginTop: 50 / 852 * height, marginLeft: 25 / 852 * height, marginRight: 25 / 852 * height, marginBottom: 18 / 852 * height }}>
+                <Text style={{ fontSize: 12 / 852 * height, color: '#000' }}>
                     Next Scheduled payday
                 </Text>
                 <Text style={{ fontSize: 14 / 852 * height, color: "#000", fontWeight: "600" }}>
