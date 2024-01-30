@@ -85,7 +85,7 @@ const ScheduleLonByPaid = () => {
     const [selectedTab, setSelectedTab] = useState(0);
 
     return (
-        <View style={{ height: 440 / 852 * height, backgroundColor: "#ecece" }}>
+        <View style={{ height: 400 / 852 * height, backgroundColor: "#ecece" }}>
             <FlatList scrollEnabled={true} showsVerticalScrollIndicator={false}
                 data={Status}
                 renderItem={({ item }) =>

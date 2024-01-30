@@ -15,8 +15,8 @@ const LoanDetails = ({ navigation, route, loan }) => {
 
     return (
 
-        <ScrollView style={{ flex:1 }} scrollEnabled={true} showsVerticalScrollIndicator={false} >
-            <View style = {{height: 250 / 852 * height }}>
+        <ScrollView style={{ height: height/1.9, backgroundColor: "#ecece" ,flex:1,backgroundColor:'red'}} scrollEnabled={true} showsVerticalScrollIndicator={false} >
+            {/* <View style = {{h  }}> */}
                 <View style={{ alignItems: "center", justifyContent: "center", marginTop: 15 / 852 * height }}>
                     <View style={{ justifyContent: "space-between", flexDirection: "row", height: 54 / 852 * height, borderBottomWidth: 0.3, width: 319 / 393 * width, alignItems: "center" }}>
                         <Text style={{ fontSize: 14 / 852 * height, color: "#000" }} >
@@ -126,7 +126,7 @@ const LoanDetails = ({ navigation, route, loan }) => {
 
                     </View>
                 </View>
-            </View>
+            {/* </View> */}
         </ScrollView>
 
 

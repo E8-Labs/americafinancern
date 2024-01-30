@@ -4,6 +4,7 @@ import CircularProgress from "react-native-circular-progress-indicator";
 import LoanDetails from "./LoanDetails";
 import { SafeAreaView } from "react-native";
 import PayPlanView from "./PayPlanView";
+import RejectDetailView from "./RejectDetailView";
 
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
@@ -99,13 +100,13 @@ const LoanShedule = ({ navigation, route }) => {
                             </View>
 
 
-                        <View style={{ alignSelf: "center", justifyContent: "center", marginTop: 78 / 852 * height }}>
+                        {/* <View style={{ }}> */}
                             <View style={{
-                                flexDirection: "column", height: height / 1.5, width: 371 / 393 * width, borderTopRightRadius: 25 / 852 * height,
-                                borderTopLeftRadius: 25 / 852 * height, backgroundColor: "#fff", alignItems: "center"
+                                 width: 371 / 393 * width, height:height/1.9,borderTopRightRadius: 25 / 852 * height, alignSelf: "center", marginTop: 78 / 852 * height,
+                                borderTopLeftRadius: 25 / 852 * height,  alignItems: "center",backgroundColor:'yellow'
                             }}>
                                 <View style={{
-                                    paddingLeft: 4 / 852 * height, justifyContent: "flex-start", height: 33 / 852 * height, width: 181 / 393 * width,
+                                    paddingLeft: 4 / 852 * height,  width: 181 / 393 * width,
                                     backgroundColor: "#ececec", marginTop: 13 / 852 * height, borderRadius: 9 / 852 * height, alignItems: "center", flexDirection: "row"
                                 }}>
                                     <TouchableOpacity
@@ -143,21 +144,23 @@ const LoanShedule = ({ navigation, route }) => {
                                     </View>
                                 </View>
 
-                                <View style={{ paddingTop:26/852*height,}} >
+                                <View style={{}} >
                                     {
                                         selectedTab == 0 && (
-
-                                            <PayPlanView />
+                                            (loan.loan_status === "rejected"?<RejectDetailView/>  :  <PayPlanView />)
+                                          
                                         )
                                     }
                                     {
                                         selectedTab == 1 && (
-                                            <LoanDetails loan={loan} />
+                                            (loan.loan_status === "rejected"?<RejectDetailView/>  :<LoanDetails loan={loan} />)
+                                            
+                                            
                                         )
                                     }
                                 </View>
                             </View>
-                        </View>
+                        {/* </View> */}
                     </ImageBackground>
                 </ImageBackground>
 

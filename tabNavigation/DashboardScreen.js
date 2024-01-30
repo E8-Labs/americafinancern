@@ -117,7 +117,7 @@ const DashboardScreen = (props) => {
             loan: loan
         })
     }
-
+    
     return (
         <View style={{ height: height, width: width, }}>
             <View style={{ flex: 1 }}>
@@ -187,7 +187,6 @@ const DashboardScreen = (props) => {
                                         </View>
 
                                     </TouchableOpacity>
-
                                 }
                             />
                         }
