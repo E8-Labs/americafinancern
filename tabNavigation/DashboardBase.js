@@ -6,7 +6,7 @@ import { Image, View, Text, StyleSheet, Dimensions, ScrollView, SafeAreaView } f
 import DashboardScreen from './DashboardScreen';
 import LoanRequest from '../components/LoanRequest';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import ProfileScreen from './ProfileScreen';
+import ProfileMainScreen from '../profileFlow/ProfileMainScreen';
 
 const homeIcon = require('../assets/American_Finance_App_image/HiconLinear-3x.png');
 const Documenticon = require('../assets/American_Finance_App_image/DocumentIcon-3x.png');
@@ -130,7 +130,7 @@ function DashboardBase(props) {
 
         />
         <Tab.Screen name='Profile'
-          component={ProfileScreen}
+          component={ProfileMainScreen}
 
           options={{
             tabBarShowLabel: false,

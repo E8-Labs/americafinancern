@@ -39,30 +39,30 @@ const SplashScreen1 = (props) => {
                     const saved = await AsyncStorage.setItem("USER", JSON.stringify(u))
                     console.log("Saved user data ", u)
                     if (json.status === true) {
-                        // console.log(json.data.state)
-                        // if (json.data.state === null || json.data.state === "") {
-                        //     props.navigation.replace("StateScreen")
-                        // } else if (json.data.bank_connected === true) {
+                        console.log(json.data.state)
+                        if (json.data.state === null || json.data.state === "") {
+                            props.navigation.replace("StateScreen")
+                        } else if (json.data.bank_connected === true) {
 
-                        //     if (json.data.liabilities_added === true) {
+                            if (json.data.liabilities_added === true) {
 
-                        //         if (json.data.active_payday_loan === null) {
-                        //             props.navigation.replace("ActivePaydayLoans")
+                                if (json.data.active_payday_loan === null) {
+                                    props.navigation.replace("ActivePaydayLoans")
 
 
-                        //         } else {
-                        //             props.navigation.replace("DashboardBase")
+                                } else {
+                                    props.navigation.replace("DashboardBase")
 
-                        //         }
+                                }
 
-                        //     } else {
-                        //         props.navigation.replace("ActivePaydayLoans")
-                        //     }
-                        // }
-                        // else {
-                        //     props.navigation.replace("BankAccountMainScreen")
-                        // }
-                    // } else {
+                            } else {
+                                props.navigation.replace("ActivePaydayLoans")
+                            }
+                        }
+                        else {
+                            props.navigation.replace("BankAccountMainScreen")
+                        }
+                    } else {
                         props.navigation.replace("SplashScreen2")
                         //props.navigation.replace("HousingSituition")
                     }

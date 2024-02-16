@@ -13,7 +13,9 @@ const CloseIcon = require("../assets/American_Finance_App_image/CloseIcon-3x.png
 const RecentHousingHistory = (props) => {
 
     const [user, setUser] = useState(null)
-    const [houses, setHouses] = useState([])
+    const [houses, setHouses] = useState([]) 
+    const [selectedOption, setSelectedOption] = useState("");
+    const [showModal, setShowModal] = useState(false)
 
     const nextBtnAction = () => {
         if (houses.length < 2) {
@@ -70,8 +72,7 @@ const RecentHousingHistory = (props) => {
         getHouseList();
     }, [])
 
-    const [selectedOption, setSelectedOption] = useState("");
-    const [showModal, setShowModal] = useState(false)
+   
 
 
     return (

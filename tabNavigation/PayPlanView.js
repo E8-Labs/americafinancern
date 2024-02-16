@@ -92,7 +92,7 @@ const ScheduleLonByPaid = () => {
                     <View style={{ borderColor: "#cecece", borderBottomWidth: 1, marginLeft: 17 / 852 * height, marginRight: 17 / 852 * height, height: 90 / 852 * height, width: 368 / 393 * width }} >
                         <View style={{ justifyContent: "space-between", flexDirection: "row", }}>
                             <View style={{ margin: 5 / 852 * height, marginLeft: 10 / 852 * height, }}>
-                                <View style={{ height: 5 / 852 * height, width: 5 / 852 * height, marginLeft: -10 / 852 * height, marginTop: 5 / 852 * height, backgroundColor: "red", borderRadius: 3 / 852 * height }} />
+                                <View style={{ height: 5 / 852 * height, width: 5 / 852 * height, marginLeft: -10 / 852 * height, marginTop: 5 / 852 * height,borderRadius: 3 / 852 * height }} />
                                     <Text style={{ fontSize: 24 / 852 * height, color: "#000", marginLeft: 10 / 852 * height, fontWeight: "500" }}>{item.Amount}</Text>
                                     <Text style={{ fontSize: 14 / 852 * height, marginTop: 13 / 852 * height, marginLeft: 10 / 852 * height }}>
                                         {

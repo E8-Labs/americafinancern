@@ -25,97 +25,100 @@ const LoanShedule = ({ navigation, route }) => {
                 <ImageBackground style={{ height: height / 2, width: width }} source={lightDotte}>
 
                     <ImageBackground style={{ height: height / 2, width: width }} source={lightBlueBG}>
-                       
-                            <TouchableOpacity style={{marginTop:35/852*height,marginLeft:16/393*width,alignSelf:'flex-start',}} onPress={() => {
-                                console.log("Here go back")
-                                navigation.goBack()
-                            }}>
-                                <Image
-                                    source={require('../assets/American_Finance_App_image/backArrow.png')}
-                                    style={{ height: 32 / 852 * height, width: 32 * width / 393 }}
+
+                        <TouchableOpacity style={{ marginTop: 45 / 852 * height, marginLeft: 16 / 393 * width, alignSelf: 'flex-start', }} onPress={() => {
+                            console.log("Here go back")
+                            navigation.goBack()
+                        }}>
+                            <Image
+                                source={require('../assets/American_Finance_App_image/backArrow.png')}
+                                style={{ height: 32 / 852 * height, width: 32 * width / 393 }}
+                            />
+                        </TouchableOpacity>
+                        <View style={{ flexDirection: "row", marginTop: 62 / 852 * height, alignItems: "center", }} >
+                            <View style={{ marginLeft: 38 / 393 * width }}>
+                                <CircularProgress
+                                    radius={60 / 852 * height}
+                                    value={80}
+                                    progressValueFontSize={24 / 852 * height}
+                                    valueSuffix={"%"}
+                                    title="Paid"
+                                    titleColor="#fff"
+                                    titleFontSize={14 / 852 * height}
+                                    activeStrokeColor={"#fff"}
+                                    inActiveStrokeOpacity={0.14}
+                                    inActiveStrokeWidth={3 / 393 * width}
+                                    progressValueColor="#fff"
+                                    activeStrokeWidth={3 / 393 * width}
+                                    strokeLinecap="square"
+                                    inActiveStrokeColor={"#fff"}
                                 />
-                            </TouchableOpacity>
-                            <View style={{ flexDirection: "row",marginTop:62/852*height,alignItems:"center",}} >
-                                <View style = {{marginLeft:38/393*width}}>
-                                    <CircularProgress
-                                        radius={60 / 852 * height}
-                                        value={80}
-                                        progressValueFontSize={24 / 852 * height}
-                                        valueSuffix={"%"}
-                                        title="Paid"
-                                        titleColor="#fff"
-                                        titleFontSize={14 / 852 * height}
-                                        activeStrokeColor={"#fff"}
-                                        inActiveStrokeOpacity={0.14}
-                                        inActiveStrokeWidth={3 / 393 * width}
-                                        progressValueColor="#fff"
-                                        activeStrokeWidth={3 / 393 * width}
-                                        strokeLinecap="square"
-                                        inActiveStrokeColor={"#fff"}
-                                    />
 
-                                </View>
-                                <View style={{marginLeft:41/393*width, height: 52 / 852 * height, width: 70 / 393 * width, borderRadius: 10 / 852 * height, backgroundColor: "#ffffff20" }}>
-                                    <Text style={{ color: "#FFF", fontSize: 12 / 852 * height, fontWeight: '500', padding: 10 / 852 * height, paddingBottom: 0 }}>
-                                        Balance
-
-                                    </Text>
-                                    <Text style={{ color: "#FFF", fontSize: 14 / 852 * height, fontWeight: '500', paddingLeft: 10 / 393 * width, paddingTop: 5 / 852 * height }}>
-                                        $120
-
-                                    </Text>
-                                </View>
-
-                                <View style={{marginLeft:18/393*width, height: 52 / 852 * height, width: 79 / 393 * width, borderRadius: 10 / 852 * height, backgroundColor: "#ffffff20" }}>
-                                    <Text style={{ color: "#FFF", fontSize: 12 / 852 * height, padding: 10 / 852 * height, paddingBottom: 0 }}>
-                                        Paid
-                                    </Text>
-                                    <Text style={{ color: "#FFF", fontSize: 14 / 852 * height, paddingLeft: 10 / 393 * width, paddingTop: 5 / 852 * height }}>
-                                        $280
-
-                                    </Text>
-                                </View>
                             </View>
-                            <View style={{ marginTop: 20 / 852 * height, marginLeft: 37 / 393 * width, }}>
-                                <View style={{ flexDirection: "row", gap: 159 / 852 * height }}>
-                                    <Text style={{ fontSize: 10 / 852 * height, color: "#fff", }}>
-                                        Next installment
-                                    </Text>
-                                    <Text style={{ fontSize: 10 / 852 * height, color: "#fff", }}>
-                                        Due
-                                    </Text>
-                                </View>
+                            <View style={{ marginLeft: 41 / 393 * width, height: 52 / 852 * height, width: 70 / 393 * width, borderRadius: 10 / 852 * height, backgroundColor: "#ffffff20" }}>
+                                <Text style={{ color: "#FFF", fontSize: 12 / 852 * height, fontWeight: '500', padding: 10 / 852 * height, paddingBottom: 0 }}>
+                                    Balance
 
-                                <View style={{ flexDirection: "row", gap: 205 / 852 * height }}>
-                                    <Text style={{ fontSize: 14 / 852 * height, color: "#fff", }}>
-                                        $120
-                                    </Text>
+                                </Text>
+                                <Text style={{ color: "#FFF", fontSize: 14 / 852 * height, fontWeight: '500', paddingLeft: 10 / 393 * width, paddingTop: 5 / 852 * height }}>
+                                    $120
 
-                                    <Text style={{ fontSize: 14 / 852 * height, color: "#fff", }}>
-                                        12.05.2023
-                                    </Text>
-                                </View>
+                                </Text>
+                            </View>
 
+                            <View style={{ marginLeft: 18 / 393 * width, height: 52 / 852 * height, width: 79 / 393 * width, borderRadius: 10 / 852 * height, backgroundColor: "#ffffff20" }}>
+                                <Text style={{ color: "#FFF", fontSize: 12 / 852 * height, padding: 10 / 852 * height, paddingBottom: 0 }}>
+                                    Paid
+                                </Text>
+                                <Text style={{ color: "#FFF", fontSize: 14 / 852 * height, paddingLeft: 10 / 393 * width, paddingTop: 5 / 852 * height }}>
+                                    $280
 
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={{ marginTop: 20 / 852 * height, marginLeft: 37 / 393 * width, }}>
+                            <View style={{ flexDirection: "row", gap: 159 / 852 * height }}>
+                                <Text style={{ fontSize: 10 / 852 * height, color: "#fff", }}>
+                                    Next installment
+                                </Text>
+                                <Text style={{ fontSize: 10 / 852 * height, color: "#fff", }}>
+                                    Due
+                                </Text>
+                            </View>
+
+                            <View style={{ flexDirection: "row", gap: 205 / 852 * height }}>
+                                <Text style={{ fontSize: 14 / 852 * height, color: "#fff", }}>
+                                    $120
+                                </Text>
+
+                                <Text style={{ fontSize: 14 / 852 * height, color: "#fff", }}>
+                                    12.05.2023
+                                </Text>
                             </View>
 
 
-                        {/* <View style={{ }}> */}
+                        </View>
+
+
+                        <View style={{
+                            marginTop: 60 / 852 * height,
+                            borderTopLeftRadius: 25 / 852 * height, alignItems: "center", padding: 10
+                        }}>
                             <View style={{
-                                 width: 371 / 393 * width, height:height/1.9,borderTopRightRadius: 25 / 852 * height, alignSelf: "center", marginTop: 78 / 852 * height,
-                                borderTopLeftRadius: 25 / 852 * height,  alignItems: "center",backgroundColor:'yellow'
+                                width: 371 / 393 * width, height: height / 1.9, borderTopRightRadius: 25 / 852 * height, alignSelf: "center",
                             }}>
                                 <View style={{
-                                    paddingLeft: 4 / 852 * height,  width: 181 / 393 * width,
-                                    backgroundColor: "#ececec", marginTop: 13 / 852 * height, borderRadius: 9 / 852 * height, alignItems: "center", flexDirection: "row"
+                                    width: 181 / 393 * width,
+                                    backgroundColor: "#ececec", marginTop: 8 / 852 * height, borderRadius: 9 / 852 * height, alignItems: "center", flexDirection: "row"
                                 }}>
                                     <TouchableOpacity
                                         onPress={() => {
                                             setSelectedTab(0);
                                         }}
                                         style={{
-                                            height: 27 / 852 * height,
-                                            width: 84 / 393 * width,
+                                            // paddingLeft:10,
+                                            height: 25 / 852 * height,
+                                            width: 86 / 393 * width,
                                             backgroundColor: selectedTab == 0 ? '#fff' : '#ececec',
                                             borderRadius: 8 / 852 * height,
                                             alignItems: "center",
@@ -130,8 +133,8 @@ const LoanShedule = ({ navigation, route }) => {
                                             setSelectedTab(1);
                                         }}
                                             style={{
-                                                height: 27 / 852 * height,
-                                                width: 84 / 393 * width,
+                                                height: 25 / 852 * height,
+                                                width: 86 / 393 * width,
                                                 backgroundColor: selectedTab == 1 ? '#fff' : '#ececec',
                                                 borderRadius: 8 / 852 * height,
                                                 alignItems: "center",
@@ -147,20 +150,20 @@ const LoanShedule = ({ navigation, route }) => {
                                 <View style={{}} >
                                     {
                                         selectedTab == 0 && (
-                                            (loan.loan_status === "rejected"?<RejectDetailView/>  :  <PayPlanView />)
-                                          
+                                            (loan.loan_status === "rejected" ? <RejectDetailView /> : <PayPlanView />)
+
                                         )
                                     }
                                     {
                                         selectedTab == 1 && (
-                                            (loan.loan_status === "rejected"?<RejectDetailView/>  :<LoanDetails loan={loan} />)
-                                            
-                                            
+                                            (loan.loan_status === "rejected" ? <RejectDetailView /> : <LoanDetails loan={loan} />)
+
+
                                         )
                                     }
                                 </View>
                             </View>
-                        {/* </View> */}
+                        </View>
                     </ImageBackground>
                 </ImageBackground>
 

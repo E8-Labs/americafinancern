@@ -17,28 +17,20 @@ const RejectDetailView = () => {
                         This loan was rejected for the
                     </Text>
                     <Text style={{ fontSize: 18 / 852 * height, color: '#000',  }}>
-                        following reason. The content can
+                        following reason :
                     </Text>
                     <Text style={{ fontSize: 18 / 852 * height, color: '#000',  }}>
-                        come here and replace the
+                        1.
                     </Text>
                     <Text style={{ fontSize: 18 / 852 * height, color: '#000',  }}>
-                        payment schedule we have for
+                        2.
                     </Text>
                     <Text style={{ fontSize: 18 / 852 * height, color: '#000',  }}>
-                        loans in progress or loan closed
+                        3.
                     </Text>
                 </View>
             </View>
         </View>
+    )}
 
-
-
-
-
-
-
-
-    )
-}
-export default RejectDetailView;
+    export default RejectDetailView ;
