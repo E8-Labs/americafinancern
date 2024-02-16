@@ -31,7 +31,7 @@ import HousingDurationScreen from "./components/HousingDurationScreen";
 import RecentHousingHistory from "./components/RecentHousingHistory";
 import OtherHousingSituition from "./components/OtherHousingSituiting";
 import DOBScreen from "./components/DOBScreen";
-import Test from "./components/Test";
+// import Test from "./components/Test";
 import HouseDetails from "./components/HouseDetails";
 import Dropdown from "./components/Dropdown";
 import OtherStateScreen from "./components/OtherStateScreen";
@@ -149,8 +149,8 @@ const App = () => {
         {/* <ManageAccountProfile/> */}
         {/* <MyDocumentsScreen/> */}
       {/* <ActivePaydayLoans/> */}
-      <Test/>
-      {/* <IdentityConnectionScreen/> */}
+      {/* <Test/> */}
+      <IdentityConnectionScreen/>
       {/* <BankAccountMainScreen/> */}
     </View>
 
