@@ -47,7 +47,7 @@ const ProfileMainScreen = (props) => {
             console.log('user could not logged in')
         }
 
-        props.navigation.push('SplashScreen1')
+        props.navigation.replace('SplashScreen1')
         console.log('Done.')
 
     };

@@ -67,7 +67,7 @@ const LoanProgressViewScreen = (props) => {
     // getProgress();
     useEffect(() => {
 
-        
+
 
         const getUser = async () => {
             let data = await AsyncStorage.getItem("USER")
@@ -79,41 +79,45 @@ const LoanProgressViewScreen = (props) => {
             }
         };
         getUser();
-        
+
     }, []);
 
-    useEffect(()=> {
+    useEffect(() => {
         const getProgress = () => {
             console.log("User while chekcing progress", user)
             // profile connected 
             let p = 0
-            // identity connected by default true for now
-            p = p + 1
-            user ? (user.user.liabilities_added === true ? p = p + 1 : p = p + 0) : p = p + 0  // may incorporate user loan flow here if wanted
-            p = p + 1 // for income details since we are not getting it as of now
-       p = p+1 //   user ? (user.user.liabilities_added === true ? p = p + 1 : p = p + 0) : p = p + 0  // user debt flow 
-       p = p+1 //   user ? (user.user.liabilities_added === true ? p = p + 1 : p = p + 0) : p = p + 0  // user debt flow 
-            user ? (user.user.houses_connected === true ? p = p + 1 : p = p + 0) : p = p + 0
-            console.log("User's current progress is ", p)
-            user ? (user.user.liabilities_added === true ? console.log("libilities true "):'null') :console.log("user not get ")
-          
+            // identity connected 
+            user ? (user.user.identity_connected === 'success' ? p = p + 1 : p = p + 0) : p = p + 0
+            if (p == 1) {
+                user ? (user.user.liabilities_added === true ? p = p + 1 : p = p + 0) : p = p + 0  // may incorporate user loan flow here if wanted
+            }
+            if (p == 2) {
+                p = p + 1 // for income details since we are not getting it as of now
+            }
+            if (p == 3) {
+                user ? (user.user.liabilities_added === true ? p = p + 1 : p = p + 0) : p = p + 0  // user debt flow 
+            }
+            // p = p + 1 //   user ? (user.user.liabilities_added === true ? p = p + 1 : p = p + 0) : p = p + 0  // user debt flow 
+            if (p == 4) {
+                user ? (user.user.houses_connected === true ? p = p + 1 : p = p + 0) : p = p + 0
+
+            }
+        
             setProgress(p)
-            // (user ? (user.user.houses_connected === true ? setProgress(5):''):'')
-            // (user ? (user.user.houses_connected === true ? setProgress(5):''):'')
-            // (user ? (user.user.houses_connected === true ? setProgress(5):''):'')
-            // (user ? (user.user.houses_connected === true ? setProgress(5):''):'')
+
         };
         getProgress()
     }, [user])
     const continoueBtnHandle = () => {
-        
-        if (progress === null) {
-           //profile added
-            }
 
-            if (progress === 0) {
-                // identity conected true 
-            }
+        if (progress === null) {
+            //profile added
+        }
+
+        if (progress === 0) {
+            // identity conected true 
+        }
 
 
         if (progress === 1) {
@@ -122,15 +126,15 @@ const LoanProgressViewScreen = (props) => {
 
             }
         }
-        if (progress === 2){
-           //income conected true
+        if (progress === 2) {
+            //income conected true
         }
 
-        if (progress === 3){
-            // props.navigation.navigate("ActivePaydayLoans")
+        if (progress === 3) {
+            props.navigation.navigate("ActivePaydayLoans")
 
         }
-        if (progress === 4){
+        if (progress === 4) {
             props.onNext("HousingSituition")
         }
     };
@@ -173,9 +177,11 @@ const LoanProgressViewScreen = (props) => {
                         </View>
                     }
                 />
-                <TouchableOpacity style={[globalStyles.capsuleButton, { marginBottom: 15 / 852 * height, alignSelf: "center", 
-                    width: 315 / 393 * width, height: 54 / 852 * height, borderRadius: 24 / 852 * height }]}  
-                    onPress={continoueBtnHandle}    
+                <TouchableOpacity style={[globalStyles.capsuleButton, {
+                    marginBottom: 15 / 852 * height, alignSelf: "center",
+                    width: 315 / 393 * width, height: 54 / 852 * height, borderRadius: 24 / 852 * height
+                }]}
+                    onPress={continoueBtnHandle}
                 >
                     <Text style={{ color: '#fff', fontSize: 18 / 852 * height, fontWeight: '500', textAlign: 'center' }}>
                         Continue

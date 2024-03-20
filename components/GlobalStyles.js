@@ -32,7 +32,7 @@ const globalStyles = StyleSheet.create({
   },
 
   inputStyle:{
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "#ececec",
     borderRadius: 13/852*height, 
     paddingLeft: 10/852*width,
     width: 360 / 393 * width ,

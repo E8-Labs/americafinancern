@@ -9,6 +9,7 @@ const Apis = {
     ApiExchangePublicToken: `${BasePath}api/plaid/exchange_public_token`,
     ApiCreateLinkToken: `${BasePath}api/plaid/create_link_token`,
     ApiExchangePublicToken: `${BasePath}api/plaid/exchange_public_token`,
+    ApiIdentityUpdated: `${BasePath}api/users/identity_updated`,
     ApiAddHouse:`${BasePath}api/houses/add_house`,
     ApiGetHouseList:`${BasePath}api/houses/get_houses_list`,
     ApiGetUserLoans:`${BasePath}api/loans/get_user_loans?offset=0`,

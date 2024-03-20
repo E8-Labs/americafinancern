@@ -28,6 +28,7 @@ import arrowBotton from '../assets/arrow.png';
 import appleIcon from '../assets/appleIcon.png';
 import googleIcon from '../assets/googleIcon.png';
 import facebookIcon from '../assets/facebookIcon.png';
+import IdentityConnectionScreen from "./IdentityConnectionScreen";
 
 
 const SignInScreen = (props) => {
@@ -65,23 +66,32 @@ const SignInScreen = (props) => {
                 )
                 console.log("Stored user data in local is ", json.data)
 
-                props.navigation.navigate("DashboardBase")
-                // if (json.data.user.bank_connected === false) {
-                //     if (json.data.user.liabilities_added === true) {
-                //         if (json.data.active_payday_loan === null) {
-                //             props.navigation.replace("ActivePaydayLoans")
-                //         } else {
-                //             props.navigation.replace("DashboardBase")
+                // props.navigation.navigate("DashboardBase")
+                if(json.data.user.state === null|| json.data.user.state === ''){
+                    props.navigation.navigate("StateScreen")
+                } else if (json.data.user.identity_connected === "failed") {
+                    props.navigation.replace("IdentityConnectionFailed")
+                } else if (json.data.user.identity_connected === 'pending' || json.data.user.identity_connected === null) {
+                    props.navigation.replace("IdentityConnectionScreen")
+                } else if (json.data.user.identity_connected === 'success') {
+                    if (json.data.user.bank_connected === true) {
+                        // if (json.data.user.liabilities_added === true) {
+                        //     if (json.data.user.active_payday_loan === null) {
+                        //         props.navigation.replace("ActivePaydayLoans")
+                        //     } else {
+                                props.navigation.replace("DashboardBase")
 
-                //         }
-                //     } else {
-                //         props.navigation.replace("ActivePaydayLoans")
+                            }
+                    //     } else {
+                    //         props.navigation.replace("ActivePaydayLoans")
 
-                //     }
-                // }
-                // else {
-                //     props.navigation.replace("BankAccountMainScreen")
-                // }
+                    //     }
+                    // }
+                    else {
+                        props.navigation.replace("BankAccountMainScreen")
+                    }
+                }
+
 
             }
             else {
@@ -92,13 +102,6 @@ const SignInScreen = (props) => {
                     marginBottom: 10
                 })
             }
-            // Snackbar.show({
-            //     text: json.message,
-            //     duration: Snackbar.LENGTH_SHORT,
-            //     backgroundColor: 'red',
-            //     marginBottom: 10
-            // })
-
         }
 
     };
@@ -118,7 +121,6 @@ const SignInScreen = (props) => {
                     {/* <ScrollView> */}
                     <View style={[globalStyles.container, { backgroundColor: '#fff' }]} >
 
-
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                             <Image source={afimage}
                                 style={[globalStyles.logoImageStyle, { marginTop: 20 / 852 * height }]}
@@ -131,7 +133,7 @@ const SignInScreen = (props) => {
 
                                 <TouchableOpacity >
                                     <Text style={{ fontSize: 14 / 852 * height, fontWeight: '700', color: '#2468E8' }}>
-                                         Apply Now
+                                        Apply Now
                                     </Text>
                                 </TouchableOpacity>
                             </View>
@@ -184,7 +186,7 @@ const SignInScreen = (props) => {
 
                         <View style={{ width: width }}>
 
-                            <TouchableOpacity style={[globalStyles.shadowStyle,{ alignSelf: 'flex-end', marginTop: 33 / 852 * height, marginRight: 17 / 852 * height }]}
+                            <TouchableOpacity style={[globalStyles.shadowStyle, { alignSelf: 'flex-end', marginTop: 33 / 852 * height, marginRight: 17 / 852 * height }]}
                                 onPress={loginUser}
                             >
                                 <View style={globalStyles.arrowBotton}>

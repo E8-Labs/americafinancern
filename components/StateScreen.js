@@ -90,10 +90,10 @@ const StateScreen = (props) => {
 
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <View style={globalStyles.container}>
+        <SafeAreaView style={{ height:height }}>
+            <View style={[globalStyles.container,{flex:1,height:0}]}>
                 <View style={{ flexDirection: 'row', width: width, paddingHorizontal: 12 / 393 * width, justifyContent: 'space-between', alignItems: 'center', }}>
-                    <TouchableOpacity style={{ alignSelf: 'flex-start', }} onPress={() => props.navigation.goBack()} >
+                    <TouchableOpacity style={{ alignSelf: 'flex-start', }} onPress={() => {props.navigation.goBack()}} >
                         <Image
                             source={require('../assets/blackArrowicon-3x.png')}
                             style={{ height: 24 / 852 * height, width: 20 * width / 393, resizeMode: 'contain', }}
@@ -221,6 +221,7 @@ const styles = StyleSheet.create({
         width: 355 / 393 * width,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems:'center'
 
     }
 
