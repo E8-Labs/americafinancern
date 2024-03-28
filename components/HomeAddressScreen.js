@@ -22,7 +22,7 @@ const HomeAddressScreen = (props) => {
 
             })
         } else{
-            props.navigation.navigate('CongratesScreen')
+            props.navigation.navigate("IdentityConnectionScreen")
         }
     }
 
@@ -73,7 +73,7 @@ const HomeAddressScreen = (props) => {
                 </Text>
 
                 <TextInput placeholder="Street Address"
-                    style={globalStyles.inputStyle}
+                    style={[globalStyles.inputStyle,{margin:20}]}
                     autoFocus={true}
                     value={address}
                     onChangeText={(text) => setAddress(text)}
@@ -86,12 +86,12 @@ const HomeAddressScreen = (props) => {
 
                 <View style={{flexDirection:'row',gap:20 / 393 * width,marginTop:50/852*height,alignItems:'center'}}>
 
-                    <TouchableOpacity style = {{marginTop:10}}>
-                        <Text style = {{color:'#2468E8',fontSize:11,fontWeight:'500',textDecorationLine:'underline'}}>
+                    <TouchableOpacity style = {{marginTop:0}}>
+                        <Text style = {{color:'#2468E8',fontSize:14,fontWeight:'500',textDecorationLine:'underline'}}>
                             Why do we collect this information
                         </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[globalStyles.shadowStyle,{ alignSelf: 'flex-end', marginTop: 20, marginEnd: 12 }]} 
+                    <TouchableOpacity style={[globalStyles.shadowStyle,{ alignSelf: 'flex-end', marginEnd: 12 }]} 
                         onPress={nextButtonAction}
                     >
                         <View style={globalStyles.arrowBotton}>

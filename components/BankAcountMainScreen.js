@@ -80,6 +80,30 @@ const BankAccountMainScreen = (props) => {
         }
     }, [setLinkToken])
 
+    const getLiabilities = async () =>{
+
+        const res = await fetch(Apis.ApiGetLiabilities,{
+            method:'get',
+            headers:{"Content-Type": "application/json",
+            "Authorization": "Bearer " + user.token,}
+        })
+        if(res){
+            let json = await res.json();
+            if(json.status=== true){
+                user.user = json.data
+                await AsyncStorage.setItem(
+                    "USER",
+                    JSON.stringify(user)
+                )
+                navigation.navigate("StateScreen");
+                 console.log('get liabilities api called')
+                 props.navigation.navigate("Bank_account_information")
+
+            }
+        }
+
+    }
+
     const exchangePublicToken = async (token) => {
         console.log("Exchanging public token")
         await fetch(Apis.ApiExchangePublicToken, {
@@ -94,7 +118,10 @@ const BankAccountMainScreen = (props) => {
             .then((data) => {
                 console.log("data is ", data)
                 if (data.status === true) {
-                    props.navigation.navigate("ActivePaydayLoans")
+                    
+                    //Call the api to get Liabilities
+                    getLiabilities();
+
                 }
                 // setLinkToken(data.data.link_token);
             })

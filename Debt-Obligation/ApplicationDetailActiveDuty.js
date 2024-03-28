@@ -113,7 +113,7 @@ const ApplicationDetailActiveDuty = ({navigation,route}) => {
 
 
                 <View style={{ flex: 2.6, paddingTop: 32 / 852 * height, }}>
-                    <FlatList scrollEnabled={true} style={{ marginBottom: 0, }}
+                    <FlatList scrollEnabled={true} style={{ marginBottom: 0, }} showsVerticalScrollIndicator = {false}
                         data={Status}
                         renderItem={({ item }) =>
                             <TouchableOpacity style={{ margin: 15 / 852 * height, borderWidth: 0.5, borderRadius: 23 / 852 * height,borderColor:"#ccc",height:80/ 852 * height,alignItems:"center",justifyContent:"center" }} onPress={() => {

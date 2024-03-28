@@ -51,7 +51,7 @@ const ActivePaydayLoans = ({ navigation, route }) => {
             })
         } else {
 
-            navigation.navigate("BankruptcyPetition", {
+            navigation.navigate("ApplicationDetailActiveDuty", {
                 obligation: { active_pay_day_loan: selectedOption }
             })
         }

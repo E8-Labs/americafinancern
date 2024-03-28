@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native";
 import { globalStyles } from "./GlobalStyles";
 import BankAccountMainScreen from "./BankAcountMainScreen";
 import IdentityConnectionScreen from "./IdentityConnectionScreen";
+import DashboardBase from "../tabNavigation/DashboardBase";
 
 const { height, width } = Dimensions.get('window')
 
@@ -37,7 +38,7 @@ const NotificationScreen = (props) => {
             </Text>
 
             <TouchableOpacity style={[globalStyles.capsuleButton, { marginTop: 100 / 852 * height }]}
-                onPress={() => props.navigation.navigate("IdentityConnectionScreen")}
+                onPress={() => props.navigation.navigate("DashboardBase")}
             >
                 <Text style={{ fontSize: 10, fontWeight: '500', color: '#fff',fontSize:16/852*height }}>
                     Allow Permission

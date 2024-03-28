@@ -63,7 +63,7 @@ const LoanReviewScreen = ({ navigation, route }) => {
           if (json.status === true) {
             console.log('Loan calculations are ', json)
             setCalculationData(json.data)
-          }``
+          }
         }
       }
     };

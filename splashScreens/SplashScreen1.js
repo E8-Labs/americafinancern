@@ -5,7 +5,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 import Apis from "../Api/apipath"
 
 
-
 const SplashScreen1 = (props) => {
 
     const [user, setUser] = useState(null)
@@ -20,7 +19,7 @@ const SplashScreen1 = (props) => {
                 let u = JSON.parse(data)
                 setUser(u)
 
-                //console.log("user stored data is ", user)
+                console.log("user stored data is ", u)
                 console.log("user token  is ", u.token)
                 //check bank contected      
                 const result = await fetch(Apis.ApiUserStatus, {
@@ -39,43 +38,46 @@ const SplashScreen1 = (props) => {
                     const saved = await AsyncStorage.setItem("USER", JSON.stringify(u))
                     console.log("Saved user data ", u)
                     if (json.status === true) {
-                        console.log(json.data.state)
-                        if (json.data.state === null || json.data.state === "") {
+
+                        if (json.data.active_payday_loan === null || json.data.active_payday_loan === true) {
+                            props.navigation.replace("ActivePaydayLoans")
+
+                        } else if (json.data.active_duty_manual === null || json.data.active_duty_manual !== "None") {
+                            props.navigation.replace("ActivePaydayLoans")
+
+                        } else if (json.data.active_duty_manual === null || json.data.bankruptcy_status !== 0) {
+                            props.navigation.replace("ActivePaydayLoans")
+
+                        } else if (json.data.state === null || json.data.state === "") {
                             props.navigation.replace("StateScreen")
                         } else if (json.data.identity_connected === "failed") {
                             props.navigation.replace("IdentityConnectionFailed")
                         } else if (json.data.identity_connected === 'pending' || json.data.identity_connected === null) {
                             props.navigation.replace("IdentityConnectionScreen")
-                        }
-                        else if (json.data.bank_connected === true) {
-
-                            // if (json.data.liabilities_added === true) {
-
-                            //     if (json.data.active_payday_loan === null) {
-                            //         props.navigation.replace("ActivePaydayLoans")
-
-
-                            //     } else {
-                                    props.navigation.replace("DashboardBase")
-
-                                // }
-
-                        //     } else {
-                        //         props.navigation.replace("ActivePaydayLoans")
-                        //     }
-                        }
-                        else {
+                        } else if (json.data.bank_connected === false) {
                             props.navigation.replace("BankAccountMainScreen")
+                        } else if (json.data.liabilities_added === false) {
+
+                            props.navigation.replace("BankAccountMainScreen")
+                        } else if (json.data.payment_source_added === true) {
+                            if (json.data.active_loan === null) {
+
+                                props.navigation.replace("LoanRequest", { fromTabBar: false })
+                            } else {
+                                props.navigation.replace("DashboardBase")
+
+                            }
+                        } else {
+                            props.navigation.replace("DashboardBase")
+
                         }
-                    } else {
-                        props.navigation.replace("SplashScreen2")
-                        //props.navigation.replace("HousingSituition")
                     }
                 }
             } else {
                 props.navigation.replace("SplashScreen2")
+
             }
-        };
+        }
         getUser();
         // console.log("user stored data is ", user)
     }, [])

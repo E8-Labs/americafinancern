@@ -5,7 +5,6 @@ import Snackbar from "react-native-snackbar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Apis from "../Api/apipath";
 
-
 const { height } = Dimensions.get("window");
 const { width } = Dimensions.get("window");
 
@@ -64,13 +63,13 @@ const Status = [
 const BankruptcyPetition = ({ navigation, route }) => {
 
     const [selectedOption, setSelectedOption] = useState("");
-    const [user, setUser] = useState(null)
+    // const [user, setUser] = useState(null)
 
     const obligation = route.params.obligation;
 
     console.log("received data is ", obligation)
 
-    const nextBtnAction = () => {
+    const nextBtnAction = async () => {
 
         if (!selectedOption) {
             Snackbar.show({
@@ -80,72 +79,53 @@ const BankruptcyPetition = ({ navigation, route }) => {
                 marginBottom: 10,
 
             })
+        } else if (obligation.active_duty_force !== 'None' ||
+            obligation.active_pay_day_loan.name !== 'No' ||
+            selectedOption.name !== 'No') {
+
+                navigation.navigate("OnbordingFailScreen")
         } else {
-            // navigation.navigate("FinancialDetailsScreen", {
-            //     obligation: obligation
-            // })
-            const APIcall = async () => {
+            console.log('api should b call')
+            try {
+                const uData = await AsyncStorage.getItem("USER")
+                console.log('Data recieved from local storage is', uData)
 
-                // console.log("salected data is ,",selectedOption.id)
+                if (uData) {
 
+                    let u = JSON.parse(uData)
+                    console.log("enter in function 2", u)
 
-                const data = await AsyncStorage.getItem("USER")
+                    const data = await fetch(Apis.ApiUpdateProfile, {
+                        method: 'Post',
+                        headers: { "Authorization": `Bearer ${u.token}`, "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            "active_payday_loan": obligation.active_pay_day_loan.condition,
+                            "bankruptcy_status": selectedOption.id,
+                            "active_duty_manual":obligation.active_duty_force
 
-                if (data) {
-
-                    let u = JSON.parse(data)
-                    setUser(u)
-                    // console.log("user get data", u)
-
-                    let token = u.token;
-
-                    // call liabilities API
-
-                    const result = await fetch(Apis.ApiLiabilities, {
-                        method: "get",
-                        headers:
-                        {
-                            "Content-Type": "application/json",
-                            "Authorization": "Bearer " + token,
-                        },
+                        })
                     })
-
-                    if (result) {
-                        let json = await result.json()
-                        // console.log("get data is ", json)
-
-
+                    if (data) {
+                        let json = await data.json();
+                        console.log("update bank ruptcy  ", json)
                         if (json.status === true) {
-                            console.log('Api Called')
-
-                            //call update profile API
-
-                            console.log("revevied data before api", obligation.active_pay_day_loan.condition)
-
-                            const data = await fetch(Apis.ApiUpdateProfile, {
-                                method: 'Post',
-                                headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
-                                body: JSON.stringify({
-                                    "active_payday_loan": obligation.active_pay_day_loan.condition,
-                                    "bankruptcy_status": selectedOption.id
-
-                                })
-                            })
-                            if (data) {
-                                let json = await data.json();
-                                console.log("update bank ruptcy  ", json)
-                                if (json.status === true) {
-                                    navigation.navigate("DashboardBase");
-                                }
-                            }
-                        };
-                    };
+                            u.user = json.data
+                            await AsyncStorage.setItem(
+                                "USER",
+                                JSON.stringify(u)
+                            )
+                            navigation.navigate("StateScreen");
+                        }
+                    }
+                    //     };
+                    // };
                 }
-
-            };
-            APIcall();
+            } catch (error) {
+                console.log('error finding ', error)
+            }
         }
-    };
+
+    }
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -236,7 +216,7 @@ const BankruptcyPetition = ({ navigation, route }) => {
                     />
                 </View>
                 <View style={{ flex: 0.8 }}>
-                    <TouchableOpacity style={[globalStyles.shadowStyle,{
+                    <TouchableOpacity style={[globalStyles.shadowStyle, {
                         alignSelf: 'flex-end', margin: 20 / 852 * height, marginBottom: 20 / 852 * height, borderRadius: 30 / 852 * height,
                         marginRight: 25 / 852 * height,
                     }]}

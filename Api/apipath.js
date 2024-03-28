@@ -17,7 +17,10 @@ const Apis = {
     ApiGetLoanCalculations:`${BasePath}api/loans/get_loan_calculations`,
     ApiAddDebt:`${BasePath}api/loans/add_debt`,
     ApiGetDebt:`${BasePath}api/loans/get_debts_list`,
-    ApiLiabilities:`${BasePath}api/plaid/liabilities`
+    ApiLiabilities:`${BasePath}api/plaid/liabilities`,
+    ApiAddPaymentSource:`${BasePath}api/users/add_payment_source`,
+    ApiGetPaymentSource:`${BasePath}api/users/payment_sources`,
+    ApiGetLiabilities:`${BasePath}api/plaid/liabilities`,
 }
 
 export default Apis;

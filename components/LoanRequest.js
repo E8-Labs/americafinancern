@@ -12,10 +12,10 @@ const { height, width } = Dimensions.get('window');
 const LoanRequest = ({ navigation, route }) => {
 
 
-    console.log("Route is ", route)
-    console.log("Params are ", route.params)
+    // console.log("Route is ", route)
+    // console.log("Params are ", route.params)
     const fromTabBar = route.params.fromTabBar;
-    console.log("From tabbar ", fromTabBar)
+    // console.log("From tabbar ", fromTabBar)
 
 
 

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, Dimensions, TextInput, TouchableOpacity, ScrollView, StyleSheet, FlatList, ImageBackground, } from "react-native";
 import CircularProgress from "react-native-circular-progress-indicator";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Animated from "react-native-reanimated";
+
 import { globalStyles } from "../components/GlobalStyles";
+import { useFocusEffect } from '@react-navigation/native';
 import Apis from "../Api/apipath";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import LoanProgressViewScreen from "./LoanProgressViewScreen";
@@ -27,6 +26,74 @@ const DashboardScreen = (props) => {
     const [user, setUser] = useState(null);
     const [loans, setLoans] = useState([]);
     const [showProgressBarView, setShowProgressBarView] = useState(false);
+
+    useFocusEffect(
+
+        React.useCallback(() => {
+            console.log("Use Focus Effect")
+            getUserProfile()
+            getUserLoans()
+        },[])
+    )
+
+    const getUserProfile = async () => {
+        try {
+            console.log("Fetching live profile")
+            const data = await AsyncStorage.getItem('USER')
+
+            if (data) {
+                let u = JSON.parse(data)
+                setUser(u)
+                console.log('user saved profile is', u)
+                const token = u.token
+                const result = await fetch(Apis.ApiUserStatus, {
+                    method: 'post',
+                    headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+                })
+                if (result) {
+
+                    let json = await result.json()
+                    if (json.status === true) {
+                        u.user = json.data
+                        setUser(u)
+                        console.log("result profile is ", json.data)
+                        // u.user = json.data;
+                        //save into local storage 
+                        await AsyncStorage.setItem( "USER", JSON.stringify(u) )
+                        
+                    }
+                }
+            }
+        } catch (error) {
+            console.log("error finding profile ", error)
+        }
+    };
+
+    const getUserLoans = async () => {
+
+        const data = await AsyncStorage.getItem('USER')
+        if (data) {
+            let u = JSON.parse(data)
+            setUser(u);
+            console.log("User get data is ", u)
+
+            let token = u.token;
+
+            let result = await fetch(Apis.ApiGetUserLoans, {
+                method: 'get',
+                headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
+            })
+            if (result) {
+                let json = await result.json();
+
+                if (json.status === true) {
+                    setLoans(json.data)
+                    console.log("Loan calculations", json.data)
+                }
+            }
+        }
+
+    };
 
 
     const Capitalize = (string) => {
@@ -51,7 +118,7 @@ const DashboardScreen = (props) => {
                         "Content-Type": "application/json",
                         "Authorization": "Bearer " + u.token,
                     },
-                    body: JSON.stringify({}),
+                    
                 })
                 if (result) {
                     let json = await result.json();
@@ -66,33 +133,7 @@ const DashboardScreen = (props) => {
             }
         };
 
-        getUser();
-
-        const getUserLoans = async () => {
-
-            const data = await AsyncStorage.getItem('USER')
-            if (data) {
-                let u = JSON.parse(data)
-                setUser(u);
-                console.log("User get data is ", u)
-
-                let token = u.token;
-
-                let result = await fetch(Apis.ApiGetUserLoans, {
-                    method: 'get',
-                    headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
-                })
-                if (result) {
-                    let json = await result.json();
-
-                    if (json.status === true) {
-                        setLoans(json.data)
-                        console.log("Loan calculations", json.data)
-                    }
-                }
-            }
-
-        };
+        getUser();       
         getUserLoans();
     }, []);
 
@@ -133,8 +174,8 @@ const DashboardScreen = (props) => {
                                     <Text style={{ fontSize: 28 / 852 * height, color: "#fff", marginLeft: 30 / 852 * height }}>
                                         Dashboard
                                     </Text>
-                                    {showProgressBarView ? progressBarView() : <LoanProgressViewScreen  onNext={() => {
-                                        props.navigation.navigate("HousingSituition")
+                                    {showProgressBarView ? progressBarView() : <LoanProgressViewScreen  onNext={(screen) => {
+                                        props.navigation.navigate(screen)
                                     }}/>}
                                 </View>
                             </ImageBackground>

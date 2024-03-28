@@ -3,13 +3,14 @@ import { View, Text, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from "react-native";
 import { globalStyles } from "./GlobalStyles";
 
+
 const { height, width } = Dimensions.get('window')
 
 
 const CongratesScreen = (props) => {
 
     const nextButtonAction = () => {
-        props.navigation.navigate('StateScreen')
+        props.navigation.navigate("ActivePaydayLoans")
     }
 
     return (

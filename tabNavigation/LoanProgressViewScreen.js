@@ -84,13 +84,16 @@ const LoanProgressViewScreen = (props) => {
 
     useEffect(() => {
         const getProgress = () => {
-            console.log("User while chekcing progress", user)
+            // console.log("Liabilites added ", user.user.liabilities_added)
+            // console.log("User while chekcing progress", user)
             // profile connected 
             let p = 0
-            // identity connected 
+            // identity connected  
             user ? (user.user.identity_connected === 'success' ? p = p + 1 : p = p + 0) : p = p + 0
             if (p == 1) {
+                console.log("Identity added so checking Libalities")
                 user ? (user.user.liabilities_added === true ? p = p + 1 : p = p + 0) : p = p + 0  // may incorporate user loan flow here if wanted
+                console.log("P is now ", p)
             }
             if (p == 2) {
                 p = p + 1 // for income details since we are not getting it as of now
@@ -103,38 +106,40 @@ const LoanProgressViewScreen = (props) => {
                 user ? (user.user.houses_connected === true ? p = p + 1 : p = p + 0) : p = p + 0
 
             }
-        
+
             setProgress(p)
 
         };
         getProgress()
     }, [user])
-    const continoueBtnHandle = () => {
 
+    const continoueBtnHandle = () => {
+        console.log("In Continue button click", progress)
         if (progress === null) {
             //profile added
         }
 
         if (progress === 0) {
-            // identity conected true 
+            // profile added true 
         }
 
 
         if (progress === 1) {
-            if (user ? (user.user.active_payday_loan === null) : '') {
-                // props.navigation.navigate("ActivePaydayLoans")
-
-            }
+            //identity connected true
+            // if (user ? (user.user.active_payday_loan === null) : '') {
+            //     props.navigation.navigate("ActivePaydayLoans")
+            // }
         }
         if (progress === 2) {
             //income conected true
         }
 
         if (progress === 3) {
-            props.navigation.navigate("ActivePaydayLoans")
-
+            // props.navigation.navigate("ActivePaydayLoans")
+            props.onNext("ActivePaydayLoans")
         }
         if (progress === 4) {
+            // props.navigation.navigate("HousingSituition")
             props.onNext("HousingSituition")
         }
     };

@@ -5,6 +5,7 @@ import Snackbar from "react-native-snackbar";
 import Apis from "../Api/apipath";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native";
+import IdentityConnectionScreen from "./IdentityConnectionScreen";
 
 
 
@@ -53,10 +54,13 @@ const StateScreen = (props) => {
                         let json = await result.json();
                         console.log("data is ", json)
                         if (json.status === true) {
-                            props.navigation.navigate("LoanRequest", {
-
-                                state: slected
-                            }
+                            u.user = json.data
+                            await AsyncStorage.setItem(
+                                "USER",
+                                JSON.stringify(u)
+                            )
+                            navigation.navigate("StateScreen");
+                            props.navigation.navigate("IdentityConnectionScreen", 
                             );
                         }
                     }

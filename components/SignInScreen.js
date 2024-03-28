@@ -60,39 +60,39 @@ const SignInScreen = (props) => {
             if (json.status === true) {
                 // Settings.get("user")
                 // Settings.set({user: json.data})
+               
                 await AsyncStorage.setItem(
                     "USER",
                     JSON.stringify(json.data)
                 )
                 console.log("Stored user data in local is ", json.data)
 
-                // props.navigation.navigate("DashboardBase")
-                if(json.data.user.state === null|| json.data.user.state === ''){
-                    props.navigation.navigate("StateScreen")
-                } else if (json.data.user.identity_connected === "failed") {
+                if (json.data.active_payday_loan === null || json.data.active_payday_loan === true) {
+                    props.navigation.replace("ActivePaydayLoans")
+
+                } else if (json.data.active_duty_manual === null || json.data.active_payday_loan !== "None") {
+                    props.navigation.replace("ActivePaydayLoans")
+
+                } else if (json.data.active_duty_manual === null || json.data.bankruptcy_status !== 0) {
+                    props.navigation.replace("ActivePaydayLoans")
+
+                } else if (json.data.state === null || json.data.state === "") {
+                    props.navigation.replace("StateScreen")
+                } else if (json.data.identity_connected === "failed") {
                     props.navigation.replace("IdentityConnectionFailed")
-                } else if (json.data.user.identity_connected === 'pending' || json.data.user.identity_connected === null) {
+                } else if (json.data.identity_connected === 'pending' || json.data.identity_connected === null) {
                     props.navigation.replace("IdentityConnectionScreen")
-                } else if (json.data.user.identity_connected === 'success') {
-                    if (json.data.user.bank_connected === true) {
-                        // if (json.data.user.liabilities_added === true) {
-                        //     if (json.data.user.active_payday_loan === null) {
-                        //         props.navigation.replace("ActivePaydayLoans")
-                        //     } else {
-                                props.navigation.replace("DashboardBase")
+                } else if (json.data.bank_connected === false) {
+                    props.navigation.replace("BankAccountMainScreen")
+                } else if (json.data.liabilities_added === false) {
 
-                            }
-                    //     } else {
-                    //         props.navigation.replace("ActivePaydayLoans")
+                    props.navigation.replace("BankAccountMainScreen")
+                } else if (json.data.payment_source_added === true) {
 
-                    //     }
-                    // }
-                    else {
-                        props.navigation.replace("BankAccountMainScreen")
-                    }
+                    props.navigation.replace("LoanRequest",{fromTabBar: false})
+                } else{
+                    props.navigation.replace("SplashScreen2")
                 }
-
-
             }
             else {
                 Snackbar.show({

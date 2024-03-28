@@ -19,7 +19,7 @@ const LoanShedule = ({ navigation, route }) => {
     const [selectedTab, setSelectedTab] = useState(0);
     return (
         // <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ height: height, width: width, backgroundColor: "ececec" }}>
+        <View style={{ height: height, width: width, backgroundColor: "#ececec" }}>
             <View style={{ backgroundColor: "#2468E8", height: height / 2, width: width, }}>
 
                 <ImageBackground style={{ height: height / 2, width: width }} source={lightDotte}>
@@ -39,7 +39,7 @@ const LoanShedule = ({ navigation, route }) => {
                             <View style={{ marginLeft: 38 / 393 * width }}>
                                 <CircularProgress
                                     radius={60 / 852 * height}
-                                    value={80}
+                                    value={50}
                                     progressValueFontSize={24 / 852 * height}
                                     valueSuffix={"%"}
                                     title="Paid"
@@ -101,68 +101,69 @@ const LoanShedule = ({ navigation, route }) => {
 
 
                         <View style={{
-                            marginTop: 60 / 852 * height,
-                            borderTopLeftRadius: 25 / 852 * height, alignItems: "center", padding: 10
+                            marginTop: 60 / 852 * height, backgroundColor: '#ffffff', width: 371 / 393 * width, borderTopRightRadius: 25 / 852 * height,
+                            borderTopLeftRadius: 25 / 852 * height, alignSelf: "center", alignItems: 'center'
                         }}>
+                            {/* <View style={{
+                                width: 371 / 393 * width, height: height / 1.9, borderTopRightRadius: 25 / 852 * height,backgroundColor:'blue' 
+                            }}> */}
                             <View style={{
-                                width: 371 / 393 * width, height: height / 1.9, borderTopRightRadius: 25 / 852 * height, alignSelf: "center",
+                                width: 181 / 393 * width, paddingHorizontal: 5, paddingVertical: 5,
+                                backgroundColor: "#ececec", marginTop: 8 / 852 * height, borderRadius: 9 / 852 * height, alignItems: "center", flexDirection: "row"
                             }}>
-                                <View style={{
-                                    width: 181 / 393 * width,
-                                    backgroundColor: "#ececec", marginTop: 8 / 852 * height, borderRadius: 9 / 852 * height, alignItems: "center", flexDirection: "row"
-                                }}>
-                                    <TouchableOpacity
-                                        onPress={() => {
-                                            setSelectedTab(0);
-                                        }}
-                                        style={{
-                                            // paddingLeft:10,
-                                            height: 25 / 852 * height,
-                                            width: 86 / 393 * width,
-                                            backgroundColor: selectedTab == 0 ? '#fff' : '#ececec',
-                                            borderRadius: 8 / 852 * height,
-                                            alignItems: "center",
-                                            justifyContent: "center",
-                                        }} >
-                                        <Text style={{ fontSize: 14 / 852 * height, color: "#000", fontWeight: "500" }}>
-                                            Pay Plan
-                                        </Text>
-                                    </TouchableOpacity>
-                                    <View style={{ paddingLeft: 6 / 852 * height }}>
-                                        <TouchableOpacity onPress={() => {
-                                            setSelectedTab(1);
-                                        }}
-                                            style={{
-                                                height: 25 / 852 * height,
-                                                width: 86 / 393 * width,
-                                                backgroundColor: selectedTab == 1 ? '#fff' : '#ececec',
-                                                borderRadius: 8 / 852 * height,
-                                                alignItems: "center",
-                                                justifyContent: "center",
-                                            }} >
-                                            <Text style={{ fontSize: 14 / 852 * height, color: "#000", fontWeight: "500" }}>
-                                                Details
-                                            </Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        setSelectedTab(0);
+                                    }}
+                                    style={{
+                                        // paddingLeft:10,
+                                        height: 25 / 852 * height,
+                                        width: 86 / 393 * width,
+                                        backgroundColor: selectedTab == 0 ? '#fff' : '#ececec',
+                                        borderRadius: 8 / 852 * height,
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                    }} >
+                                    <Text style={{ fontSize: 14 / 852 * height, color: "#000", fontWeight: "500" }}>
+                                        Pay Plan
+                                    </Text>
+                                </TouchableOpacity>
 
-                                <View style={{}} >
-                                    {
-                                        selectedTab == 0 && (
-                                            (loan.loan_status === "rejected" ? <RejectDetailView /> : <PayPlanView />)
+                                <TouchableOpacity onPress={() => {
+                                    setSelectedTab(1);
+                                }}
+                                    style={{
 
-                                        )
-                                    }
-                                    {
-                                        selectedTab == 1 && (
-                                            (loan.loan_status === "rejected" ? <RejectDetailView /> : <LoanDetails loan={loan} />)
+                                        height: 25 / 852 * height,
+                                        width: 86 / 393 * width,
+                                        backgroundColor: selectedTab == 1 ? '#fff' : '#ececec',
+                                        borderRadius: 8 / 852 * height,
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                    }} >
+                                    <Text style={{ fontSize: 14 / 852 * height, color: "#000", fontWeight: "500" }}>
+                                        Details
+                                    </Text>
+                                </TouchableOpacity>
 
-
-                                        )
-                                    }
-                                </View>
                             </View>
+
+                            <View style={{}} >
+                                {
+                                    selectedTab == 0 && (
+                                        (loan.loan_status === "rejected" ? <RejectDetailView /> : <PayPlanView />)
+
+                                    )
+                                }
+                                {
+                                    selectedTab == 1 && (
+                                        (loan.loan_status === "rejected" ? <RejectDetailView /> : <LoanDetails loan={loan} />)
+
+
+                                    )
+                                }
+                            </View>
+                            {/* </View> */}
                         </View>
                     </ImageBackground>
                 </ImageBackground>

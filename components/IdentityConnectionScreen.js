@@ -104,8 +104,8 @@ const IdentityConnectionScreen = (props) => {
                 console.log("udated data is ", json)
                 let newUser = json.data;
                 d.user = newUser;
-                 await AsyncStorage.setItem("USER", JSON.stringify(newUser))
-                console.log("Saved user data ", newUser)
+                 await AsyncStorage.setItem("USER", JSON.stringify(d))
+                console.log("Saved user data ", d)
             }
         }
     };
@@ -114,7 +114,7 @@ const IdentityConnectionScreen = (props) => {
 
     const getIdentityData = async (token) => {
         const data = await AsyncStorage.getItem("USER")
-        // console.log("Getting user " ,data)
+        console.log("Getting user " ,token)
         if (data) {
 
             let user = JSON.parse(data)

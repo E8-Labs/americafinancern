@@ -71,6 +71,8 @@ import IncomeDetails from "./profileFlow/IncomDetails";
 import Manage_account from "./profileFlow/Manage_account";
 import IdentityConnectionScreen from "./components/IdentityConnectionScreen";
 import IdentityConnectionFailed from "./components/IdenditityConnectionFailed";
+import OnbordingFailScreen from "./Debt-Obligation/OnbordingFailScreen";
+import IncomeVerification from "./components/IncomeVerification";
 
 
 const Stack = createNativeStackNavigator();
@@ -81,7 +83,7 @@ const App = () => {
   return (
   
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="SplashScreen1" screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName="IncomeVerification" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="SplashScreen1" component={SplashScreen1} />
           <Stack.Screen name="SplashScreen2" component={SplashScreen2} />
           <Stack.Screen name="SplashScreen3" component={SplashScreen3} />
@@ -128,6 +130,7 @@ const App = () => {
           <Stack.Screen name="Manage_account" component={Manage_account} />
 
           <Stack.Screen name="ActivePaydayLoans" component={ActivePaydayLoans} />
+          <Stack.Screen name="OnbordingFailScreen" component={OnbordingFailScreen} />
           <Stack.Screen name="ApplicationDetailActiveDuty" component={ApplicationDetailActiveDuty} />
           <Stack.Screen name="ApplicationDetailsScreen" component={ApplicationDetailsScreen} />
           <Stack.Screen name="BankruptcyPetition" component={BankruptcyPetition} />
@@ -139,6 +142,7 @@ const App = () => {
           <Stack.Screen name="OutstandingDebtScreen" component={OutstandingDebtScreen} />
           <Stack.Screen name="IdentityConnectionScreen" component={IdentityConnectionScreen} />
           <Stack.Screen name="IdentityConnectionFailed" component={IdentityConnectionFailed} />
+          <Stack.Screen name="IncomeVerification" component={IncomeVerification} />
         </Stack.Navigator>
       </NavigationContainer>
     // <View>
